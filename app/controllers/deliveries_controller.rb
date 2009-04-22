@@ -6,4 +6,11 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def create
+    delivery = Delivery.create
+    redirect_to :action => :edit, :id => delivery.id
+  end
+
+  def edit
+  end
 end

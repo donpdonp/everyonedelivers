@@ -6,8 +6,7 @@ EveryoneDelivers
 Crowdsourced delivery service. <br/>
 </p>
 
-<p>
-Take kozmo.com, take out the inventory, take out the employees,
-add the open-to-anyone features of mechanical turk, and give
-many many people a way to make a buck.
-</p>
+<%= link_to 'Create a delivery listing', new_delivery_path %>
+<% form_for Delivery.new do |f| %>
+  <%= f.submit 'Create a delivery listing' %>
+<% end %>
