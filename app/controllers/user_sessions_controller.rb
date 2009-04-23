@@ -7,13 +7,13 @@ class UserSessionsController < ApplicationController
   end
   
   def create
-    @user_session = UserSession.new(params[:user_session])
+    @user_session = UserSession.new(:openid_identifier => params[:openid_identifier])
     if @user_session.save
       flash[:notice] = "Login successful!"
-      redirect_back_or_default account_url
     else
-      render :action => :new
+      flash[:notice] = "Login failed."
     end
+      redirect_back_or_default root_path
   end
   
   def destroy

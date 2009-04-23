@@ -11,16 +11,16 @@
   <%= link_to 'everyonedelivers.com', :root %>
   </span>
   <span style="text-align: right">
-  <% form_tag(new_user_session_path, {:id => 'loginform'}) do %>
-  <% if logged_in? %>
-    <% openidurl = current_user.openidentities.first.url %>
-    <%= link_to openidurl, :controller => :users,
-                           :action => current_user.username %>
-  <% else %>
-    <%= image_tag 'openid_small_logo.png' %> 
-    <%= link_to 'Login with OpenID', "#" , {:id => 'openidlink', 
-                                            :onclick => "show_openid_field()"} %>
-  <% end %>
+  <% form_tag("/user_sessions/create", {:id => 'loginform'}) do %>
+    <% if logged_in? %>
+      <% openidurl = current_user.openidentities.first.url %>
+      <%= link_to openidurl, :controller => :users,
+                             :action => current_user.username %>
+    <% else %>
+      <%= image_tag 'openid_small_logo.png' %> 
+      <%= link_to 'Login with OpenID', "#" , {:id => 'openidlink', 
+                                              :onclick => "show_openid_field()"} %>
+    <% end %>
   <% end %>
   </span>
 </div>
