@@ -1,0 +1,7 @@
+<%# form_for :delivery, @delivery, :url => delivery_path(@delivery), :method => "put" do |f| %>
+<% form_for @delivery do |f| %>
+  <p>
+    Editing Delivery #<%= @delivery.id %>
+  </p>
+  <%= f.text_field :created_at %>
+<% end %>

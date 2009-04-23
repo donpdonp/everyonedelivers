@@ -12,5 +12,6 @@ class DeliveriesController < ApplicationController
   end
 
   def edit
+    @delivery = Delivery.find(params[:id])
   end
 end
