@@ -16,6 +16,7 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "authlogic"
+  config.gem "authlogic-oid", :lib => "authlogic_openid"
 
   # config.gem "bj"
   # Only load the plugins named here, in the order given (default is alphabetical).
