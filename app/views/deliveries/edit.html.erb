@@ -3,7 +3,22 @@
   <p>
     Editing Delivery #<%= @delivery.id %>
   </p>
-  $<%= f.text_field :display_price, :size => 2 %>
+  <fieldset>
+    <legend> Delivery Fee </legend>
+    Price $<%= text_field_tag "fee[display_price]", @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 2 %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Package</legend>
+    Description <%= text_field_tag "package[description]", @delivery.package ? @delivery.package.description : "", :size => 50 %>
+    <br/>
+    Dimentions in inches Height: <%= text_field_tag "package[height]", @delivery.package ? @delivery.package.height : "", :size => 5 %>
+    Width: <%= text_field_tag "package[width]", @delivery.package ? @delivery.package.width : "", :size => 5 %>
+    Depth: <%= text_field_tag "package[depth]", @delivery.package ? @delivery.package.depth : "", :size => 5 %>
+    <br/>
+    Weight in ounces <%= text_field_tag "package[weight]", @delivery.package ? @delivery.package.weight : "", :size => 5 %>
+  </fieldset>
+  
   <br/>
   <%= f.submit %>
   <br/>
