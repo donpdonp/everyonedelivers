@@ -1,6 +1,6 @@
 class CreateOpenids < ActiveRecord::Migration
   def self.up
-    create_table :openids do |t|
+    create_table :openidentities do |t|
       t.string :url
       t.integer :user_id
       t.timestamps
@@ -8,6 +8,6 @@ class CreateOpenids < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :openids
+    drop_table :openidentites
   end
 end

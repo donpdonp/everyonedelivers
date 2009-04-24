@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe Openid do
+describe Openidentity do
   before(:each) do
     @valid_attributes = {
     }
   end
 
   it "should create a new instance given valid attributes" do
-    Openid.create!(@valid_attributes)
+    Openidentity.create!(@valid_attributes)
   end
 end
