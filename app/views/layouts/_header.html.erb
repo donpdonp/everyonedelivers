@@ -11,7 +11,7 @@
   <%= link_to 'everyonedelivers.com', :root %>
   </span>
   <span style="text-align: right">
-  <% form_tag("/user_sessions/create", {:id => 'loginform'}) do %>
+  <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <% if logged_in? %>
       <% openidurl = current_user.openidentities.first.url %>
       <%= link_to openidurl, :controller => :users,

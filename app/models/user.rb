@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :openids
+  has_many :openidentities
 
   def openid
-    self.openids.first
+    self.openidentities.first
   end
 end
