@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :deliveries
-  map.resources :user_session
+  map.resources :users
+  map.resources :locations
+  map.resources :packages
   map.root :controller => "dashboard"
 
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
