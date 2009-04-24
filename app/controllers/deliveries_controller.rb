@@ -14,4 +14,11 @@ class DeliveriesController < ApplicationController
   def edit
     @delivery = Delivery.find(params[:id])
   end
+
+  def update
+    delivery = Delivery.find(params[:id])
+    delivery.apply_form_attributes(params[:delivery])
+    delivery.save!
+    redirect_to :action => :edit, :id => delivery.id
+  end
 end

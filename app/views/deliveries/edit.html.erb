@@ -3,5 +3,8 @@
   <p>
     Editing Delivery #<%= @delivery.id %>
   </p>
-  <%= f.text_field :created_at %>
+  $<%= f.text_field :display_price, :size => 2 %>
+  <br/>
+  <%= f.submit %>
+  <br/>
 <% end %>
