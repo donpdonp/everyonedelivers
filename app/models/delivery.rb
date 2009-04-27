@@ -9,4 +9,8 @@ class Delivery < ActiveRecord::Base
   def apply_form_attributes(params)
     return if params.nil?
   end
+
+  def ok_to_display?
+    fee && package
+  end
 end
