@@ -1,3 +1,12 @@
+#deliverylist {
+  margin-bottom: 10px;
+}
+
+#deliverylist thead {
+  color: white;
+  background-color: grey;
+}
+
 #footer {
 margin-top: 10px;
 }

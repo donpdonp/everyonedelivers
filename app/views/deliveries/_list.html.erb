@@ -1,11 +1,15 @@
-<table>
+<table id="deliverylist">
+  <thead>
   <tr>
   <td>Id</td>
   <td>Package</td>
   <td>From</td>
   <td>To</td>
   <td>Delivery Fee</td>
+  <td>Age</td>
   <tr>
+  </thead>
+  <tbody>
 <% deliveries.each do |d| %>
   <% if d.ok_to_display? %>
   <tr>
@@ -14,7 +18,9 @@
    <td><%= d.start_location.street %></td>
    <td><%= d.end_location.street %></td>
    <td>$<%= d.fee.display_price %></td>
+   <td><%= time_ago_in_words(d.created_at) %></td>
   </tr>
   <% end %>
+  </tbody>
 <% end %>
 </table>
