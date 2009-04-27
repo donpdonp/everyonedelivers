@@ -20,7 +20,8 @@
    <td><%= d.end_location.street %></td>
    <td>$<%= d.fee.display_price %></td>
    <td><%= time_ago_in_words(d.created_at) %></td>
-   <td><%= d.listing_user.username %></td>
+   <td><%= link_to d.listing_user.username, 
+           :controller => :users, :action => :show, :id => d.listing_user.username %></td>
   </tr>
   <% end %>
   </tbody>
