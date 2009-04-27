@@ -11,6 +11,6 @@ class Delivery < ActiveRecord::Base
   end
 
   def ok_to_display?
-    fee && package
+    fee && package && start_location && end_location
   end
 end

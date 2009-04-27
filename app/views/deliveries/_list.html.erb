@@ -1,7 +1,9 @@
 <table>
   <tr>
   <td>Id</td>
-  <td>Description</td>
+  <td>Package</td>
+  <td>From</td>
+  <td>To</td>
   <td>Delivery Fee</td>
   <tr>
 <% deliveries.each do |d| %>
@@ -9,6 +11,8 @@
   <tr>
    <td><%= d.id %></td>
    <td><%= d.package.description %></td>
+   <td><%= d.start_location.street %></td>
+   <td><%= d.end_location.street %></td>
    <td>$<%= d.fee.display_price %></td>
   </tr>
   <% end %>

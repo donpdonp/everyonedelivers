@@ -29,6 +29,16 @@ class DeliveriesController < ApplicationController
     package.save!
     delivery.package = package
 
+    location = Location.new
+    location.apply_form_attributes(params[:from])
+    location.save!
+    delivery.start_location = location
+
+    location = Location.new
+    location.apply_form_attributes(params[:to])
+    location.save!
+    delivery.end_location = location
+
     delivery.save!
     redirect_to :action => :edit, :id => delivery.id
   end
