@@ -1,0 +1,4 @@
+openid: <%= current_user.openid.url %> <br/>
+username: <%= current_user.username %> <br/>
+
+<%= link_to 'logout', :controller => :session, :action => :logout %>

@@ -10,6 +10,10 @@ Crowdsourced delivery service. <br/>
   <%= render :partial => 'deliveries/list', :locals => {:deliveries => @deliveries} %>
 </p>
 
-<% form_for Delivery.new do |f| %>
-  <%= f.submit 'Create a delivery listing' %>
+<% if logged_in? %>
+  <% form_for Delivery.new do |f| %>
+    <%= f.submit 'Create a delivery listing' %>
+  <% end %>
+<% else %>
+  Login to list or accept a delivery.
 <% end %>
