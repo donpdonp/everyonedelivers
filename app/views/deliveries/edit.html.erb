@@ -24,13 +24,13 @@
     <legend>From Address</legend>
     Example: 900 SW Main, Portland, Or <br/>
     Address <%= text_field_tag "from[address]", 
-                @delivery.package ? @delivery.package.description : "", :size => 50 %>
+                @delivery.start_location ? @delivery.start_location.street : "", :size => 50 %>
   </fieldset>
 
   <fieldset>
     <legend>To Address</legend>
     Address <%= text_field_tag "to[address]", 
-                @delivery.package ? @delivery.package.description : "", :size => 50 %>
+                @delivery.end_location ? @delivery.end_location.street : "", :size => 50 %>
   </fieldset>
   <fieldset>
     <legend> Delivery Fee </legend>
