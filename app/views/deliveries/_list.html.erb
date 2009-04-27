@@ -7,6 +7,7 @@
   <td>To</td>
   <td>Delivery Fee</td>
   <td>Age</td>
+  <td>Listed by</td>
   <tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
    <td><%= d.end_location.street %></td>
    <td>$<%= d.fee.display_price %></td>
    <td><%= time_ago_in_words(d.created_at) %></td>
+   <td><%= d.listing_user.username %></td>
   </tr>
   <% end %>
   </tbody>

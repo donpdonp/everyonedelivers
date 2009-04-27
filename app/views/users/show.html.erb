@@ -1,4 +1,23 @@
-openid: <%= current_user.openid.url %> <br/>
-username: <%= current_user.username %> <br/>
+openid: <%= @user.openid.url %> <br/>
+username: <%= @user.username %> <br/>
 
+<% if logged_in? %>
 <%= link_to 'logout', :controller => :session, :action => :logout %>
+<% end %>
+
+<p>
+Listed deliveries
+</p>
+
+<p>
+  <%= render :partial => 'deliveries/list', :locals => {:deliveries => @listed_deliveries} %>
+</p>
+
+<p>
+Accepted deliveries
+</p>
+
+<p>
+  <%= render :partial => 'deliveries/list', :locals => {:deliveries => @accepted_deliveries} %>
+</p>
+

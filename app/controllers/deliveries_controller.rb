@@ -1,4 +1,6 @@
 class DeliveriesController < ApplicationController
+  before_filter :login_required, :only => [:create, :edit, :update]
+
   def index
     @deliveries = Delivery.all
     respond_to do |format|
@@ -7,7 +9,7 @@ class DeliveriesController < ApplicationController
   end
 
   def create
-    delivery = Delivery.create
+    delivery = Delivery.create({:listing_user => current_user})
     redirect_to :action => :edit, :id => delivery.id
   end
 
