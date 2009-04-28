@@ -24,4 +24,15 @@ describe DeliveriesController do
     response.should redirect_to(edit_delivery_path(delivery))
   end
 
+  it "should show the details of a delivery" do
+    delivery = mock_model(Delivery)
+    Delivery.should_receive(:find).and_return(delivery)
+    get :show, {:id => delivery.id}
+  end
+
+  it "should accept a delivery" do
+    delivery = mock_model(Delivery)
+    Delivery.should_receive(:find).and_return(delivery)
+    put :update, {:id => delivery.id}
+  end
 end

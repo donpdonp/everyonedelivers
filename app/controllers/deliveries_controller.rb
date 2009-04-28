@@ -14,7 +14,7 @@ class DeliveriesController < ApplicationController
   end
 
   def show
-     @delivery = Delivery.find(params[:id])
+    @delivery = Delivery.find(params[:id])
   end
 
   def edit
@@ -47,5 +47,12 @@ class DeliveriesController < ApplicationController
 
     delivery.save!
     redirect_to :action => :edit, :id => delivery.id
+  end
+
+  def accept
+    delivery = Delivery.find(params[:id])
+    delivery.delivering_user = current_user
+    delivery.save!
+    redirect_to delivery_path(delivery)
   end
 end
