@@ -46,7 +46,7 @@ class DeliveriesController < ApplicationController
     delivery.end_location = location
 
     delivery.save!
-    redirect_to :action => :edit, :id => delivery.id
+    redirect_to :action => :show, :id => delivery.id
   end
 
   def accept
