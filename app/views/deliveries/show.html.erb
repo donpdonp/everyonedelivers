@@ -26,8 +26,12 @@ Cost: $<%= @delivery.fee.display_price %>
   Delivery accepted by: <%= @delivery.delivering_user.username %>
 <% else %>
   <% if logged_in? %>
-    <% form_for :delivery, @delivery, :url => accept_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
-      <%= f.submit 'Accept this delivery' %>
+    <% if current_user == @delivery.listing_user %>
+       Waiting to be accepted.
+    <% else %>
+      <% form_for :delivery, @delivery, :url => accept_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
+        <%= f.submit 'Accept this delivery' %>
+      <% end %>
     <% end %>
   <% else %>
     Login to accept this delivery.
