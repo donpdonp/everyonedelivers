@@ -8,6 +8,7 @@
   <td>Delivery Fee</td>
   <td>Age</td>
   <td>Listed by</td>
+  <td>Delivered by</td>
   <tr>
   </thead>
   <tbody>
@@ -22,6 +23,10 @@
    <td><%= time_ago_in_words(d.created_at) %></td>
    <td><%= link_to d.listing_user.username, 
            :controller => :users, :action => :show, :id => d.listing_user.username %></td>
+   <td><% if d.delivering_user %>
+         <%= link_to d.delivering_user.username, 
+           :controller => :users, :action => :show, :id => d.delivering_user.username %>
+       <% end %></td>
   </tr>
   <% end %>
   </tbody>
