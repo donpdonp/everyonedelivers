@@ -20,4 +20,9 @@ class Delivery < ActiveRecord::Base
     Journal.create({:delivery => self, :note => "Created"})
     Journal.create({:delivery => self, :user => self.listing_user, :note => "Listed by"})
   end
+
+  def deliverer(user)
+    self.delivering_user = user
+    Journal.create({:delivery => self, :user => user, :note => "Accepted"})
+  end
 end

@@ -51,7 +51,7 @@ class DeliveriesController < ApplicationController
 
   def accept
     delivery = Delivery.find(params[:id])
-    delivery.delivering_user = current_user
+    delivery.deliverer(current_user)
     delivery.save!
     redirect_to delivery_path(delivery)
   end
