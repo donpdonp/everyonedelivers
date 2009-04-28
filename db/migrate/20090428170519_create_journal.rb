@@ -6,6 +6,7 @@ class CreateJournal < ActiveRecord::Migration
       t.integer :user_id
       t.integer :location_id
       t.float :fee
+      t.string :note
       t.timestamps
     end
   end

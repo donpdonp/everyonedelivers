@@ -14,7 +14,7 @@
 <% deliveries.each do |d| %>
   <% if d.ok_to_display? %>
   <tr>
-   <td><%= d.id %></td>
+   <td><%= link_to d.id, delivery_path(d) %></td>
    <td><%= d.package.description %></td>
    <td><%= d.start_location.street %></td>
    <td><%= d.end_location.street %></td>

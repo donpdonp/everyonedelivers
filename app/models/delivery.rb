@@ -4,7 +4,9 @@ class Delivery < ActiveRecord::Base
   belongs_to :start_location, :class_name => "Location"
   belongs_to :end_location, :class_name => "Location"
   belongs_to :listing_user, :class_name => "User"
-  belongs_to :delivery_user, :class_name => "User"
+  belongs_to :delivering_user, :class_name => "User"
+
+  after_create :journal_on_create
 
   def apply_form_attributes(params)
     return if params.nil?
@@ -12,5 +14,10 @@ class Delivery < ActiveRecord::Base
 
   def ok_to_display?
     fee && package && start_location && end_location && listing_user
+  end
+
+  def journal_on_create
+    Journal.create({:delivery => self, :note => "Created"})
+    Journal.create({:delivery => self, :user => self.listing_user, :note => "Listed by"})
   end
 end
