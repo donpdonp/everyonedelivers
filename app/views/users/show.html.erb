@@ -10,7 +10,7 @@ Listed deliveries
 </p>
 
 <p>
-  <%= render :partial => 'deliveries/list', :locals => {:deliveries => @listed_deliveries} %>
+  <%= render :partial => 'deliveries/list', :locals => {:timedesc => "", :deliveries => @listed_deliveries} %>
 </p>
 
 <p>
@@ -18,6 +18,6 @@ Accepted deliveries
 </p>
 
 <p>
-  <%= render :partial => 'deliveries/list', :locals => {:deliveries => @accepted_deliveries} %>
+  <%= render :partial => 'deliveries/list', :locals => {:timedesc => "", :deliveries => @accepted_deliveries} %>
 </p>
 
