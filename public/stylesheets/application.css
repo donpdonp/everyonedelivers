@@ -1,10 +1,63 @@
-#deliverylist {
-  margin-bottom: 10px;
+a {
+  text-decoration: none;
 }
 
-#deliverylist thead {
-  color: white;
-  background-color: grey;
+.dark {
+  background: #BBBBBB; 
+}
+
+.deliverylist {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  float: left;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.deliverytimes {
+  float: left;
+}
+
+.deliverypackagename {
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.deliverypackagename a:link {
+  color: #0000FF;
+}
+
+.deliverypackagename a:visited {
+  color: #0000FF
+}
+
+.deliverypackagename a:hover {
+  color: #00007F
+}
+
+.deliverypackagename a:active {
+  color: #00007F
+}
+
+.deliverylistinguser {
+  font-size: 80%;
+}
+
+.deliverypackageprice a:link {
+  color: #5000FF;
+}
+
+.deliverypackageprice a:visited {
+  color: #5000FF
+}
+
+.deliverypackageprice a:hover {
+  color: #00007F
+}
+
+.deliverypackageprice a:active {
+  color: #00007F
 }
 
 #footer {

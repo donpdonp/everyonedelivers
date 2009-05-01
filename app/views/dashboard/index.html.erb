@@ -7,7 +7,9 @@ Crowdsourced delivery service. <br/>
 </p>
 
 <p>
-  <%= render :partial => 'deliveries/list', :locals => {:deliveries => @deliveries} %>
+  <% @delivery_groups.each do |group| %>
+    <%= render :partial => 'deliveries/list', :locals => {:timedesc => group.first, :deliveries => group.last} %>
+  <% end %>
 </p>
 
 <% if logged_in? %>
@@ -15,7 +17,7 @@ Crowdsourced delivery service. <br/>
     <%= f.submit 'Create a delivery listing' %>
   <% end %>
 <% else %>
-  Login to list or accept a delivery.
+  Login to create or accept a delivery.
 <% end %>
 
 <br/>
