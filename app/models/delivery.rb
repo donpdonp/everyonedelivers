@@ -33,4 +33,8 @@ class Delivery < ActiveRecord::Base
   def self.find_more_than_hours_old(hours)
     all(:conditions => ["created_at < ?", hours.hour.ago], :order => "created_at desc, delivering_user_id asc")
   end
+
+  def self.find_between_hours_old(start,stop)
+    all(:conditions => ["created_at >= ? and created_at < ?", start.hours.ago, stop.hours.ago], :order => "created_at desc, delivering_user_id asc")
+  end
 end
