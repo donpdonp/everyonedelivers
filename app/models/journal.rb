@@ -7,6 +7,7 @@ class Journal < ActiveRecord::Base
   after_create :queue_an_email
 
   def queue_an_email
-    EMAIL_QUEUE.publish({:to => SETTINGS["journal"]["notification_email_address"]}.to_yaml)
+    BUNNY_EXCHANGE.publish({:to => SETTINGS["journal"]["notification_email_address"]}.to_yaml,
+                            :key => 'outbound_email')
   end
 end

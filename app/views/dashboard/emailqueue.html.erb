@@ -1,1 +1,5 @@
 email queue count: <%= @count %>
+
+<% @count.times do %>
+ entry: <%=h EMAIL_QUEUE.pop %> <br/>
+<% end %>
