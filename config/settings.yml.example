@@ -1,0 +1,8 @@
+---
+journal:
+  notification_email_address: ""
+bunny:
+  start:
+    user:
+    pass:
+    host:
