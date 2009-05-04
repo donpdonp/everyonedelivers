@@ -32,6 +32,11 @@ describe DeliveriesController do
 
   it "should accept a delivery" do
     delivery = mock_model(Delivery)
+    delivery.should_receive(:fee=)
+    delivery.should_receive(:package=)
+    delivery.should_receive(:start_location=)
+    delivery.should_receive(:end_location=)
+    delivery.should_receive(:save!)
     Delivery.should_receive(:find).and_return(delivery)
     put :update, {:id => delivery.id}
   end
