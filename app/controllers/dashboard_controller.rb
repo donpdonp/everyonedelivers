@@ -10,7 +10,4 @@ class DashboardController < ApplicationController
     @delivery_groups << ["More than four hours old", many_hours] if many_hours.size > 0
   end
 
-  def emailqueue
-    @count = EMAIL_QUEUE.message_count
-  end
 end
