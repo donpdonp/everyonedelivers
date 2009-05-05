@@ -89,20 +89,12 @@ a {
   font-size: 80%;
 }
 
-.deliverypackageprice a:link {
-  color: #5000FF;
-}
-
-.deliverypackageprice a:visited {
-  color: #5000FF
+.deliverypackageprice a {
+  color: #8D9D73;
 }
 
 .deliverypackageprice a:hover {
   color: green;
-}
-
-.deliverypackageprice a:active {
-  color: #00007F
 }
 
 #footer {
