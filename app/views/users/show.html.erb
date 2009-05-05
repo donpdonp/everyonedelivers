@@ -1,4 +1,4 @@
-openid: <%= @user.openid.url %> <br/>
+openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
 username: <%= @user.username %> <br/>
 
 <% if logged_in? %>
