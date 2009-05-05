@@ -1,0 +1,15 @@
+<div class="centered">
+  Please login with your OpenID URL:
+  <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
+    <%= image_tag 'openid_small_logo.png' %> 
+    <%= text_field_tag 'openid_identifier' %>
+    <%= hidden_field_tag :next_url, params[:next_url] %>
+  <% end %>
+  <p>
+  OpenID is service that allows you to log-on to many different websites 
+  using a single indentity.
+  </p>
+  <p>
+  Find out <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.
+  </p>
+</div>

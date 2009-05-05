@@ -1,8 +1,13 @@
 <div class="menubar">
+  <% form_for Delivery.new do |f| %>
   <ul>
-    <li> one </li>
-    <li> two </li>
-    <li> three </li>
+    <li> 
+    <%= f.submit 'Create a delivery listing' %>
+    </li>
   </ul>
+
+  <span style="float:right">
+    Search <%= text_field :search, :terms%> 
+  </span>
+  <% end %>
 </div>
-<br clear="all" />
