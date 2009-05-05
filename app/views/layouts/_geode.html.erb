@@ -1,0 +1,26 @@
+<script>
+function locationUpdated() {
+  alert('location stored on server!');
+}
+
+function locCallback(aPosition) {
+	var url = '<%= root_url %>users/update_location';
+	var pars = 'latitude=' + aPosition.latitude + '&longitude=' + aPosition.longitude;
+	
+        alert('sending '+pars);
+	var myAjax = new Ajax.Request(
+			url, 
+			{
+				method: 'get', 
+				parameters: pars, 
+				onComplete: locationUpdated
+			});
+}
+
+function errCallback(aError) {
+  // best-effort. do nothing on error
+}
+
+//navigator.geolocation.getCurrentPosition(locCallback, errCallback);
+
+</script>

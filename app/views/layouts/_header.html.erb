@@ -9,6 +9,7 @@
   <ul>
     <li><%= link_to 'EveryoneDelivers.com', :root %></li>
   </ul>
+  <span id="geomsg" />
   <span style="text-align: right">
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <% if logged_in? %>
