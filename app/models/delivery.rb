@@ -26,15 +26,26 @@ class Delivery < ActiveRecord::Base
     Journal.create({:delivery => self, :user => user, :note => "Delivery Accepted"})
   end
 
-  def self.find_at_most_hours_old(hours)
-    all(:conditions => ["created_at >= ?", hours.hour.ago], :order => "created_at desc, delivering_user_id asc")
+  def self.find_at_most_hours_old(hours, time=Time.now)
+    start = hours.hours.ago(time)
+    stop = time
+    find_between_times(start,stop)
   end
 
-  def self.find_more_than_hours_old(hours)
-    all(:conditions => ["created_at < ?", hours.hour.ago], :order => "created_at desc, delivering_user_id asc")
+  def self.find_more_than_hours_old(hours, time=Time.now)
+    start = Time.zone.at(0)
+    stop = hours.hours.ago(time)
+    find_between_times(start,stop)
   end
 
-  def self.find_between_hours_old(start,stop)
-    all(:conditions => ["created_at >= ? and created_at < ?", start.hours.ago, stop.hours.ago], :order => "created_at desc, delivering_user_id asc")
+  def self.find_between_hours_old(smaller, larger, time=Time.now)
+      start = larger.hours.ago(time)
+      stop = smaller.hours.ago(time)
+    find_between_times(start,stop)
+  end
+
+  private
+  def self.find_between_times(start,stop)
+    all(:conditions => ["created_at >= ? and created_at < ?", start, stop], :order => "created_at desc, delivering_user_id asc")
   end
 end
