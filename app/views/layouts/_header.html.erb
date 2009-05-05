@@ -1,4 +1,3 @@
-<div class="header">
 <!-- openid start -->
  <script>
   function show_openid_field() {
@@ -6,10 +5,10 @@
   }
 </script>
 
-<div id="loginbox">
-  <span style="float: left">
-  <%= link_to 'everyonedelivers.com', :root %>
-  </span>
+<div class="header">
+  <ul>
+    <li><%= link_to 'everyonedelivers.com', :root %></li>
+  </ul>
   <span style="text-align: right">
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <% if logged_in? %>
@@ -23,6 +22,4 @@
     <% end %>
   <% end %>
   </span>
-</div>
-<!-- openid end -->
- 
+</div> 

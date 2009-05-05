@@ -1,6 +1,41 @@
+body {
+  font-family: arial;
+  background: #EEEEEE;
+}
+
 a {
   text-decoration: none;
 }
+
+.header {
+  background: black;
+  color: #DAD4BA;
+}
+
+.header a {
+  color: #DAD4BA;
+  font-family: sans-serif;
+}
+
+.header a:hover {
+  color: blue;
+  font-family: sans-serif;
+}
+
+.header ul {
+  margin:0px;
+  padding:0px;
+}
+
+.header li {
+  border-right:1px solid #333333;
+  display:inline;
+  float:left;
+  list-style-type:none;
+  margin:0px;
+  padding:0px;
+}
+
 
 .dark {
   background: #BBBBBB; 
@@ -33,7 +68,7 @@ a {
 }
 
 .deliverypackagename a:hover {
-  color: #00007F
+  color: green;
 }
 
 .deliverypackagename a:active {
@@ -53,7 +88,7 @@ a {
 }
 
 .deliverypackageprice a:hover {
-  color: #00007F
+  color: green;
 }
 
 .deliverypackageprice a:active {
@@ -63,3 +98,25 @@ a {
 #footer {
 margin-top: 10px;
 }
+
+.menubar {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menubar ul {
+  margin:0px;
+  padding:0px;
+}
+
+.menubar li {
+  border-right:1px solid #333333;
+  display:inline;
+  float:left;
+  list-style-type:none;
+  margin:0px;
+  padding:0px;
+}
+
+
