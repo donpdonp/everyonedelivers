@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :openidentities, :dependent => :destroy
+  validates_presence_of :username
+  validates_uniqueness_of :username
 
   def apply_form_attributes(params)
     return if params.nil?

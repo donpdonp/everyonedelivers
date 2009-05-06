@@ -12,7 +12,7 @@
 <tr>
  <td><%=e.created_at.in_time_zone("Pacific Time (US & Canada)").strftime('%h-%d %H:%m')%></td>
  <td><%= link_to e.delivery_id, delivery_path(e.delivery_id)%></td>
- <td><%=e.user_id ? link_to(e.user.username, user_path(e.user.username)) : nil%></td>
+ <td><%=e.user ? link_to(e.user.username, user_path(e.user.username)) : nil%></td>
  <td><%=e.note%></td>
 </tr>
 <% end %>
