@@ -26,7 +26,7 @@ describe SessionController do
     new_openid = mock_model(Openidentity)
     new_user = mock_model(User)
     new_openid.should_receive(:user).and_return(new_user)
-    Openidentity.should_receive(:lookup_or_create).and_return(new_openid)
+    Openidentity.should_receive(:lookup).and_return(new_openid)
     controller.should_receive(:current_user=).with(new_user)
 
     post :complete

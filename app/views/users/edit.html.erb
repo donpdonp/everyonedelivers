@@ -1,7 +1,14 @@
 edit user
 <% form_for :user, @user, :url => user_path(@user.username), :html => { :method => :put } do |f| %>
   <fieldset>
-    username: <%= f.text_field :username %>
+   <legend>Identity</legend>
+     username: <%= f.text_field :username %>
+  </fieldset>
+  <fieldset>
+   <legend>Internationalization</legend>
+     time zone: <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+  <br/>
+     units: <%= f.select :display_measurement, [["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
   </fieldset>
   <br/>
   <%= f.submit %>

@@ -5,15 +5,11 @@ class Openidentity < ActiveRecord::Base
   belongs_to :user
 
   def self.lookup(url)
+    url = cannonical(url)
     find(:first, :conditions => {:url => cannonical(url)})
   end 
 
-  def self.lookup_or_create(url)
-    url = cannonical(url)
-    lookup(url) || create_id_and_user_with_url(url)
-  end
-
-  def self.create_id_and_user_with_url(url)
+  def self.create_openid_and_user_with_url(url)
       new_user = User.create!(:username => generate_username(url))
       Openidentity.create!(:user => new_user, :url => cannonical(url))
   end

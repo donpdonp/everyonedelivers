@@ -17,8 +17,9 @@ module LoginSystem
     when Fixnum
       session[:openid] = user
     when User
-      session[:openid] = user.openid
+      session[:openid] = user.id
     end
+    logger.info("logged in #{session[:openid]}")
   end
 
   def login_required

@@ -42,7 +42,15 @@ class SessionController < ApplicationController
     when OpenID::Consumer::SUCCESS
       flash[:success] = ("Verification of #{oidresp.display_identifier}"\
                          " succeeded.")
-      user = Openidentity.lookup_or_create(oidresp.display_identifier).user
+      openid = Openidentity.lookup(oidresp.display_identifier)
+      if openid
+        user = openid.user
+      else
+        user = Openidentity.create_openid_and_user_with_url(oidresp.display_identifier).user
+        # TODO: save the next_url
+        params[:next_url] = url_for(:controller => :users, :action => :edit, :id => user.username)
+        flash[:notice] = "Welcome new user."
+      end
       self.current_user = user
     when OpenID::Consumer::SETUP_NEEDED
       flash[:alert] = "Immediate request failed - Setup Needed"
