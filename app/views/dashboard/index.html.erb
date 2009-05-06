@@ -13,9 +13,6 @@ Crowdsourced delivery service. <br/>
 </p>
 
 <% if logged_in? %>
-  <% form_for Delivery.new do |f| %>
-    <%= f.submit 'Create a delivery listing' %>
-  <% end %>
 <% else %>
   Login to create or accept a delivery.
 <% end %>
