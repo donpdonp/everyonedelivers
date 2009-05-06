@@ -2,6 +2,7 @@ openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
 username: <%= @user.username %> <br/>
 
 <% if logged_in? %>
+<%= link_to 'edit', :controller => :users, :action => :edit, :id => @user.username %>
 <%= link_to 'logout', :controller => :session, :action => :logout %>
 <% end %>
 
