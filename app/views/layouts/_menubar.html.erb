@@ -5,7 +5,9 @@
     <%= f.submit 'Create a delivery listing' %>
     </li>
   </ul>
+  <% end %>
 
+  <% form_tag do |f| %>
   <span style="float:right">
     Search <%= text_field :search, :terms%> 
   </span>
