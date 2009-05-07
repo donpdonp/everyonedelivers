@@ -13,9 +13,9 @@
   <span style="text-align: right">
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <% if logged_in? %>
-      <% openidurl = current_user.openid.url %>
-      <%= link_to openidurl, :controller => :users,
+      <%= link_to current_user.username, :controller => :users,
                              :action => current_user.username %>
+      <%= link_to 'logout', :controller => :session, :action => :logout %>
     <% else %>
       <%= image_tag 'openid_small_logo.png' %> 
       <%= link_to 'Login with OpenID', "#" , {:id => 'openidlink', 

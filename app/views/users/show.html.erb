@@ -1,3 +1,7 @@
+<% content_for :title do %>
+user <%= @user.username %>
+<% end %>
+<h3> User Profile for <%= @user.username %> </h3>
 openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
 username: <%= @user.username %> <br/>
 time zone: <%= @user.time_zone %> <br/>
@@ -5,7 +9,6 @@ units: <%= @user.display_measurement %> <br/>
 
 <% if logged_in? %>
 <%= link_to 'edit', :controller => :users, :action => :edit, :id => @user.username %>
-<%= link_to 'logout', :controller => :session, :action => :logout %>
 <% end %>
 
 <p>
