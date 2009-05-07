@@ -1,16 +1,17 @@
 body {
-  font-family: arial;
   background: #454141     ;
 }
 
-#container {
+.container {
+  font-family: arial;
   padding: 5px;
   background: #545151   ;
   color: #82B193  ;
 }
 
-a {
+.container a {
   text-decoration: none;
+  color: orange;
 }
 
 .dark {
@@ -34,8 +35,16 @@ a {
   height: 20px;
 }
 
+.menubar a {
+  color: #33527A;
+}
+
+.menubar a:hover {
+  color: green;
+}
+
 .header a {
-  color: #33527A        ;
+  color: #33527A;
   font-family: sans-serif;
 }
 
