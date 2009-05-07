@@ -31,12 +31,14 @@ describe DeliveriesController do
   end
 
   it "should accept a delivery" do
+    bob = mock_model(User)
     delivery = mock_model(Delivery)
     delivery.should_receive(:fee=)
     delivery.should_receive(:package=)
     delivery.should_receive(:start_location=)
     delivery.should_receive(:end_location=)
     delivery.should_receive(:save!)
+    delivery.should_receive(:listing_user).and_return(bob)
     Delivery.should_receive(:find).and_return(delivery)
     put :update, {:id => delivery.id}
   end
