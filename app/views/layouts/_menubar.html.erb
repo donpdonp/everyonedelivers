@@ -2,7 +2,11 @@
   <% form_for Delivery.new do |f| %>
   <ul>
     <li> 
+    <% if logged_in? %>
     <%= f.submit 'Create a delivery listing' %>
+    <% else %>
+     <%= link_to 'Login to create a delivery.', :controller => :session, :action => :login_screen %>
+    <% end %>
     </li>
   </ul>
   <% end %>
