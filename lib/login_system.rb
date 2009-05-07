@@ -36,6 +36,7 @@ module LoginSystem
         flash[:alert] = "Please login first"
         # ruby 1.8 hack, select does not return a hash
         oauth_extras = params.reject{|k,v| !k.match(/^oauth/)}
+        next_url = request.request_uri
         next_url = url_for({:controller => :oauth, :action => :authorize}.merge(oauth_extras)) if oauth_extras.keys.size > 0
         redirect_to :controller => :session, :action => :login_screen, :next_url => next_url
       end
