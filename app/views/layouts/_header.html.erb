@@ -9,9 +9,9 @@
   <ul>
     <li><%= link_to 'EveryoneDelivers.com', :root %></li>
   </ul>
-  <span id="geomsg" />
   <span style="text-align: right">
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
+    <span id="geomsg" onclick="javascript:gogeo()"></span>
     <% if logged_in? %>
       <%= link_to current_user.username, :controller => :users,
                              :action => current_user.username %>
@@ -24,3 +24,13 @@
   <% end %>
   </span>
 </div> 
+
+<script>
+ if (navigator.geolocation) {  
+   $('geomsg').innerHTML = "#geo";
+ }
+
+function gogeo() {
+  alert("This Browser Supports Geolocation");
+}
+</script>

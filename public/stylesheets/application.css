@@ -143,3 +143,6 @@ body {
   float: left;
 }
 
+#geomsg {
+  color: red;
+}
