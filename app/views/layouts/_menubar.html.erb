@@ -1,15 +1,17 @@
 <div class="menubar">
-  <% form_for Delivery.new do |f| %>
   <ul>
     <li> 
     <% if logged_in? %>
-    <%= f.submit 'Create a delivery listing' %>
+    <%= link_to 'Create a delivery listing', 
+                  "javascript:$('new_delivery').submit()" %>
     <% else %>
      <%= link_to 'Login to create a delivery.', :controller => :session, :action => :login_screen %>
     <% end %>
     </li>
+    <li>
+     <%= link_to 'Read the activity journal', :controller => :journal %>
+    </li>
   </ul>
-  <% end %>
 
   <% form_tag do |f| %>
   <span style="float:right">
@@ -17,3 +19,6 @@
   </span>
   <% end %>
 </div>
+
+<% form_for Delivery.new do |f| %>
+<% end %>
