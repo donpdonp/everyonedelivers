@@ -79,6 +79,10 @@ body {
   border-radius: 4px;
 }
 
+.deliverylist li {
+  padding: 4px;
+}
+
 .deliverytimes {
   float: left;
 }
