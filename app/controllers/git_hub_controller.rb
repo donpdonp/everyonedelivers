@@ -1,4 +1,5 @@
 class GitHubController < ApplicationController
+  protect_from_forgery :except => :commit
 
 # Example github post
 #Processing ApplicationController#commit (for ::ffff:65.74.177.129 at 2009-06-23 06:03:24) [POST]
