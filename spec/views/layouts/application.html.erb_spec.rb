@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe "/" do
+describe "View layout: Application" do
   before(:each) do
     render 'layouts/application'
   end
