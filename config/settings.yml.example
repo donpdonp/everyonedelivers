@@ -6,3 +6,6 @@ bunny:
     user:
     pass:
     host:
+google:
+  adsense:
+    id: "UA-XXXXXX-X"

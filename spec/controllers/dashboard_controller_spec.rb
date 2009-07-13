@@ -8,6 +8,7 @@ describe DashboardController do
     Delivery.should_receive(:find_between_hours_old).and_return([])
     Delivery.should_receive(:find_more_than_hours_old).and_return([])
     get :index
+    response.should render_template("dashboard/index.html.erb")
   end
 
 end
