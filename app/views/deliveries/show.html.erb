@@ -3,22 +3,47 @@ Listed by: <%= @delivery.listing_user.username %> <br/>
 Listed at: <%= @delivery.created_at %> 
 
 <h4>Package </h4>
+<% if @delivery.package %>
 <p>
-description: <%= @delivery.package.description %>
-<br/>
-height: <%= @delivery.package.height %>"
-width: <%= @delivery.package.width %>"
-depth: <%= @delivery.package.depth %>"
+  description: <%= @delivery.package.description %>
+  <br/>
+  height: <%= @delivery.package.height %>"
+  width: <%= @delivery.package.width %>"
+  depth: <%= @delivery.package.depth %>"
 </p>
+<% else %>
+<p>
+  no package has been specified
+</p>
+<% end %>
 
 <h4>Start Location</h4>
+<% if @delivery.start_location %>
 Address: <%= @delivery.start_location.street %>
+<% else %>
+<p>
+  no start location has been specified
+</p>
+<% end %>
+
 
 <h4>End Location</h4>
+<% if @delivery.end_location %>
 Address: <%= @delivery.end_location.street %>
+<% else %>
+<p>
+  no end location has been specified
+</p>
+<% end %>
 
 <h4>Delivery Fee</h4>
+<% if @delivery.fee %>
 Cost: $<%= @delivery.fee.display_price %>
+<% else %>
+<p>
+  no delivery fee has been specified
+</p>
+<% end %>
 
 <br/>
 <br/>
