@@ -5,8 +5,8 @@ body {
 .container {
   font-family: arial;
   padding: 5px;
-  background: #545151   ;
-  color: #82B193  ;
+  background: #545151;
+  color: #80AE91;
 }
 
 .container a {
@@ -28,7 +28,7 @@ body {
 }
 
 .header a {
-  color: #2e0782;
+  color: #9CC445;
   font-family: sans-serif;
 }
 
@@ -66,6 +66,34 @@ body {
 
 .menubar a:hover {
   color: green;
+}
+
+.menubar ul {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding:0px;
+  display:inline;
+  list-style-type:none;
+  float: left;
+}
+
+.menubar li {
+  display:inline;
+  margin:5px;
+  padding:1px;
+}
+
+.menubar li a {
+}
+
+.menubar input {
+  border: 0;
+}
+
+.menubar form#new_delivery {
+  float: left;
 }
 
 .deliverylist {
@@ -117,34 +145,6 @@ body {
   font-size: 80%;
 }
 
-
-.menubar ul {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding:0px;
-  display:inline;
-  list-style-type:none;
-  float: left;
-}
-
-.menubar li {
-  display:inline;
-  margin:5px;
-  padding:1px;
-}
-
-.menubar li a {
-}
-
-.menubar input {
-  border: 0;
-}
-
-.menubar form#new_delivery {
-  float: left;
-}
 
 #geomsg {
   color: red;
