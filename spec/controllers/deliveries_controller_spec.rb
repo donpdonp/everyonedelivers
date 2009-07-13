@@ -32,6 +32,7 @@ describe DeliveriesController do
 
   it "should accept a delivery" do
     bob = mock_model(User)
+    bob.should_receive(:username).and_return("bob")
     delivery = mock_model(Delivery)
     delivery.should_receive(:fee=)
     delivery.should_receive(:package=)
