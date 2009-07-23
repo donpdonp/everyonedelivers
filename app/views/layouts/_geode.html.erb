@@ -1,13 +1,12 @@
 <script>
 function locationUpdated() {
-  alert('location stored on server!');
+  //alert('location stored on server!');
 }
 
 function locCallback(aPosition) {
 	var url = '<%= root_url %>users/update_location';
-	var pars = 'latitude=' + aPosition.latitude + '&longitude=' + aPosition.longitude;
+	var pars = 'latitude=' + aPosition.coords.latitude + '&longitude=' + aPosition.coords.longitude;
 	
-        alert('sending '+pars);
 	var myAjax = new Ajax.Request(
 			url, 
 			{
@@ -15,12 +14,15 @@ function locCallback(aPosition) {
 				parameters: pars, 
 				onComplete: locationUpdated
 			});
+         var date = new Date(aPosition.timestamp);
+         $('geomsg').innerHTML = 'lat: '+aPosition.coords.latitude+' long:'+ aPosition.coords.longitude+
+                                 ' time: '+date.getHours()+':'+date.getMinutes();
 }
 
 function errCallback(aError) {
   // best-effort. do nothing on error
 }
 
-//navigator.geolocation.getCurrentPosition(locCallback, errCallback);
+navigator.geolocation.getCurrentPosition(locCallback, errCallback);
 
 </script>

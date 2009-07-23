@@ -145,7 +145,7 @@ body {
   font-size: 80%;
 }
 
-
 #geomsg {
-  color: red;
+  margin-right: 20px;
+  color: #9CC445;
 }
