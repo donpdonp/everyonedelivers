@@ -1,3 +1,6 @@
+<script type="text/javascript" src="http://www.google.com/jsapi?key=<%=SETTINGS["google"]["maps"]["key"]%>">
+ google.load("maps", "2");
+</script>
 <script>
 function locationUpdated() {
   //alert('location stored on server!');
@@ -7,6 +10,9 @@ function locCallback(aPosition) {
 	var url = '<%= root_url %>users/update_location';
 	var pars = 'latitude=' + aPosition.coords.latitude + '&longitude=' + aPosition.coords.longitude;
 	
+        var date = new Date(aPosition.timestamp);
+        $('geomsg').innerHTML = 'lat: '+aPosition.coords.latitude+' long:'+ aPosition.coords.longitude+
+                                ' time: '+date.getHours()+':'+date.getMinutes();
 	var myAjax = new Ajax.Request(
 			url, 
 			{
@@ -14,15 +20,27 @@ function locCallback(aPosition) {
 				parameters: pars, 
 				onComplete: locationUpdated
 			});
-         var date = new Date(aPosition.timestamp);
-         $('geomsg').innerHTML = 'lat: '+aPosition.coords.latitude+' long:'+ aPosition.coords.longitude+
-                                 ' time: '+date.getHours()+':'+date.getMinutes();
+//         google.load("maps", "2");
+//         geocoder = new GClientGeocoder();
+//         latlng = new GLatLng(aPosition.coords.latitude,aPosition.coords.longitude)
+//         geocoder.getLocations(latlng, showAddress);
+}
+
+function showAddress(response) {
+  if (!response || response.Status.code != 200) {
+    alert("Status Code:" + response.Status.code);
+  } else {
+    place = response.Placemark[0];
+    $('geomsg').innerHTML = place.address;
+  }
 }
 
 function errCallback(aError) {
-  // best-effort. do nothing on error
+   $('geomsg').innerHTML = 'location error '+aError.message;
 }
 
-navigator.geolocation.getCurrentPosition(locCallback, errCallback);
+if (navigator.geolocation) {  
+  navigator.geolocation.getCurrentPosition(locCallback, errCallback);
+}
 
 </script>

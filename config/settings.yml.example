@@ -9,3 +9,5 @@ bunny:
 google:
   adsense:
     id: "UA-XXXXXX-X"
+  maps:
+    key: ""
