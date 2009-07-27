@@ -30,7 +30,7 @@ describe DeliveriesController do
     get :show, {:id => delivery.id}
   end
 
-  it "should accept a delivery" do
+  it "should edit a delivery" do
     bob = mock_model(User)
     bob.should_receive(:username).and_return("bob")
     delivery = mock_model(Delivery)
