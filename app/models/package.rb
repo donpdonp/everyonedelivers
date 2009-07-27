@@ -19,6 +19,13 @@ class Package < ActiveRecord::Base
     if params[:weight]
       self.weight_in_grams = ounces_to_grams(params[:weight])
     end
+    if params[:display_price]
+      self.price_in_cents = (params[:display_price].to_f*100).to_i
+    end
+  end
+
+  def has_dimentions?
+    height_in_meters && width_in_meters && depth_in_meters
   end
 
   def height
@@ -53,4 +60,15 @@ class Package < ActiveRecord::Base
     weight_in_grams/28.3495
   end
 
+  def display_price
+    "%0.2f" % float_price
+  end
+
+  def float_price
+    if self.price_in_cents
+      self.price_in_cents / 100.0
+    else
+      0.0
+    end
+  end
 end

@@ -7,6 +7,8 @@
     <legend>Package</legend>
     Description <%= text_field_tag "package[description]", 
                     @delivery.package ? @delivery.package.description : "", :size => 50 %>
+
+   <!--
     <br/>
     Dimentions in inches Height: <%= text_field_tag "package[height]", 
                                      @delivery.package ? @delivery.package.height : "", 
@@ -18,6 +20,10 @@
     <br/>
     Weight in ounces <%= text_field_tag "package[weight]", 
                          @delivery.package ? @delivery.package.weight : "", :size => 5 %>
+    -->
+    <br/>
+    Retail Price <%= text_field_tag "package[display_price]", 
+                         @delivery.package ? @delivery.package.display_price : "", :size => 5 %>
   </fieldset>
   
   <fieldset>

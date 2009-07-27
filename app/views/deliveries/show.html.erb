@@ -7,9 +7,15 @@ Listed at: <%= @delivery.created_at %>
 <p>
   description: <%= @delivery.package.description %>
   <br/>
-  height: <%= @delivery.package.height %>"
-  width: <%= @delivery.package.width %>"
-  depth: <%= @delivery.package.depth %>"
+  retail price: $<%= @delivery.package.display_price %>
+  <br/>
+  <% if @delivery.package.has_dimentions? %>
+    height: <%= @delivery.package.height %>"
+    width: <%= @delivery.package.width %>"
+    depth: <%= @delivery.package.depth %>"
+  <% else %>
+    dimentions: not given
+  <% end %>
 </p>
 <% else %>
 <p>
