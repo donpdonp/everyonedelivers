@@ -7,16 +7,15 @@
   <% if d.ok_to_display? %>
   <li class="devileryitem <%= d.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
    <div class="deliverypackagename">
-    <%= link_to d.package.description, delivery_path(d) %> 
-    <span class="deliverylistinguser">
-    (listed by <%= link_to d.listing_user.username, 
-           :controller => :users, :action => :show, :id => d.listing_user.username %> 
-     for $<%= d.fee.display_price %>)
-    </span>
+    <%= link_to d.package.description, delivery_path(d) %> $<%=d.package.display_price%>/$<%= d.fee.display_price %>
    </div>
    <div>
     pickup: <%= d.start_location.street %> <br/>
-    dropoff: <%= d.end_location.street %>
+    dropoff: <%= d.end_location.street %> <br/>
+    <span class="deliverylistinguser">
+    listed by <%= link_to d.listing_user.username, 
+           :controller => :users, :action => :show, :id => d.listing_user.username %> 
+    </span>
    </div>
    <div class="deliverypackageprice">
     <% if d.delivering_user %>
