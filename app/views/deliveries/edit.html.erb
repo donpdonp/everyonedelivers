@@ -9,6 +9,7 @@
                     @delivery.package ? @delivery.package.description : "", :size => 50 %>
 
    <!--
+   <% if @delivery.package.has_dimentions? %>
     <br/>
     Dimentions in inches Height: <%= text_field_tag "package[height]", 
                                      @delivery.package ? @delivery.package.height : "", 
@@ -20,6 +21,7 @@
     <br/>
     Weight in ounces <%= text_field_tag "package[weight]", 
                          @delivery.package ? @delivery.package.weight : "", :size => 5 %>
+   <% end %>
     -->
     <br/>
     Retail Price <%= text_field_tag "package[display_price]", 
