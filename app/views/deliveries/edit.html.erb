@@ -9,19 +9,17 @@
                     @delivery.package ? @delivery.package.description : "", :size => 50 %>
 
    <!--
-   <% if @delivery.package.has_dimentions? %>
     <br/>
     Dimentions in inches Height: <%= text_field_tag "package[height]", 
-                                     @delivery.package ? @delivery.package.height : "", 
+                                     (@delivery.package && @delivery.package.height_in_meters)? @delivery.package.height : "", 
                                      :size => 5 %>
     Width: <%= text_field_tag "package[width]", 
-               @delivery.package ? @delivery.package.width : "", :size => 5 %>
+               (@delivery.package && @delivery.package.width_in_meters) ? @delivery.package.width : "", :size => 5 %>
     Depth: <%= text_field_tag "package[depth]", 
-               @delivery.package ? @delivery.package.depth : "", :size => 5 %>
+               (@delivery.package && @delivery.package.depth_in_meters) ? @delivery.package.depth : "", :size => 5 %>
     <br/>
     Weight in ounces <%= text_field_tag "package[weight]", 
-                         @delivery.package ? @delivery.package.weight : "", :size => 5 %>
-   <% end %>
+                         (@delivery.package && @delivery.package.weight_in_grams)? @delivery.package.weight : "", :size => 5 %>
     -->
     <br/>
     Retail Price <%= text_field_tag "package[display_price]", 
