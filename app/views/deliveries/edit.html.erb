@@ -39,7 +39,7 @@
                 @delivery.end_location ? @delivery.end_location.street : "", :size => 50 %>
   </fieldset>
   <fieldset>
-    <legend> Delivery Fee </legend>
+    <legend> Delivery Price </legend>
     Price $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 2 %>
   </fieldset>
