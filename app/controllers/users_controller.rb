@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required, :only => [:edit, :update]
+  protect_from_forgery :except => :update_location
 
   def show
     @user = User.find_by_username(params[:id])
@@ -22,5 +23,9 @@ class UsersController < ApplicationController
       flash[:notice] = "Permission denied"
       redirect_to root_path;
     end    
+  end
+
+  def update_location
+    render :nothing => true
   end
 end

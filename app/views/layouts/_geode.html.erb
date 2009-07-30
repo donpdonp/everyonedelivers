@@ -7,23 +7,23 @@ function locationUpdated() {
 }
 
 function locCallback(aPosition) {
-	var url = '<%= root_url %>users/update_location';
-	var pars = 'latitude=' + aPosition.coords.latitude + '&longitude=' + aPosition.coords.longitude;
+	var url = '<%= root_url %>users/<%=current_user ? current_user.username : "" %>/update_location';
+	var pars = 'latitude=' + aPosition.coords.latitude + '&longitude=' + aPosition.coords.longitude + '&accuracy=' + aPosition.coords.accuracy;
 	
         var date = new Date(aPosition.timestamp);
         $('geomsg').innerHTML = 'lat: '+aPosition.coords.latitude+' long:'+ aPosition.coords.longitude+
+                                ' acc: '+aPosition.coords.accuracy+
                                 ' time: '+date.getHours()+':'+date.getMinutes();
 	var myAjax = new Ajax.Request(
 			url, 
 			{
-				method: 'get', 
+				method: 'put', 
 				parameters: pars, 
 				onComplete: locationUpdated
 			});
-//         google.load("maps", "2");
-//         geocoder = new GClientGeocoder();
-//         latlng = new GLatLng(aPosition.coords.latitude,aPosition.coords.longitude)
-//         geocoder.getLocations(latlng, showAddress);
+//        geocoder = new GClientGeocoder();
+//        latlng = new GLatLng(aPosition.coords.latitude,aPosition.coords.longitude)
+//        geocoder.getLocations(latlng, showAddress);
 }
 
 function showAddress(response) {
