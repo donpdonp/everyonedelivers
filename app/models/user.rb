@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  after_create :journal_on_create
+
   def apply_form_attributes(params)
     return if params.nil?
 
@@ -21,5 +23,9 @@ class User < ActiveRecord::Base
 
   def openid
     self.openidentities.first
+  end
+
+  def journal_on_create
+    Journal.create({:delivery => nil, :user => self, :note => "New User"})
   end
 end
