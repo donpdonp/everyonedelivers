@@ -25,7 +25,7 @@
    </div>
     <span id="googlestaticmap" />
    <div>
-    <% if d.available_to(current_user) %>
+    <% if d.available_for_delivery_by(current_user) %>
        <% form_for :d, d, :url => accept_delivery_path(d),  :html => {:method => :put} do |f| %>
         <%= f.submit 'I can make this delivery' %>
        <% end %>

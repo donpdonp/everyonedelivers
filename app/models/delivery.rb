@@ -16,8 +16,12 @@ class Delivery < ActiveRecord::Base
     !!(fee && package && package.description.size > 0 && start_location && end_location && listing_user)
   end
 
-  def available_to(user)
+  def available_for_delivery_by(user)
     user && user != listing_user && delivering_user.nil?
+  end
+
+  def available_for_edit_by(user)
+    user && user == listing_user
   end
 
   def journal_on_create

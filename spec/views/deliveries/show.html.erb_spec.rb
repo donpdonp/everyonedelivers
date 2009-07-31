@@ -14,6 +14,7 @@ describe "/deliveries/show" do
     delivery.should_receive(:end_location)
     delivery.should_receive(:fee)
     delivery.should_receive(:delivering_user)
+    delivery.should_receive(:available_for_edit_by)
     assigns[:delivery] = delivery
 
     render '/deliveries/show'

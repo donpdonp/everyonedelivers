@@ -68,3 +68,7 @@ Cost: $<%= @delivery.fee.display_price %>
     Login to accept this delivery.
   <% end %>
 <% end %>
+<br/>
+<% if @delivery.available_for_edit_by(current_user) %>
+  <%= link_to "edit", edit_delivery_path(@delivery) %>
+<% end %>
