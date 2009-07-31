@@ -16,6 +16,10 @@ class Delivery < ActiveRecord::Base
     !!(fee && package && package.description.size > 0 && start_location && end_location && listing_user)
   end
 
+  def available_to(user)
+    user && user != listing_user && delivering_user.nil?
+  end
+
   def journal_on_create
     Journal.create({:delivery => self, :user => self.listing_user, :note => "Created Delivery"})
   end

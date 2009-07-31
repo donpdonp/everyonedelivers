@@ -12,7 +12,7 @@ units: <%= @user.display_measurement %> <br/>
 <% end %>
 
 <p>
-Listed deliveries
+<%= @listed_deliveries.size %> listed deliveries, <%=  @listed_deliveries.count{|d| d.delivering_user }%> accepted delivery.
 </p>
 
 <p>
