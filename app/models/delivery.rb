@@ -17,8 +17,12 @@ class Delivery < ActiveRecord::Base
     !!(fee && package && package.description.size > 0 && start_location && end_location && listing_user)
   end
 
+  def overdue?(time = Time.now)
+    fee.delivery_due < time
+  end
+
   def available_for_delivery_by(user)
-    user && user != listing_user && delivering_user.nil?
+    user && user != listing_user && delivering_user.nil? && !overdue?
   end
 
   def available_for_edit_by(user)
