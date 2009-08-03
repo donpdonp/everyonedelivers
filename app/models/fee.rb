@@ -7,6 +7,11 @@ class Fee < ActiveRecord::Base
     if params[:display_price]
       self.price_in_cents = (params[:display_price].to_f*100).to_i
     end
+
+    if params["delivery_due(1i)"]
+      delivery_due_time = Time.parse("#{params["delivery_due(1i)"]}-#{params["delivery_due(2i)"]}-#{params["delivery_due(3i)"]} #{params["delivery_due(4i)"]}:#{params["delivery_due(5i)"]}")
+      self.delivery_due = delivery_due_time
+    end
   end
 
   def display_price

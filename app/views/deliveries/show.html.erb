@@ -44,7 +44,8 @@ Address: <%= @delivery.end_location.street %>
 
 <h4>Delivery Fee</h4>
 <% if @delivery.fee %>
-Cost: $<%= @delivery.fee.display_price %>
+Cost: $<%= @delivery.fee.display_price %> <br/>
+Completion Due By: <%= @delivery.fee.delivery_due %>
 <% else %>
 <p>
   no delivery fee has been specified
