@@ -8,11 +8,6 @@ describe DeliveriesController do
     controller.stub!(:current_user).and_return(user)
   end
 
-  #Delete this example and add some real ones
-  it "should use DeliveriesController" do
-    controller.should be_an_instance_of(DeliveriesController)
-  end
-
   it "should list deliveries" do
     get :index
   end
@@ -42,5 +37,16 @@ describe DeliveriesController do
     delivery.should_receive(:listing_user).and_return(bob)
     Delivery.should_receive(:find).and_return(delivery)
     put :update, {:id => delivery.id}
+  end
+
+  it "should destroy a delivery" do
+    bob = mock_model(User)
+    bob.should_receive(:username).and_return("bob")
+    delivery = mock_model(Delivery)
+    delivery.should_receive(:listing_user).and_return(bob)
+    delivery.should_receive(:destroy)
+    Delivery.should_receive(:find).and_return(delivery)
+    delete :destroy
+    response.should redirect_to("http://test.host/users/bob")
   end
 end

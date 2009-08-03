@@ -49,6 +49,12 @@ class DeliveriesController < ApplicationController
     redirect_to :controller => :users, :action => :show, :id => delivery.listing_user.username
   end
 
+  def destroy
+    delivery = Delivery.find(params[:id])
+    delivery.destroy
+    redirect_to :controller => :users, :action => :show, :id => delivery.listing_user.username
+  end
+
   def accept
     delivery = Delivery.find(params[:id])
     delivery.deliverer(current_user)

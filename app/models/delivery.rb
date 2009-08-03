@@ -7,6 +7,7 @@ class Delivery < ActiveRecord::Base
   belongs_to :delivering_user, :class_name => "User"
 
   after_create :journal_on_create
+  after_destroy :journal_on_destroy
 
   def apply_form_attributes(params)
     return if params.nil?
@@ -26,6 +27,10 @@ class Delivery < ActiveRecord::Base
 
   def journal_on_create
     Journal.create({:delivery => self, :user => self.listing_user, :note => "Created Delivery"})
+  end
+
+  def journal_on_destroy
+    Journal.create({:delivery => self, :user => self.listing_user, :note => "Destroyed Delivery"})
   end
 
   def deliverer(user)
