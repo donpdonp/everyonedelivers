@@ -22,7 +22,8 @@
                          (@delivery.package && @delivery.package.weight_in_grams)? @delivery.package.weight : "", :size => 5 %>
     -->
     <br/>
-    Retail Price <%= text_field_tag "package[display_price]", 
+    If delivery person will be purchasing item from a store, give the retail price. <br/>
+    Retail Price $<%= text_field_tag "package[display_price]", 
                          @delivery.package ? @delivery.package.display_price : "", :size => 5 %>
   </fieldset>
   
@@ -42,6 +43,13 @@
     <legend> Delivery Price </legend>
     Price $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 2 %>
+    if delivery is completed by
+    <%= datetime_select("fee","time") %>
+<!--    if delivered within
+    <%= select_tag "fee[time_count]", options_for_select({"1" => "1","2" => "2",
+                                                          "3" => "3","4" => "4"}) %>
+    <%= select_tag "fee[time_unit]", options_for_select({"Hour(s)" => "hour"})%>
+-->
   </fieldset>
 
   <br/>
