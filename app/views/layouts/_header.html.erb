@@ -14,7 +14,7 @@
     <span id="geomsg" onclick="javascript:gogeo()"></span>
     <% if logged_in? %>
       <%= link_to current_user.username, :controller => :users,
-                             :action => current_user.username %>
+                             :action => current_user.username %> -
       <%= link_to 'logout', :controller => :session, :action => :logout %>
     <% else %>
       <%= image_tag 'openid_small_logo.png' %> 
