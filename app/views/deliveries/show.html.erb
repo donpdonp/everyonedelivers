@@ -64,12 +64,12 @@ Completion Due By: <%= @delivery.fee.delivery_due %>
   Delivery accepted by: <%= @delivery.delivering_user.username %>
 <% else %>
   <% if logged_in? %>
-    <% if current_user == @delivery.listing_user %>
-       Waiting to be accepted.
-    <% else %>
+    <% if @delivery.available_for_delivery_by(current_user) %>
       <% form_for :delivery, @delivery, :url => accept_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
         <%= f.submit 'Accept this delivery' %>
       <% end %>
+    <% else %>
+       Waiting to be accepted.
     <% end %>
   <% else %>
     Login to accept this delivery.
