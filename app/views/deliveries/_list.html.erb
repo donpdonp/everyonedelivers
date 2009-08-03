@@ -12,6 +12,11 @@
    <div>
     pickup: <%= d.start_location.street %> <br/>
     dropoff: <%= d.end_location.street %> <br/>
+    <% if d.fee.delivery_due >= Time.now %>
+    due in: <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
+    <% else %>
+    overdue by: <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
+    <% end %>
     <span class="deliverylistinguser">
     listed by <%= link_to d.listing_user.username, 
            :controller => :users, :action => :show, :id => d.listing_user.username %> 

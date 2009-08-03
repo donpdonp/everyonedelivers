@@ -46,6 +46,12 @@ Address: <%= @delivery.end_location.street %>
 <% if @delivery.fee %>
 Cost: $<%= @delivery.fee.display_price %> <br/>
 Completion Due By: <%= @delivery.fee.delivery_due %>
+    <% if @delivery.fee.delivery_due >= Time.now %>
+    (due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
+    <% else %>
+    (overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
+    <% end %>
+<br/>
 <% else %>
 <p>
   no delivery fee has been specified
