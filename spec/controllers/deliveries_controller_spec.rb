@@ -6,6 +6,7 @@ describe DeliveriesController do
     controller.stub!(:logged_in?).and_return(true)
     user = mock_model(User)
     controller.stub!(:current_user).and_return(user)
+    controller.stub!(:set_timezone)
   end
 
   it "should list deliveries" do
