@@ -11,6 +11,10 @@ class SessionController < ApplicationController
         return
       end
       oidreq = consumer.begin(identifier)
+      sregreq = OpenID::SReg::Request.new
+      sregreq.request_fields(['email','nickname'], true) # required fields
+      sregreq.request_fields(['dob', 'fullname'], false) # optional fields
+      oidreq.add_extension(sregreq)
     rescue OpenID::OpenIDError => e
       flash[:error] = "Discovery failed for #{identifier}: #{e}"
       redirect_to :root
@@ -42,6 +46,9 @@ class SessionController < ApplicationController
     when OpenID::Consumer::SUCCESS
       flash[:success] = ("Verification of #{oidresp.display_identifier}"\
                          " succeeded.")
+      # simple registration
+      sreg_resp = OpenID::SReg::Response.from_success_response(oidresp)
+      logger.info "Simple Registration: #{sreg_resp.data.inspect}"
       openid = Openidentity.lookup(oidresp.display_identifier)
       if openid
         user = openid.user
