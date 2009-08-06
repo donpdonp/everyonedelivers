@@ -44,7 +44,7 @@
     Price $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 2 %>
     if delivery is completed by
-    <%= datetime_select("fee","delivery_due") %>
+    <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.now) %>
 <!--    if delivered within
     <%= select_tag "fee[time_count]", options_for_select({"1" => "1","2" => "2",
                                                           "3" => "3","4" => "4"}) %>
