@@ -11,6 +11,7 @@ describe SessionController do
     obrain = mock("openid controller")
     obrain.should_receive(:send_redirect?).and_return(true)
     obrain.should_receive(:redirect_url).and_return(provider_url)
+    obrain.should_receive(:add_extension)
     consumer = mock("openid consumer")
     consumer.should_receive(:begin).with(openid).and_return(obrain)
     controller.should_receive(:consumer).and_return(consumer)
@@ -32,6 +33,9 @@ describe SessionController do
     new_openid.should_receive(:user).and_return(new_user)
     Openidentity.should_receive(:lookup).and_return(new_openid)
     controller.should_receive(:current_user=).with(new_user)
+    regdata = mock("openid simple registration data")
+    regdata.should_receive(:data)
+    OpenID::SReg::Response.should_receive(:from_success_response).and_return(regdata)
 
     post :complete
   end
