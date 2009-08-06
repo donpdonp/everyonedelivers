@@ -24,7 +24,7 @@ class Package < ActiveRecord::Base
     end
   end
 
-  def has_dimentions?
+  def has_dimensions?
     height_in_meters && width_in_meters && depth_in_meters
   end
 

@@ -9,12 +9,12 @@ Listed at: <%= @delivery.created_at %>
   <br/>
   retail price: $<%= @delivery.package.display_price %>
   <br/>
-  <% if @delivery.package.has_dimentions? %>
+  <% if @delivery.package.has_dimensions? %>
     height: <%= @delivery.package.height %>"
     width: <%= @delivery.package.width %>"
     depth: <%= @delivery.package.depth %>"
   <% else %>
-    dimentions: not given
+    dimensions: not given
   <% end %>
 </p>
 <% else %>
