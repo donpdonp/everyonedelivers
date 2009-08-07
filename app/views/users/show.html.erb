@@ -4,7 +4,13 @@ user <%= @user.username %>
 <h3> User Profile for <%= @user.username %> </h3>
 openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
 username: <%= @user.username %> <br/>
-email: <%= @user.email %> <br/>
+email: 
+  <% if current_user == @user %> 
+   <%= @user.email %> 
+  <% else %>
+   Hidden
+  <% end %>
+  <br/>
 time zone: <%= @user.time_zone %> <br/>
 units: <%= @user.display_measurement %> <br/>
 
