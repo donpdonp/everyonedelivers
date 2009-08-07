@@ -96,6 +96,10 @@ body {
   float: left;
 }
 
+#content {
+  margin-top: 10px;
+}
+
 .deliverylist {
   margin-top: 0px;
   margin-bottom: 10px;
@@ -148,4 +152,26 @@ body {
 #geomsg {
   margin-right: 20px;
   color: #9CC445;
+}
+
+.centered_50percent {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.textaligncenter {
+  text-align: center;
+}
+
+#openidprovidertable img {
+  border: 0;
+  background: white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+} 
+
+.biglogin {
+  font-size: 110%;
 }

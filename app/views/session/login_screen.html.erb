@@ -1,8 +1,8 @@
-<div class="centered">
+<div class="centered_50percent textaligncenter">
   Please login with your OpenID URL:
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <%= image_tag 'openid_small_logo.png' %> 
-    <%= text_field_tag 'openid_identifier' %>
+    <%= text_field_tag 'openid_identifier', '', :class => "biglogin", :size => 40 %>
     <%= hidden_field_tag :next_url, params[:next_url] %>
   <% end %>
   <p>
@@ -10,6 +10,13 @@
   using a single indentity.
   </p>
   <p>
-  Find out <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.
+  If you have an account with one of the following services, click on that service.
+  <p id="openidprovidertable">
+      <td><%= link_to image_tag("google_button_150_47.png"), :controller => :session,
+                                                             :action => :login,
+                                                             :openid_identifier => "https://www.google.com/accounts/o8/id" %></td>
+      <td><%= link_to image_tag("yahoo_button_150_47.png"), :controller => :session,
+                                                          :action => :login,
+                                                          :openid_identifier => "http://www.yahoo.com" %></td>
   </p>
 </div>
