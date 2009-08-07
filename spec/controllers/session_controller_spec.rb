@@ -33,9 +33,10 @@ describe SessionController do
     new_openid.should_receive(:user).and_return(new_user)
     Openidentity.should_receive(:lookup).and_return(new_openid)
     controller.should_receive(:current_user=).with(new_user)
-    regdata = mock("openid simple registration data")
-    regdata.should_receive(:data)
-    OpenID::SReg::Response.should_receive(:from_success_response).and_return(regdata)
+    ax_resp = mock("AX registration data")
+    ax_resp.should_receive(:get_single).with("http://axschema.org/contact/email")
+    ax_resp.should_receive(:get_single).with("http://axschema.org/namePerson/friendly")
+    OpenID::AX::FetchResponse.should_receive(:from_success_response).and_return(ax_resp)
 
     post :complete
   end

@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   def apply_form_attributes(params)
     return if params.nil?
 
+    if params[:email]
+      self.email = params[:email]
+    end
+
     if params[:username]
       self.username = params[:username]
     end
