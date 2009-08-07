@@ -27,7 +27,7 @@ class Openidentity < ActiveRecord::Base
     uri = URI.parse(url)
     case uri
     when URI::HTTP, URI::HTTPS
-      username = uri.host + uri.path
+      username = uri.host + uri.path + uri.query
     when URI::Generic
       if uri.path.blank?
         username = uri.opaque

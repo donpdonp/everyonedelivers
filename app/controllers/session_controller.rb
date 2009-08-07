@@ -4,7 +4,7 @@ class SessionController < ApplicationController
   def login
     begin
       params[:openid_identifier]
-      identifier = params[:openid_identifier]
+      identifier = email_to_openid_filter(params[:openid_identifier])
       if identifier.nil?
         flash[:error] = "Enter an OpenID identifier"
         redirect_to :root
