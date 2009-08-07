@@ -11,10 +11,10 @@ class SessionController < ApplicationController
         return
       end
       oidreq = consumer.begin(identifier)
-      sregreq = OpenID::SReg::Request.new
-      sregreq.request_fields(['email','nickname'], true) # required fields
-      sregreq.request_fields(['dob', 'fullname'], false) # optional fields
-      oidreq.add_extension(sregreq)
+      axr = OpenID::AX::FetchRequest.new
+      axr.add(OpenID::AX::AttrInfo.new("http://axschema.org/contact/email", "email", true))
+      axr.add(OpenID::AX::AttrInfo.new("http://axschema.org/namePerson/friendly", "username", true))
+      oidreq.add_extension(axr)
     rescue OpenID::OpenIDError => e
       flash[:error] = "Discovery failed for #{identifier}: #{e}"
       redirect_to :root
@@ -47,13 +47,17 @@ class SessionController < ApplicationController
       flash[:success] = ("Verification of #{oidresp.display_identifier}"\
                          " succeeded.")
       # simple registration
-      sreg_resp = OpenID::SReg::Response.from_success_response(oidresp)
-      logger.info "Simple Registration: #{sreg_resp.data.inspect}"
+      ax_resp = OpenID::AX::FetchResponse.from_success_response(oidresp)
+      hints = {:email => "", :username => ""}
+      if ax_resp
+        hints[:email] = ax_resp.get_single("http://axschema.org/contact/email") 
+        hints[:username] = ax_resp.get_single("http://axschema.org/namePerson/friendly")
+      end
       openid = Openidentity.lookup(oidresp.display_identifier)
       if openid
         user = openid.user
       else
-        user = Openidentity.create_openid_and_user_with_url(oidresp.display_identifier).user
+        user = Openidentity.create_openid_and_user_with_url(oidresp.display_identifier, hints).user
         params[:next_url] = url_for(:controller => :users, :action => :edit, :id => user.username,
                                     :next_url => params[:next_url])
         flash[:notice] = "Welcome new user."

@@ -9,8 +9,10 @@ class Openidentity < ActiveRecord::Base
     find(:first, :conditions => {:url => cannonical(url)})
   end 
 
-  def self.create_openid_and_user_with_url(url)
+  def self.create_openid_and_user_with_url(url, hints)
       new_user = User.create!(:username => generate_username(url))
+      new_user.update_attribute :email, hints[:email] unless hints[:email].blank?
+      new_user.update_attribute :username, hints[:username] unless hints[:username].blank?
       Openidentity.create!(:user => new_user, :url => cannonical(url))
   end
 
