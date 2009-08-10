@@ -10,8 +10,7 @@ class Fee < ActiveRecord::Base
 
     if params["delivery_due(1i)"]
       time_string = "#{params["delivery_due(1i)"]}-#{params["delivery_due(2i)"]}-#{params["delivery_due(3i)"]} #{params["delivery_due(4i)"]}:#{params["delivery_due(5i)"]}"
-      delivery_due_time = Time.parse(time_string)
-      logger.info("Fee parsing #{time_string} with timezone #{Time.zone} into #{delivery_due_time}")
+      delivery_due_time = Time.zone.parse(time_string)
       self.delivery_due = delivery_due_time
     end
   end
