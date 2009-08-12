@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :openidentities, :dependent => :destroy
+  has_many :sightings
+  has_many :locations, :through => :sightings
   validates_presence_of :username
   validates_uniqueness_of :username
 

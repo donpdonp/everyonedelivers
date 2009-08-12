@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:id])
-    @listed_deliveries = Delivery.all(:conditions => {:listing_user_id => @user.id})
+    @listed_deliveries = Delivery.all(:conditions => {:listing_user_id => @user.id}, :order => "created_at desc, delivering_user_id asc")
     @listed_deliveries = @listed_deliveries.select{|d| d.ok_to_display? }
-    @accepted_deliveries = Delivery.all(:conditions => {:delivering_user_id => @user.id})
+    @accepted_deliveries = Delivery.all(:conditions => {:delivering_user_id => @user.id}, :order => "created_at desc, delivering_user_id asc")
     @accepted_deliveries = @accepted_deliveries.select{|d| d.ok_to_display? }
   end
 
@@ -28,6 +28,12 @@ class UsersController < ApplicationController
   end
 
   def update_location
+    @user = User.find_by_username(params[:id])
+    if current_user == @user
+      location = Location.new
+      location.apply_form_attributes(params)
+      @user.locations << location
+    end
     render :nothing => true
   end
 end

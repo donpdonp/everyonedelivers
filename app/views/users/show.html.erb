@@ -19,7 +19,8 @@ units: <%= @user.display_measurement %> <br/>
 <% end %>
 
 <p>
-<%= @listed_deliveries.size %> listed deliveries, <%=  @listed_deliveries.count{|d| d.delivering_user }%> accepted delivery.
+Recorded <%= @user.sightings.size %> sightings at <%= @user.locations.size %> locations. <br/>
+Listed <%= @listed_deliveries.size %> deliveries and accepted <%=  @listed_deliveries.count{|d| d.delivering_user }%> deliveries.
 </p>
 
 <p>
