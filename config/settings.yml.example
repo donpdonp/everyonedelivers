@@ -11,3 +11,5 @@ google:
     id: "UA-XXXXXX-X"
   maps:
     key: ""
+email:
+  domain: ""
