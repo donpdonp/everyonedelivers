@@ -56,9 +56,11 @@ class DeliveriesController < ApplicationController
   end
 
   def accept
-    delivery = Delivery.find(params[:id])
+    delivery = Delivery.find(params[:id].to_i)
     delivery.deliverer(current_user)
     delivery.save!
+    Mailer.deliver_delivery_accepted(delivery.listing_user, delivery.delivering_user)
+    flash[:notice] = "Delivery accepted!"
     redirect_to delivery_path(delivery)
   end
 end

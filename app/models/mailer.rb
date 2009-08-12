@@ -5,4 +5,10 @@ class Mailer < ActionMailer::Base
      subject    "Signup Successful"
      body       :user => recipient
    end
+   def delivery_accepted(recipient, deliverer)
+     recipients recipient.email
+     from       "system@everyonedelivers.com"
+     subject    "Signup Successful"
+     body       :user => recipient, :deliverer => deliverer
+   end
 end

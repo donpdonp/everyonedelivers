@@ -4,8 +4,8 @@ describe DeliveriesController do
 
   before(:each) do 
     controller.stub!(:logged_in?).and_return(true)
-    user = mock_model(User)
-    controller.stub!(:current_user).and_return(user)
+    @user = mock_model(User)
+    controller.stub!(:current_user).and_return(@user)
     controller.stub!(:set_timezone)
   end
 
@@ -49,5 +49,17 @@ describe DeliveriesController do
     Delivery.should_receive(:find).and_return(delivery)
     delete :destroy
     response.should redirect_to("http://test.host/users/bob")
+  end
+
+  it "should accept a delivery" do
+    lister = mock_model(User)
+    delivery = mock_model(Delivery)
+    delivery.should_receive(:deliverer).with(@user)
+    delivery.should_receive(:save!)
+    delivery.should_receive(:listing_user).and_return(lister)
+    delivery.should_receive(:delivering_user).and_return(@user)
+    Mailer.should_receive(:deliver_delivery_accepted).with(lister, @user)
+    Delivery.should_receive(:find).with(delivery.id).and_return(delivery)
+    put :accept, {:id => delivery.id}
   end
 end

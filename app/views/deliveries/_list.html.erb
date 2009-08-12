@@ -22,7 +22,7 @@
            :controller => :users, :action => :show, :id => d.listing_user.username %> 
     </span>
    </div>
-   <div class="deliverypackageprice">
+   <div class="deliverydeliveringuser">
     <% if d.delivering_user %>
          delivered by: <%= link_to d.delivering_user.username, 
            :controller => :users, :action => :show, :id => d.delivering_user.username %>
