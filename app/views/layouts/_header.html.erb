@@ -11,7 +11,8 @@
   </ul>
   <span style="text-align: right">
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
-    <span id="geomsg" onclick="javascript:gogeo()"></span>
+    <span id="geomsgaddress"></span>
+    <span id="geomsgacctime"></span>
     <% if logged_in? %>
       <%= link_to current_user.username, :controller => :users,
                              :action => current_user.username %> -
@@ -27,10 +28,6 @@
 
 <script>
 if (navigator.geolocation) {  
-   $('geomsg').innerHTML = "looking up geolocation";
-}
-
-function gogeo() {
-  //alert("This Browser Supports Geolocation");
+   $('geomsgaddress').innerHTML = "looking up geolocation";
 }
 </script>
