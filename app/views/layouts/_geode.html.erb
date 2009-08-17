@@ -16,7 +16,7 @@ function locCallback(aPosition) {
         $('geomsgaddress').innerHTML = '<a id="geomsglink" href="http://maps.google.com/?q='+aPosition.coords.latitude+'%2C'+aPosition.coords.longitude+'&z=15">' +
                                        'lat: '+aPosition.coords.latitude+' long:'+ aPosition.coords.longitude +
                                        '</a>';
-        $('geomsgacctime').innerHTML = ' accuracy: '+aPosition.coords.accuracy+ ' meters time: '+date.getHours()+':'+date.getMinutes();
+        $('geomsgacctime').innerHTML = ' accuracy: '+aPosition.coords.accuracy+ ' meters'; // time: '+date.getHours()+':'+date.getMinutes();
 	var myAjax = new Ajax.Request(
 			url, 
 			{
