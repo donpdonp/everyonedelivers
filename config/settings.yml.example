@@ -13,3 +13,5 @@ google:
     key: ""
 email:
   domain: ""
+getsatisfaction:
+  company: ""
