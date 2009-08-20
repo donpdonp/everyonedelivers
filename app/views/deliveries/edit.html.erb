@@ -30,14 +30,28 @@
   <fieldset>
     <legend>From Address</legend>
     Example: 900 SW Main, Portland, Or <br/>
+    <span style="float:left">
     Address <%= text_field_tag "from[address]", 
                 @delivery.start_location ? @delivery.start_location.street : "", :size => 50 %>
+    </span>
+    <%= button_to "Validate", {}, {:onclick=>"geocoder.getLatLng($('from_address').value, geocallback_from); return false;",
+                                   :style => "float: left"} %>
+    <span id="from_address_msg"></span>
+    <%= hidden_field_tag "from[latitude]", ""%>
+    <%= hidden_field_tag "from[longitude]", ""%>
   </fieldset>
 
   <fieldset>
     <legend>To Address</legend>
+    <span style="float:left">
     Address <%= text_field_tag "to[address]", 
                 @delivery.end_location ? @delivery.end_location.street : "", :size => 50 %>
+    </span>
+    <%= button_to "Validate", {}, {:onclick=>"geocoder.getLatLng($('to_address').value, geocallback_to); return false;",
+                                   :style => "float: left"} %>
+    <span id="to_address_msg"></span>
+    <%= hidden_field_tag "to[latitude] "%>
+    <%= hidden_field_tag "to[longitude] "%>
   </fieldset>
   <fieldset>
     <legend> Delivery Price </legend>
@@ -53,7 +67,46 @@
   </fieldset>
 
   <br/>
-  <%= f.submit %>
+  <%= f.submit "Save Details", :onclick => "formvalidation($('edit_delivery_#{@delivery.id}'));return false;" %>
   <br/>
 <% end %>
-<%= button_to "Destroy", delivery_path(@delivery), :confirm => "Are you sure?", :method => :delete %>
+<%= button_to "Cancel Listing", delivery_path(@delivery), :confirm => "Are you sure?", :method => :delete %>
+
+<script>
+geocoder = new GClientGeocoder();
+function formvalidation(form) {
+  alert('from_lat: '+$('from_latitude').value+' to_lat:'+$('to_latitude').value);
+  if($('from_latitude').value.length > 0) {
+    if($('to_latitude').value.length > 0) {
+      form.submit();
+    } else {
+      alert("Validate the To address");
+    }
+  } else {
+    alert("Validate the From address");
+  }
+}
+
+function geocallback_from(gLatLng) {
+  if(gLatLng) {
+    $('from_address_msg').innerHTML = "Address OK.";
+    $('from_latitude').value = ""+gLatLng.lat();
+    $('from_longitude').value = ""+gLatLng.lng();
+  } else {
+    $('from_address_msg').innerHTML = "Google does not recognize this address. Please fix.";
+    $('from_latitude').value = "";
+    $('from_longitude').value = "";
+  }
+}
+function geocallback_to(gLatLng) {
+  if(gLatLng) {
+    $('to_address_msg').innerHTML = "Address OK.";
+    $('to_latitude').value = ""+gLatLng.lat();
+    $('to_longitude').value = ""+gLatLng.lng();
+  } else {
+    $('to_address_msg').innerHTML = "Google does not recognize this address. Please fix.";
+    $('to_latitude').value = "";
+    $('to_longitude').value = "";
+  }
+}
+</script>

@@ -12,4 +12,8 @@ class Location < ActiveRecord::Base
     self.accuracy = params[:accuracy]
   end
 
+  def geocode!
+    
+  end
+
 end
