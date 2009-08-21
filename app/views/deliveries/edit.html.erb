@@ -106,7 +106,7 @@ function prevalidate_from() {
 
 function prevalidate_to() {
   if($('to_latitude').value.length > 0) {
-    $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(<%= @delivery.start_location.latitude%>,<%= @delivery.start_location.longitude%>),100,100,12);
+    $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(<%= @delivery.end_location.latitude%>,<%= @delivery.start_location.longitude%>),100,100,12);
   }
 }
 
