@@ -38,8 +38,8 @@
     <%= button_to "Validate", {}, {:onclick=>"geocoder.getLatLng($('from_address').value, geocallback_from); return false;",
                                    :style => "float: left"} %>
     <span id="from_address_msg"></span>
-    <%= hidden_field_tag "from[latitude]", @delivery.start_location.latitude %>
-    <%= hidden_field_tag "from[longitude]", @delivery.start_location.longitude %>
+    <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
+    <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
   </fieldset>
 
   <fieldset>
@@ -52,8 +52,8 @@
     <%= button_to "Validate", {}, {:onclick=>"geocoder.getLatLng($('to_address').value, geocallback_to); return false;",
                                    :style => "float: left"} %>
     <span id="to_address_msg"></span>
-    <%= hidden_field_tag "to[latitude]", @delivery.end_location.latitude%>
-    <%= hidden_field_tag "to[longitude]", @delivery.end_location.longitude%>
+    <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
+    <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
   </fieldset>
   <fieldset>
     <legend> Delivery Bounty </legend>
@@ -105,15 +105,21 @@ function invalidate_to() {
 }
 
 function prevalidate_from() {
+  //$('from_latitude').value = "<%=@delivery.start_location ? @delivery.start_location.latitude : ""%>";
+  <% if @delivery.start_location %>
   if($('from_latitude').value.length > 0) {
     $('from_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(<%= @delivery.start_location.latitude%>,<%= @delivery.start_location.longitude%>),100,100,14);
   }
+  <% end %>
 }
 
 function prevalidate_to() {
+  //$('to_latitude').value = "<%=@delivery.end_location ? @delivery.end_location.latitude : ""%>";
+  <% if @delivery.end_location %>
   if($('to_latitude').value.length > 0) {
     $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(<%= @delivery.end_location.latitude%>,<%= @delivery.start_location.longitude%>),100,100,14);
   }
+  <% end %>
 }
 
 function geocallback_from(gLatLng) {
