@@ -24,6 +24,7 @@ class DeliveriesController < ApplicationController
   def update
     # update form is also a creation form for the dependent models
     delivery = Delivery.find(params[:id])
+    delivery.apply_form_attributes(params[:delivery])
     
     fee = Fee.new
     fee.apply_form_attributes(params[:fee])

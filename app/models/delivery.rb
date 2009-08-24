@@ -11,6 +11,7 @@ class Delivery < ActiveRecord::Base
 
   def apply_form_attributes(params)
     return if params.nil?
+    self.start_end_distance = params[:start_end_distance].to_i
   end
 
   def ok_to_display?

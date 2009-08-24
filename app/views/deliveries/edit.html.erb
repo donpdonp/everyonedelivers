@@ -67,6 +67,7 @@
     <%= select_tag "fee[time_unit]", options_for_select({"Hour(s)" => "hour"})%>
 -->
   </fieldset>
+  <%= hidden_field_tag "delivery[start_end_distance]", ""%>
 
   <br/>
   <%= f.submit "Save Details", :onclick => "formvalidation($('edit_delivery_#{@delivery.id}'));return false;" %>
@@ -79,6 +80,11 @@ geocoder = new GClientGeocoder();
 function formvalidation(form) {
   if($('from_latitude').value.length > 0) {
     if($('to_latitude').value.length > 0) {
+      // Both points are verified. compute the distance
+      p1 = new GLatLng($('from_latitude').value,$('from_longitude').value);
+      p2 = new GLatLng($('to_latitude').value,$('to_longitude').value);
+      distance = p1.distanceFrom(p2);
+      $('delivery_start_end_distance').value = ""+distance;
       form.submit();
     } else {
       alert("Validate the To address");
