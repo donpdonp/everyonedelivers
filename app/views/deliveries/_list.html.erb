@@ -10,7 +10,7 @@
     <tr>
      <td>
       <div class="deliverypackagename">
-       <span class="deliveryfee">fee $<%= d.fee.display_price %></span> <br/>
+       <span class="deliveryfee">Bounty $<%= d.fee.display_price %></span> <br/>
        <%= link_to truncate(d.package.description,35), delivery_path(d) %> <br/>
        Retail $<%=d.package.display_price%> <br/>
        <% if d.fee.delivery_due >= Time.now %>
@@ -33,7 +33,18 @@
      </td>
      <td>
       <div class="googlestaticmap" >
-        <div style="text-align: center">
+        <div>
+          <% d.end_location.street.split(',',d.end_location.street.count(',')).each do |part| %>
+            <%= part %> <br/>
+          <% end %>
+        </div>
+        <%= image_tag d.end_location.gmap_static_html(100,100,14) %>
+        <div style="text-align: center">To</div>
+      </div>
+     </td>
+     <td>
+      <div class="googlestaticmap" >
+        <div>
           <% d.start_location.street.split(',',d.start_location.street.count(',')).each do |part| %>
             <%= part %> <br/>
           <% end %>
@@ -42,17 +53,6 @@
         <%= image_tag d.start_location.gmap_static_html(100,100,14) %>
         </div>
         <div style="text-align: center">From</div>
-      </div>
-     </td>
-     <td>
-      <div class="googlestaticmap" >
-        <div style="text-align: center">
-          <% d.end_location.street.split(',',d.end_location.street.count(',')).each do |part| %>
-            <%= part %> <br/>
-          <% end %>
-        </div>
-        <%= image_tag d.end_location.gmap_static_html(100,100,14) %>
-        <div style="text-align: center">To</div>
       </div>
      </td>
     </tr>

@@ -2,6 +2,9 @@ body {
   background: #454141;
 }
 
+#slogan {
+  color: white;
+}
 .container {
   font-family: arial;
   padding: 5px;
