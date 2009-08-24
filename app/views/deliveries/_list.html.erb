@@ -34,7 +34,7 @@
      <td>
       <div class="googlestaticmap" >
         <div style="text-align: center">
-          <% d.start_location.street.split(',',2).each do |part| %>
+          <% d.start_location.street.split(',',d.start_location.street.count(',')).each do |part| %>
             <%= part %> <br/>
           <% end %>
         </div>
@@ -47,7 +47,7 @@
      <td>
       <div class="googlestaticmap" >
         <div style="text-align: center">
-          <% d.end_location.street.split(',',2).each do |part| %>
+          <% d.end_location.street.split(',',d.end_location.street.count(',')).each do |part| %>
             <%= part %> <br/>
           <% end %>
         </div>
