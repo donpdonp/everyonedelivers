@@ -113,6 +113,10 @@ body {
   padding: 4px;
 }
 
+.deliveryfee {
+  font-size: 150%;
+}
+
 .deliverytimes {
   float: left;
 }
@@ -140,6 +144,9 @@ body {
 
 .deliverypackageprice a:hover {
   color: green;
+}
+
+.googlestaticmap img {
 }
 
 #footer {
