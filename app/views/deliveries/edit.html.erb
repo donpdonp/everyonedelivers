@@ -56,8 +56,8 @@
     <%= hidden_field_tag "to[longitude]", @delivery.end_location.longitude%>
   </fieldset>
   <fieldset>
-    <legend> Delivery Price </legend>
-    Price $<%= text_field_tag "fee[display_price]", 
+    <legend> Delivery Bounty </legend>
+    Amount $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 2 %>
     if delivery is completed by
     <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.now) %>
