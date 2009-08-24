@@ -11,7 +11,7 @@
      <td>
       <div class="deliverypackagename">
        <span class="deliveryfee">fee $<%= d.fee.display_price %></span> <br/>
-       <%= link_to d.package.description, delivery_path(d) %> <br/>
+       <%= link_to truncate(d.package.description,15), delivery_path(d) %> <br/>
        Retail $<%=d.package.display_price%> <br/>
        <% if d.fee.delivery_due >= Time.now %>
          Due in <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
