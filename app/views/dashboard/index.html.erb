@@ -18,7 +18,7 @@ Fulfill someone's delivery request and earn the delivery bounty!
   <br/>
   <% if logged_in? %>
     <% clockedin = current_user.clocked_in? %>
-    <div style="background:blue; float: left; text-align: center; margin-top: 5%">
+    <div style="background:<%= clockedin ? "Green" : "Blue" %>; float: left; text-align: center; margin-top: 5%">
       Clocked <br/>
       <span style="font-size: 150%"><%= clockedin ? "In" : "Out"%></span> 
       <br/>
