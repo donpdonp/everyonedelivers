@@ -20,11 +20,13 @@ describe UsersController do
     User.should_receive(:find_by_username).with(@user.id.to_s).and_return(@user)
     @user.should_receive(:clock_in!)
     get :clock_in, {:id => @user.id}
+    response.should redirect_to(root_url)
   end
 
   it "should clock out a user" do
     User.should_receive(:find_by_username).with(@user.id.to_s).and_return(@user)
     @user.should_receive(:clock_out!)
     get :clock_out, {:id => @user.id}
+    response.should redirect_to(root_url)
   end
 end

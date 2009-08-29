@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :login_required, :only => [:edit, :update]
+  before_filter :login_required, :except => [:show]
   protect_from_forgery :except => :update_location
 
   def show
@@ -42,8 +42,9 @@ class UsersController < ApplicationController
     if current_user == @user
       @user.clock_in!
     else
-      flash[:error] = "Not authorized to clock in {@user.username}"
+      flash[:error] = "Not authorized to clock in #{@user.username}"
     end
+    redirect_to root_path
   end
 
   def clock_out
@@ -51,7 +52,8 @@ class UsersController < ApplicationController
     if current_user == @user
       @user.clock_out!
     else
-      flash[:error] = "Not authorized to clock out {@user.username}"
+      flash[:error] = "Not authorized to clock out #{@user.username}"
     end
+    redirect_to root_path
   end
 end

@@ -16,13 +16,18 @@ Fulfill someone's delivery request and earn the delivery bounty!
     </div>
   </div>
   <br/>
-  <div style="background:blue; float: left; text-align: center; margin-top: 5%">
-  Clocked <br/>
-  <span style="font-size: 150%"><%= current_user.clocked_in? ? "In" : "Out"%></span> <br/>
-  <% form_tag({:controller => :users, :action => :clock_in}) do %>
-    <%= submit_tag "Clock OUT" %>
+  <% if logged_in? %>
+    <% clockedin = current_user.clocked_in? %>
+    <div style="background:blue; float: left; text-align: center; margin-top: 5%">
+      Clocked <br/>
+      <span style="font-size: 150%"><%= clockedin ? "In" : "Out"%></span> 
+      <br/>
+      <% form_tag({:controller => :users, :action => (clockedin ? :clock_out : :clock_in),
+               :id => current_user.username}) do %>
+        <%= submit_tag "Clock #{clockedin ? "OUT" : "IN"}" %>
+      <% end %>
+    </div>
   <% end %>
-  </div>
 </div>
 
 <p style="margin-bottom: 0px">
