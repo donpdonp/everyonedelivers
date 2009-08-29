@@ -50,7 +50,12 @@ body {
   color: brown; 
 }
 
-.clockedinpeople li {
+.clockedinpeople li a {
+  color: green;
+}
+
+.clockedinpeople li a:hover {
+  text-decoration: underline;
 }
 
 .header {

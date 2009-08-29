@@ -10,7 +10,7 @@ Fulfill someone's delivery request and earn the delivery bounty!
     <div style="float:left">
       <ul>
       <% @clocked_ins.each do |user| %>
-        <li><%= user.username %></li>
+        <li><%= link_to user.username, {:controller => :users, :action => :show, :id => user.username} %></li>
       <% end %>
       </ul>
     </div>
