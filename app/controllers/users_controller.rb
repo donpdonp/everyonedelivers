@@ -36,4 +36,22 @@ class UsersController < ApplicationController
     end
     render :nothing => true
   end
+
+  def clock_in
+    @user = User.find_by_username(params[:id])
+    if current_user == @user
+      @user.clock_in!
+    else
+      flash[:error] = "Not authorized to clock in {@user.username}"
+    end
+  end
+
+  def clock_out
+    @user = User.find_by_username(params[:id])
+    if current_user == @user
+      @user.clock_out!
+    else
+      flash[:error] = "Not authorized to clock out {@user.username}"
+    end
+  end
 end

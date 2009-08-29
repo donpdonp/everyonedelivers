@@ -8,6 +8,8 @@ class DashboardController < ApplicationController
     @delivery_groups << ["one to four hours old", four_hours] if four_hours.size > 0
     many_hours = Delivery.find_more_than_hours_old(4)
     @delivery_groups << ["more than four hours old", many_hours] if many_hours.size > 0
+
+    @clocked_ins = User.all(:conditions => {:clocked_in => true})
   end
 
 end

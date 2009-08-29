@@ -2,6 +2,29 @@
 Fulfill someone's delivery request and earn the delivery bounty!
 </p>
 
+<div class="clockedinbox">
+  <div class="clockedinpeople">
+    <p>
+      Currently available delivery people 
+    </p>
+    <div style="float:left">
+      <ul>
+      <% @clocked_ins.each do |user| %>
+        <li><%= user.username %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+  <br/>
+  <div style="background:blue; float: left; text-align: center; margin-top: 5%">
+  Clocked <br/>
+  <span style="font-size: 150%"><%= current_user.clocked_in? ? "In" : "Out"%></span> <br/>
+  <% form_tag({:controller => :users, :action => :clock_in}) do %>
+    <%= submit_tag "Clock OUT" %>
+  <% end %>
+  </div>
+</div>
+
 <p style="margin-bottom: 0px">
 Delivery requests...
   <% @delivery_groups.each do |group| %>

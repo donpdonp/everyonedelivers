@@ -34,4 +34,14 @@ class User < ActiveRecord::Base
   def journal_on_create
     Journal.create({:delivery => nil, :user => self, :note => "New User"})
   end
+
+  def clock_in!
+    update_attribute :clocked_in, true
+    Journal.create({:delivery => nil, :user => self, :note => "Clocked In"})
+  end
+
+  def clock_out!
+    update_attribute :clocked_in, false
+    Journal.create({:delivery => nil, :user => self, :note => "Clocked Out"})
+  end
 end

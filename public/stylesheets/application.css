@@ -25,6 +25,34 @@ body {
   background: #454141    ;
 }
 
+.clockedinbox {
+  float: right; 
+  color: white; 
+  margin-right: 10%;
+}
+
+.clockedinpeople {
+  background: #9CC445;
+  float:left;
+}
+
+.clockedinpeople p {
+  margin-top: 5%;
+  margin-bottom: 0px;
+}
+
+.clockedinpeople ul {
+  list-style: none;
+  padding-left: 5%;
+  font-size: 130%;
+  margin-top: 0px;
+  margin-bottom: 5%;
+  color: brown; 
+}
+
+.clockedinpeople li {
+}
+
 .header {
   background: #5b8207;
   padding: 8px;
