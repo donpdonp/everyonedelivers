@@ -13,10 +13,14 @@
        <span class="deliveryfee">Bounty $<%= d.fee.display_price %></span> <br/>
        <%= link_to truncate(d.package.description,35), delivery_path(d) %> <br/>
        Retail $<%=d.package.display_price%> <br/>
-       <% if d.fee.delivery_due >= Time.now %>
-         Due in <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
+       <% if d.fee.delivery_due %>
+         <% if d.fee.delivery_due >= Time.now %>
+           Due in <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
+         <% else %>
+           Overdue by <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
+         <% end %>
        <% else %>
-         Overdue by <%= distance_of_time_in_words_to_now(d.fee.delivery_due) %> <br/>
+         Due date missing.
        <% end %>
        <span class="deliverylistinguser">
        listed by <%= link_to d.listing_user.username, 
