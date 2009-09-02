@@ -15,7 +15,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def ok_to_display?
-    !!(fee && package && package.description.size > 0 && start_location && end_location && listing_user)
+    !!(fee && fee.ok_to_display? && package && package.ok_to_display? && start_location && start_location.ok_to_display? && end_location && end_location.ok_to_display? && listing_user)
   end
 
   def overdue?(time = Time.now)

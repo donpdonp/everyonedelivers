@@ -12,6 +12,10 @@ class Location < ActiveRecord::Base
     self.accuracy = params[:accuracy]
   end
 
+  def ok_to_display?
+    street && street.size > 0
+  end
+
   def geocode!
     
   end

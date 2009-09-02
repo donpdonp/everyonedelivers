@@ -26,4 +26,8 @@ class Fee < ActiveRecord::Base
       0.0
     end
   end
+
+  def ok_to_display?
+    true
+  end
 end

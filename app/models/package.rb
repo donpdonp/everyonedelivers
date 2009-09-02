@@ -24,6 +24,10 @@ class Package < ActiveRecord::Base
     end
   end
 
+  def ok_to_display?
+    description && description.size > 0
+  end
+
   def has_dimensions?
     height_in_meters && width_in_meters && depth_in_meters
   end
