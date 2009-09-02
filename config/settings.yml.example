@@ -15,3 +15,5 @@ email:
   domain: ""
 getsatisfaction:
   company: ""
+exception_notifier:
+  email: ""
