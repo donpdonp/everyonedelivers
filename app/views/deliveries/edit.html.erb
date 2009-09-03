@@ -106,7 +106,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
   
   <fieldset>
     <legend>From Address</legend>
-    Example: 900 SW Main, Portland, Or <br/>
+    Example: Name, 900 SW Main, Portland, Or <br/>
     <span style="float:left">
     Address <%= text_field_tag "from[address]", 
                 @delivery.start_location ? @delivery.start_location.street : "",
@@ -121,6 +121,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
 
   <fieldset>
     <legend>To Address</legend>
+    Example: Name, 420 NE Broadway, Portland, Or <br/>
     <span style="float:left">
     Address <%= text_field_tag "to[address]", 
                 @delivery.end_location ? @delivery.end_location.street : "", 
@@ -132,6 +133,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
     <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
     <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
   </fieldset>
+
   <fieldset>
     <legend> Delivery Bounty </legend>
     Amount $<%= text_field_tag "fee[display_price]", 
