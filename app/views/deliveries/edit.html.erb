@@ -112,8 +112,9 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
                 @delivery.start_location ? @delivery.start_location.street : "",
                 :size => 50, :onchange => "invalidate_from()" %>
     </span>
-    <%= button_to "Validate", {}, {:onclick=>"geocoder.getLatLng($('from_address').value, geocallback_from); return false;",
-                                   :style => "float: left"} %>
+    <input type="submit" value="Validate" 
+           onclick="geocoder.getLatLng($('from_address').value, geocallback_from); return false;"
+           style="float: left">
     <span id="from_address_msg"></span>
     <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
     <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
@@ -127,8 +128,9 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
                 @delivery.end_location ? @delivery.end_location.street : "", 
                 :size => 50, :onchange => "invalidate_to()" %>
     </span>
-    <%= button_to "Validate", {}, {:onclick=>"geocoder.getLatLng($('to_address').value, geocallback_to); return false;",
-                                   :style => "float: left"} %>
+    <input type="submit" value="Validate" 
+           onclick="geocoder.getLatLng($('to_address').value, geocallback_to); return false;"
+           style="float: left">
     <span id="to_address_msg"></span>
     <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
     <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
