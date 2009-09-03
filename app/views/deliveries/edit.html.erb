@@ -1,5 +1,82 @@
-<%# form_for :delivery, @delivery, :url => delivery_path(@delivery), :method => "put" do |f| %>
-<% form_for @delivery do |f| %>
+<script type="text/javascript">
+geocoder = new GClientGeocoder();
+function formvalidation() {
+  if($('from_latitude').value.length > 0) {
+    if($('to_latitude').value.length > 0) {
+      // Both points are verified. compute the distance
+      p1 = new GLatLng($('from_latitude').value,$('from_longitude').value);
+      p2 = new GLatLng($('to_latitude').value,$('to_longitude').value);
+      distance = p1.distanceFrom(p2);
+      $('delivery_start_end_distance').value = ""+distance;
+      return true;
+    } else {
+      alert("Validate the To address");
+    }
+  } else {
+    alert("Validate the From address");
+  }
+  return false;
+}
+
+function invalidate_from() {
+  $('from_latitude').value = "";
+  $('from_address_msg').innerHTML = "Validation needed.";
+}
+
+function invalidate_to() {
+  $('to_latitude').value = "";
+  $('to_address_msg').innerHTML = "Validation needed.";
+}
+
+function prevalidate_from() {
+  var lat = $('from_latitude').value;
+  var lng = $('from_longitude').value;
+  if(!lat.blank()) {
+    $('from_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(lat,lng),100,100,14);
+  }
+}
+
+function prevalidate_to() {
+  var lat = $('to_latitude').value;
+  var lng = $('to_longitude').value;
+  if(!lat.blank()) {
+    $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(lat,lng),100,100,14);
+  }
+}
+
+function geocallback_from(gLatLng) {
+  if(gLatLng) {
+    $('from_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,100,100,14);
+    $('from_latitude').value = ""+gLatLng.lat();
+    $('from_longitude').value = ""+gLatLng.lng();
+  } else {
+    $('from_address_msg').innerHTML = "Google does not recognize this address. Please fix.";
+    $('from_latitude').value = "";
+    $('from_longitude').value = "";
+  }
+}
+
+function geocallback_to(gLatLng) {
+  if(gLatLng) {
+    $('to_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,100,100,14);
+    $('to_latitude').value = ""+gLatLng.lat();
+    $('to_longitude').value = ""+gLatLng.lng();
+  } else {
+    $('to_address_msg').innerHTML = "Google does not recognize this address. Please fix.";
+    $('to_latitude').value = "";
+    $('to_longitude').value = "";
+  }
+}
+
+function static_map(gLatLng, h, w, zoom) {
+  return "<img src=\"http://maps.google.com/staticmap?center="+gLatLng.lat()+","+gLatLng.lng()+"&zoom="+zoom+"&size="+h+"x"+w+"&key=<%=SETTINGS["google"]["maps"]["key"]%>&sensor=false&markers="+gLatLng.lat()+","+gLatLng.lng()+"\">";
+
+}
+
+document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to();}); 
+</script>
+
+<% form_for(@delivery, {:html => {:onsubmit => "return formvalidation()"}}) do |f| %>
   <p>
     Editing Delivery #<%= @delivery.id %>
   </p>
@@ -58,7 +135,7 @@
   <fieldset>
     <legend> Delivery Bounty </legend>
     Amount $<%= text_field_tag "fee[display_price]", 
-               @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 2 %>
+               @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
     if delivery is completed by
     <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.now) %>
 <!--    if delivered within
@@ -70,87 +147,8 @@
   <%= hidden_field_tag "delivery[start_end_distance]", ""%>
 
   <br/>
-  <%= f.submit "Save Details", :onclick => "formvalidation($('edit_delivery_#{@delivery.id}'));return false;" %>
+  <%= f.submit "Save Details" %>
   <br/>
 <% end %>
 <%= button_to "Cancel Listing", delivery_path(@delivery), :confirm => "Are you sure?", :method => :delete %>
 
-<script>
-geocoder = new GClientGeocoder();
-function formvalidation(form) {
-  if($('from_latitude').value.length > 0) {
-    if($('to_latitude').value.length > 0) {
-      // Both points are verified. compute the distance
-      p1 = new GLatLng($('from_latitude').value,$('from_longitude').value);
-      p2 = new GLatLng($('to_latitude').value,$('to_longitude').value);
-      distance = p1.distanceFrom(p2);
-      $('delivery_start_end_distance').value = ""+distance;
-      form.submit();
-    } else {
-      alert("Validate the To address");
-    }
-  } else {
-    alert("Validate the From address");
-  }
-}
-
-function invalidate_from() {
-  $('from_latitude').value = "";
-  $('from_address_msg').innerHTML = "Validation needed.";
-}
-
-function invalidate_to() {
-  $('to_latitude').value = "";
-  $('to_address_msg').innerHTML = "Validation needed.";
-}
-
-function prevalidate_from() {
-  //$('from_latitude').value = "<%=@delivery.start_location ? @delivery.start_location.latitude : ""%>";
-  <% if @delivery.start_location %>
-  if($('from_latitude').value.length > 0) {
-    $('from_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(<%= @delivery.start_location.latitude%>,<%= @delivery.start_location.longitude%>),100,100,14);
-  }
-  <% end %>
-}
-
-function prevalidate_to() {
-  //$('to_latitude').value = "<%=@delivery.end_location ? @delivery.end_location.latitude : ""%>";
-  <% if @delivery.end_location %>
-  if($('to_latitude').value.length > 0) {
-    $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(<%= @delivery.end_location.latitude%>,<%= @delivery.start_location.longitude%>),100,100,14);
-  }
-  <% end %>
-}
-
-function geocallback_from(gLatLng) {
-  if(gLatLng) {
-    $('from_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,100,100,14);
-    $('from_latitude').value = ""+gLatLng.lat();
-    $('from_longitude').value = ""+gLatLng.lng();
-  } else {
-    $('from_address_msg').innerHTML = "Google does not recognize this address. Please fix.";
-    $('from_latitude').value = "";
-    $('from_longitude').value = "";
-  }
-}
-
-function geocallback_to(gLatLng) {
-  if(gLatLng) {
-    $('to_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,100,100,14);
-    $('to_latitude').value = ""+gLatLng.lat();
-    $('to_longitude').value = ""+gLatLng.lng();
-  } else {
-    $('to_address_msg').innerHTML = "Google does not recognize this address. Please fix.";
-    $('to_latitude').value = "";
-    $('to_longitude').value = "";
-  }
-}
-
-function static_map(gLatLng, h, w, zoom) {
-  return "<img src=\"http://maps.google.com/staticmap?center="+gLatLng.lat()+","+gLatLng.lng()+"&zoom="+zoom+"&size="+h+"x"+w+"&key=<%=SETTINGS["google"]["maps"]["key"]%>&sensor=false&markers="+gLatLng.lat()+","+gLatLng.lng()+"\">";
-
-}
-
-prevalidate_from();
-prevalidate_to();
-</script>
