@@ -32,7 +32,7 @@ function prevalidate_from() {
   var lat = $('from_latitude').value;
   var lng = $('from_longitude').value;
   if(!lat.blank()) {
-    $('from_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(lat,lng),100,100,14);
+    $('from_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(lat,lng),150,70,15);
   }
 }
 
@@ -40,13 +40,13 @@ function prevalidate_to() {
   var lat = $('to_latitude').value;
   var lng = $('to_longitude').value;
   if(!lat.blank()) {
-    $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(lat,lng),100,100,14);
+    $('to_address_msg').innerHTML = "Address OK. "+static_map(new GLatLng(lat,lng),150,70,15);
   }
 }
 
 function geocallback_from(gLatLng) {
   if(gLatLng) {
-    $('from_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,100,100,14);
+    $('from_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,150,70,15);
     $('from_latitude').value = ""+gLatLng.lat();
     $('from_longitude').value = ""+gLatLng.lng();
   } else {
@@ -58,7 +58,7 @@ function geocallback_from(gLatLng) {
 
 function geocallback_to(gLatLng) {
   if(gLatLng) {
-    $('to_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,100,100,14);
+    $('to_address_msg').innerHTML = "Address OK. "+static_map(gLatLng,150,70,15);
     $('to_latitude').value = ""+gLatLng.lat();
     $('to_longitude').value = ""+gLatLng.lng();
   } else {
@@ -106,7 +106,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
   
   <fieldset>
     <legend>From Address</legend>
-    Example: Name, 900 SW Main, Portland, Or <br/>
+    Example: Corner Market, 900 SW Main, Portland, Or <br/>
     <span style="float:left">
     Address <%= text_field_tag "from[address]", 
                 @delivery.start_location ? @delivery.start_location.street : "",
@@ -122,7 +122,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
 
   <fieldset>
     <legend>To Address</legend>
-    Example: Name, 420 NE Broadway, Portland, Or <br/>
+    Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
     <span style="float:left">
     Address <%= text_field_tag "to[address]", 
                 @delivery.end_location ? @delivery.end_location.street : "", 
