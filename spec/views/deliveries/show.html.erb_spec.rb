@@ -11,6 +11,8 @@ describe "/deliveries/show" do
     delivery.should_receive(:listing_user).and_return(user)
     delivery.should_receive(:package)
     delivery.should_receive(:start_location)
+    delivery.should_receive(:start_location)
+    delivery.should_receive(:start_location)
     delivery.should_receive(:end_location)
     delivery.should_receive(:fee)
     delivery.should_receive(:delivering_user)

@@ -189,6 +189,16 @@ body {
   color: green;
 }
 
+.deliverydetail h4 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.deliverydetail p {
+  margin-top: 0px;
+  margin-bottom: 1em;
+}
+
 .googlestaticmap img {
 }
 

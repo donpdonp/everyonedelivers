@@ -1,65 +1,42 @@
-<h3>Delivery #<%= @delivery.id %> </h3>
+<% if @delivery.start_location && @delivery.end_location %>
+<script>
+  // Call this function when the page has been loaded
+  function mapinitialize() {
+    var map = new google.maps.Map2(document.getElementById("gmap"));
+    map.setCenter(new google.maps.LatLng(45.4419, -122.1419), 5);
+    map.setUIToDefault();
+    var directions = new GDirections(map);
+    var street_directions_from = "from: <%= @delivery.start_location.street %>";
+    var street_directions_to = "to: <%= @delivery.end_location.street %>";
+    directions.load(street_directions_from+" "+street_directions_to);
+    GEvent.addListener(
+                directions,
+                'error',
+                function ()
+                {
+                  document.getElementById("gmaperror").innerHTML = "Google maps does not have directions between<br/> these locations. Please use a different address. (code "+directions.getStatus().code+")";
+                }
+    );
+
+  }
+  google.setOnLoadCallback(mapinitialize);
+</script>
+<% end %>
+
+<div class="deliverydetail">
+<h3>Delivery #<%= @delivery.id %> 
+ <% if @delivery.available_for_edit_by(current_user) %>
+   <%= link_to "edit", edit_delivery_path(@delivery) %>
+ <% end %>
+</h3>
+
+<table>
+<tr>
+ <td valign="top">
+<p>
 Listed by: <%= @delivery.listing_user.username %> <br/>
-Listed at: <%= @delivery.created_at %> 
-
-<h4>Package </h4>
-<% if @delivery.package %>
-<p>
-  description: <%= @delivery.package.description %>
-  <br/>
-  retail price: $<%= @delivery.package.display_price %>
-  <br/>
-  <% if @delivery.package.has_dimensions? %>
-    height: <%= @delivery.package.height %>"
-    width: <%= @delivery.package.width %>"
-    depth: <%= @delivery.package.depth %>"
-  <% else %>
-    dimensions: not given
-  <% end %>
-</p>
-<% else %>
-<p>
-  no package has been specified
-</p>
-<% end %>
-
-<h4>Start Location</h4>
-<% if @delivery.start_location %>
-Address: <%= @delivery.start_location.street %>
-<% else %>
-<p>
-  no start location has been specified
-</p>
-<% end %>
-
-
-<h4>End Location</h4>
-<% if @delivery.end_location %>
-Address: <%= @delivery.end_location.street %>
-<% else %>
-<p>
-  no end location has been specified
-</p>
-<% end %>
-
-<h4>Delivery Bounty</h4>
-<% if @delivery.fee %>
-Amount: $<%= @delivery.fee.display_price %> <br/>
-Completion Due By: <%= @delivery.fee.delivery_due %>
-    <% if @delivery.fee.delivery_due >= Time.now %>
-    (due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
-    <% else %>
-    (overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
-    <% end %>
-<br/>
-<% else %>
-<p>
-  no delivery fee has been specified
-</p>
-<% end %>
-
-<br/>
-<br/>
+Listed at: <%= @delivery.created_at %>  <br/>
+Status: 
 <% if @delivery.delivering_user %>
   Delivery accepted by: <%= @delivery.delivering_user.username %>
 <% else %>
@@ -75,7 +52,71 @@ Completion Due By: <%= @delivery.fee.delivery_due %>
     Login to accept this delivery.
   <% end %>
 <% end %>
-<br/>
-<% if @delivery.available_for_edit_by(current_user) %>
-  <%= link_to "edit", edit_delivery_path(@delivery) %>
+</p>
+
+<h4>Package</h4>
+ <% if @delivery.package %>
+ <p>
+   description: <%= @delivery.package.description %>
+   <br/>
+   retail price: $<%= @delivery.package.display_price %>
+   <br/>
+   <% if @delivery.package.has_dimensions? %>
+     height: <%= @delivery.package.height %>"
+     width: <%= @delivery.package.width %>"
+     depth: <%= @delivery.package.depth %>"
+   <% else %>
+     dimensions: not given
+   <% end %>
+ </p>
+ <% else %>
+  <p>
+    no package has been specified
+  </p>
+ <% end %>
+
+<h4>Delivery Bounty</h4>
+<p>
+ <% if @delivery.fee %>
+  Amount: $<%= @delivery.fee.display_price %> <br/>
+  Completion Due By: <%= @delivery.fee.delivery_due %>
+    <% if @delivery.fee.delivery_due >= Time.now %>
+    (due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
+    <% else %>
+    (overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
+    <% end %>
+  <br/>
+ <% else %>
+   no delivery fee has been specified
+ <% end %>
+</p>
+  </td>
+
+  <td valign="top">
+<h4>Start Location</h4>
+<p>
+ <% if @delivery.start_location %>
+  Address: <%= @delivery.start_location.street %>
+ <% else %>
+  no start location has been specified
+ <% end %>
+</p>
+
+<h4>End Location</h4>
+<p>
+ <% if @delivery.end_location %>
+  Address: <%= @delivery.end_location.street %>
+ <% else %>
+  no end location has been specified
+ <% end %>
+</p>
+
+<% if @delivery.start_location && @delivery.end_location %>
+ <div id="gmap" style="width:400px;height:300px"></div>
+ <div id="gmaperror"></div>
 <% end %>
+  </td>
+
+ </tr>
+</table>
+</div>
