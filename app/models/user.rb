@@ -36,12 +36,12 @@ class User < ActiveRecord::Base
   end
 
   def clock_in!
-    update_attribute :clocked_in, true
+    update_attribute :clocked_in, Time.now
     Journal.create({:delivery => nil, :user => self, :note => "Clocked In"})
   end
 
   def clock_out!
-    update_attribute :clocked_in, false
+    update_attribute :clocked_in, nil
     Journal.create({:delivery => nil, :user => self, :note => "Clocked Out"})
   end
 end

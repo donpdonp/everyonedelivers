@@ -37,8 +37,11 @@ body {
 }
 
 .clockedinpeople p {
-  margin-top: 5%;
+  margin-top: 0.5em;
   margin-bottom: 0px;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  border-bottom-style: solid;
 }
 
 .clockedinpeople ul {
@@ -47,7 +50,6 @@ body {
   font-size: 130%;
   margin-top: 0px;
   margin-bottom: 5%;
-  color: brown; 
 }
 
 .clockedinpeople li a {
@@ -56,6 +58,10 @@ body {
 
 .clockedinpeople li a:hover {
   text-decoration: underline;
+}
+
+.clockedintime {
+  font-size: 80%;
 }
 
 .header {
