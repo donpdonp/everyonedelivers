@@ -31,7 +31,6 @@ Fulfill someone's delivery request and earn the delivery bounty!
 </div>
 
 <p style="margin-bottom: 0px">
-Delivery requests...
   <% @delivery_groups.each do |group| %>
     <%= render :partial => 'deliveries/list', :locals => {:timedesc => group.first, :deliveries => group.last} %>
   <% end %>
