@@ -47,7 +47,7 @@ class DeliveriesController < ApplicationController
     delivery.end_location = location
 
     delivery.save!
-    redirect_to :controller => :users, :action => :show, :id => delivery.listing_user.username
+    redirect_to delivery_path(delivery)
   end
 
   def destroy
