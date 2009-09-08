@@ -3,8 +3,21 @@
   // Call this function when the page has been loaded
   function mapinitialize() {
     var map = new google.maps.Map2(document.getElementById("gmap"));
-    map.setCenter(new google.maps.LatLng(45.4419, -122.1419), 5);
+
+    var wp = new Array(2);
+    wp[0] = new GLatLng(<%= @delivery.start_location.latitude %>,<%= @delivery.start_location.longitude %>);
+    wp[1] = new GLatLng(<%= @delivery.end_location.latitude %>,<%= @delivery.end_location.longitude %>);
+    var bounds = new GLatLngBounds(wp[0], wp[1]);
+    //map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds)); // total fail??
+    map.setCenter(wp[0], 12);
+
     map.setUIToDefault();
+    var marker_start = new GMarker(wp[0]);
+    map.addOverlay(marker_start);
+    var marker_end = new GMarker(wp[1]);
+    map.addOverlay(marker_end);
+     
+
     var directions = new GDirections(map);
     var street_directions_from = "from: <%= @delivery.start_location.street %>";
     var street_directions_to = "to: <%= @delivery.end_location.street %>";
