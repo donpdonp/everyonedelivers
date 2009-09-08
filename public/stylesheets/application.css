@@ -159,6 +159,12 @@ body {
 }
 
 .deliverypackagename {
+  font-size: 130%;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.deliverypackageinfo {
   font-size: 110%;
   font-weight: bold;
 }

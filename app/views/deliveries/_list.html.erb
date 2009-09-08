@@ -4,10 +4,16 @@
   <li class="devileryitem <%= d.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
    <table>
     <tr>
+     <td colspan="3">
+       <div class="deliverypackagename">
+        <%= link_to truncate(d.package.description,45), delivery_path(d) %> <br/>
+       </div>
      <td>
-      <div class="deliverypackagename">
+    </tr>
+    <tr>
+     <td valign="top">
+      <div class="deliverypackageinfo">
        <span class="deliveryfee">Bounty $<%= d.fee.display_price %></span> <br/>
-       <%= link_to truncate(d.package.description,35), delivery_path(d) %> <br/>
        Retail $<%=d.package.display_price%> <br/>
        <% if d.fee.delivery_due %>
          <% if d.fee.delivery_due >= Time.now %>
@@ -34,12 +40,15 @@
      <td>
       <div class="googlestaticmap" >
         <div>
-          <% d.end_location.street.split(',',d.end_location.street.count(',')).each do |part| %>
+          <% d.end_location.street_parts.each do |part| %>
             <%= part %> <br/>
           <% end %>
         </div>
-        <%= image_tag d.end_location.gmap_static_html(100,100,14) %>
-        <div style="text-align: center">To</div>
+        <div style="text-align: center; width: 100px">
+          <%= image_tag d.start_location.gmap_static_html(100,100,14) %>
+          <br/>
+          <span >From</div>
+        </div>
       </div>
      </td>
      <td>
@@ -49,10 +58,11 @@
             <%= part %> <br/>
           <% end %>
         </div>
-        <div style="margin-left: auto; margin-right: auto">
-        <%= image_tag d.start_location.gmap_static_html(100,100,14) %>
+        <div style="text-align: center; width: 100px">
+          <%= image_tag d.end_location.gmap_static_html(100,100,14) %>
+          <br/>
+          <span >To</div>
         </div>
-        <div style="text-align: center">From</div>
       </div>
      </td>
     </tr>
