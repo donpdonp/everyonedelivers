@@ -5,6 +5,30 @@ body {
 #slogan {
   color: white;
 }
+
+#splash {
+  text-align: center;
+}
+
+#splash h3 {
+  color: orange;
+}
+
+#splashleft {
+  float: left;
+  width: 25%;
+  margin-left: 25%;
+}
+#splashleft p{
+  border-right-style: solid;
+}
+
+#splashright {
+  float: left;
+  width: 25%;
+  margin-right: 25%;
+}
+
 .container {
   font-family: arial;
   padding: 5px;
