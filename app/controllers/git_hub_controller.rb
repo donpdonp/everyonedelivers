@@ -7,7 +7,7 @@ class GitHubController < ApplicationController
   def commit
     cmd = RAILS_ROOT+"/github-pull.sh"
     logger.info("github commit: #{cmd}")
-    out = `#{cmd}`
+    out = `/bin/sh #{cmd}`
     logger.info("github pull output: #{out}")
   end
 
