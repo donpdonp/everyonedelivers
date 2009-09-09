@@ -25,6 +25,10 @@ body {
   background: #454141    ;
 }
 
+.flashmsgs {
+  margin-top: 5px;
+}
+
 .clockedinbox {
   float: right; 
   color: white; 
