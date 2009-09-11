@@ -21,9 +21,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by_username(params[:id])
     if current_user == @user
-      flash[:notice] = "Profile updated"
       @user.apply_form_attributes(params[:user])
-      @user.save!
+      begin
+        @user.save!
+        flash[:notice] = "Profile updated"
+      rescue ActiveRecord::RecordInvalid => e
+        flash[:error] = "#{e}"
+      end
       redirect_to :action => :show, :id => @user.username
     else
       flash[:notice] = "Permission denied"
