@@ -22,4 +22,10 @@ describe User do
     user.clock_out!
     user.should_not be_clocked_in
   end
+
+  it "should tell who can edit this user" do
+    user = User.create!(@valid_attributes)
+    user.available_for_edit_by(nil).should be_false
+    user.available_for_edit_by(user).should be_true
+  end
 end

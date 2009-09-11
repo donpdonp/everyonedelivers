@@ -1,7 +1,12 @@
 <% content_for :title do %>
 user <%= @user.username %>
 <% end %>
-<h3> User Profile for <%= @user.username %> </h3>
+<h3> 
+  User Profile for <%= @user.username %> 
+  <% if @user.available_for_edit_by(current_user) %>
+   <%= link_to "edit", edit_user_path(@user) %>
+  <% end %>
+</h3>
 openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
 username: <%= @user.username %> <br/>
 email: 
@@ -13,10 +18,6 @@ email:
   <br/>
 time zone: <%= @user.time_zone %> <br/>
 units: <%= @user.display_measurement %> <br/>
-
-<% if logged_in? %>
-<%= link_to 'edit', :controller => :users, :action => :edit, :id => @user.username %>
-<% end %>
 
 <p>
 Recorded <%= @user.sightings.size %> sightings at <%= @user.locations.size %> locations. <br/>

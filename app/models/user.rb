@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def available_for_edit_by(user)
+    self == user
+  end
+
   def openid
     self.openidentities.first
   end
