@@ -4,7 +4,7 @@ user <%= @user.username %>
 <h3> 
   User Profile for <%= @user.username %> 
   <% if @user.available_for_edit_by(current_user) %>
-   <%= link_to "edit", edit_user_path(@user) %>
+   <%= link_to "edit", {:controller => :users, :action => :edit, :id => @user.username} %>
   <% end %>
 </h3>
 openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
