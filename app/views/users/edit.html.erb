@@ -1,16 +1,19 @@
-edit user
+<div id="edituser">
+<h3>Edit User</h3>
+
 <% form_for :user, @user, :url => user_path(@user.username), :html => { :method => :put } do |f| %>
   <fieldset>
    <legend>Identity</legend>
-     username: <%= f.text_field :username %> <br/>
-     email: <%= f.text_field :email %>
+     <span >username:</span> <%= f.text_field :username, :size => 40 %> <br/>
+     <span >email:</span>    <%= f.text_field :email, :size => 40 %>
   </fieldset>
   <fieldset>
    <legend>Internationalization</legend>
-     time zone: <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+     time zone: <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
   <br/>
-     units: <%= f.select :display_measurement, [["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
+     units: <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
   </fieldset>
   <br/>
   <%= f.submit %>
 <% end %>
+</div>

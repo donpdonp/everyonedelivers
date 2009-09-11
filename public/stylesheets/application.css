@@ -274,3 +274,7 @@ body {
 .biglogin {
   font-size: 110%;
 }
+
+#edituser form {
+  width: 50%;
+}

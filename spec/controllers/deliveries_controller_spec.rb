@@ -28,8 +28,9 @@ describe DeliveriesController do
 
   it "should edit a delivery" do
     bob = mock_model(User)
-    bob.should_receive(:username).and_return("bob")
+    #bob.should_receive(:username).and_return("bob")
     delivery = mock_model(Delivery)
+    delivery.should_receive(:available_for_edit_by).with(@user).and_return(true)
     delivery.should_receive(:fee=)
     delivery.should_receive(:package=)
     delivery.should_receive(:start_location=)
