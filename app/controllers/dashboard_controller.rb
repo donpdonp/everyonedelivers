@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
       #many_hours = Delivery.find_more_than_hours_old(4).select{|d| d.ok_to_display?}
       #@delivery_groups << ["more than four hours old", many_hours] if many_hours.size > 0
 
-      @clocked_ins = User.all(:conditions => "clocked_in is not null")
+      @clocked_ins = User.clocked_ins
     else
       render :action => :splash
     end

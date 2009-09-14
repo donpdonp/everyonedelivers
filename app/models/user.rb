@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   after_create :journal_on_create
 
+  named_scope :clocked_ins, :conditions => "clocked_in is not null"
+
   def apply_form_attributes(params)
     return if params.nil?
 
@@ -48,4 +50,5 @@ class User < ActiveRecord::Base
     update_attribute :clocked_in, nil
     Journal.create({:delivery => nil, :user => self, :note => "Clocked Out"})
   end
+
 end
