@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by_username(params[:id])
+    @user.soft_validate
     unless @user && @user.available_for_edit_by(current_user)
       flash[:error] = "Not allowed to edit #{params[:id]}"
       redirect_to root_path

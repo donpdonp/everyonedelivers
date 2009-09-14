@@ -30,6 +30,7 @@ class Openidentity < ActiveRecord::Base
     case uri
     when URI::HTTP, URI::HTTPS
       username = uri.host + uri.path + (uri.query ? uri.query : "")
+      username = google_crazy_openid_username(username)
     when URI::Generic
       if uri.path.blank?
         username = uri.opaque
@@ -38,5 +39,14 @@ class Openidentity < ActiveRecord::Base
       end
     end
     username.gsub('.', '').gsub('/','')
+  end
+
+  def self.google_crazy_openid_username(username)
+    gmatch = username.match(/^www.google.com\/accounts\/o8\/idid=(.*)/)
+    if gmatch
+      id = gmatch[1][0,6] # sorry google. i hope this is unique enough
+      username = "google-"+id
+    end
+    username
   end
 end

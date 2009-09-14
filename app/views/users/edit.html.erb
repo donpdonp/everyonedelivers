@@ -1,6 +1,5 @@
 <div id="edituser">
 <h3>Edit User</h3>
-
 <% form_for :user, @user, :url => user_path(@user.username), :html => { :method => :put } do |f| %>
   <fieldset>
    <legend>Identity</legend>
@@ -12,6 +11,7 @@
   <fieldset>
    <legend>Internationalization</legend>
      <%= f.label :time_zone, "time zone:" %>
+     <%= @user.errors.on(:time_zone) %>
      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
   <br/>
      units: <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>

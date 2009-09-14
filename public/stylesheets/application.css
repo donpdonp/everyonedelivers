@@ -110,8 +110,9 @@ body {
 }
 
 .header a:hover {
-  color: green;
+  color: white;
   font-family: sans-serif;
+  text-decoration: underline;
 }
 
 .header ul {
@@ -141,7 +142,8 @@ body {
 }
 
 .menubar a:hover {
-  color: green;
+  color: white;
+  text-decoration: underline;
 }
 
 .menubar ul {
@@ -281,4 +283,8 @@ body {
 
 #edituser label {
   width: 5em;
+}
+
+.fieldWithErrors {
+  color: yellow;
 }

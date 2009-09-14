@@ -51,4 +51,10 @@ class User < ActiveRecord::Base
     Journal.create({:delivery => nil, :user => self, :note => "Clocked Out"})
   end
 
+  def soft_validate
+    # suggest to the user that field be filled in.
+    if time_zone.nil?
+      errors.add(:time_zone, "Please set a timezone")
+    end
+  end
 end
