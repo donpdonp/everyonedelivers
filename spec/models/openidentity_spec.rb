@@ -11,4 +11,10 @@ describe Openidentity do
   it "should create a new instance given valid attributes" do
     Openidentity.create!(@valid_attributes)
   end
+
+  it "should make a sane-looking username from an openid url" do
+    google_openid = "https://www.google.com/accounts/o8/id?id=AItOawmpw0riwUzLvLg9u7MnDLlRqn8BR60TyPU"
+    google_username = "google-AItOaw"
+    Openidentity.generate_username(google_openid).should == google_username
+  end
 end
