@@ -278,3 +278,7 @@ body {
 #edituser form {
   width: 50%;
 }
+
+#edituser label {
+  width: 5em;
+}
