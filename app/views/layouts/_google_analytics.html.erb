@@ -8,6 +8,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 try {
   var pageTracker = _gat._getTracker("<%=SETTINGS["google"]["adsense"]["id"]%>");
   pageTracker._trackPageview();
+  //pageTracker._setVar('exclude_me');
 } catch(err) {}
 </script>
 </div>
