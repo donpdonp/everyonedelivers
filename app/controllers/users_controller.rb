@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       end
       redirect_to :action => :show, :id => @user.username
     else
-      flash[:notice] = "Permission denied"
+      flash[:error] = "Permission denied"
       redirect_to root_path;
     end    
   end
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:id])
     if current_user == @user
       @user.clock_in!
+      flash[:notice] = "#{@user.username} is clocked in for one hour."
     else
       flash[:error] = "Not authorized to clock in #{@user.username}"
     end
@@ -59,6 +60,7 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:id])
     if current_user == @user
       @user.clock_out!
+      flash[:notice] = "#{@user.username} has been clocked out."
     else
       flash[:error] = "Not authorized to clock out #{@user.username}"
     end
