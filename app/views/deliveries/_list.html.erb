@@ -6,7 +6,7 @@
     <tr>
      <td colspan="3">
        <div class="deliverypackagename">
-        <%= link_to truncate(d.package.description,45), delivery_path(d) %> <br/>
+        <%= link_to truncate(d.package.description, :length => 45), delivery_path(d) %> <br/>
        </div>
      <td>
     </tr>
