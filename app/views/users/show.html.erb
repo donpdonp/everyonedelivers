@@ -1,5 +1,5 @@
 <% content_for :title do %>
-user <%= @user.username %>
+User <%= @user.username %>
 <% end %>
 <h3> 
   User Profile for <%= @user.username %> 
@@ -7,17 +7,17 @@ user <%= @user.username %>
    <%= link_to "edit", {:controller => :users, :action => :edit, :id => @user.username} %>
   <% end %>
 </h3>
-openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
-username: <%= @user.username %> <br/>
-email: 
+Username: <%= @user.username %> <br/>
+Openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
+Email: 
   <% if current_user == @user %> 
    <%= @user.email %> 
   <% else %>
    Hidden
   <% end %>
   <br/>
-time zone: <%= @user.time_zone %> <br/>
-units: <%= @user.display_measurement %> <br/>
+Time zone: <%= @user.time_zone %> <br/>
+Units: <%= @user.display_measurement %> <br/>
 
 <p>
 Recorded <%= @user.sightings.size %> sightings at <%= @user.locations.size %> locations. <br/>
