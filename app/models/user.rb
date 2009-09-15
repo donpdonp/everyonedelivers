@@ -53,8 +53,11 @@ class User < ActiveRecord::Base
 
   def soft_validate
     # suggest to the user that field be filled in.
-    if time_zone.nil?
+    if time_zone.blank?
       errors.add(:time_zone, "Please set a timezone")
+    end
+    if email.blank?
+      errors.add(:email, "Please provide an email address")
     end
   end
 end
