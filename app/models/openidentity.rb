@@ -44,7 +44,7 @@ class Openidentity < ActiveRecord::Base
   def self.google_crazy_openid_username(username)
     gmatch = username.match(/^www.google.com\/accounts\/o8\/idid=(.*)/)
     if gmatch
-      id = gmatch[1][0,6] # sorry google. i hope this is unique enough
+      id = gmatch[1][0,2] + gmatch[1][-6,6] # sorry google. i hope this is unique enough
       username = "google-"+id
     end
     username
