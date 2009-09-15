@@ -71,6 +71,7 @@ class DeliveriesController < ApplicationController
     delivery.deliverer(current_user)
     delivery.save!
     Mailer.deliver_delivery_accepted(delivery)
+    Journal.create({:delivery => delivery, :user => delivery.listing_user, :note => "emailed delivery accepted letter"})
     flash[:notice] = "Delivery accepted!"
     redirect_to delivery_path(delivery)
   end
