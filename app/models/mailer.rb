@@ -5,6 +5,7 @@ class Mailer < ActionMailer::Base
      subject    "Signup Successful"
      body       :user => recipient
    end
+
    def delivery_accepted(delivery)
      recipients delivery.listing_user.email
      from       "Everyone Delivers <system@#{SETTINGS["email"]["domain"]}>"
