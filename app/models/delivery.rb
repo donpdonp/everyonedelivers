@@ -40,7 +40,7 @@ class Delivery < ActiveRecord::Base
 
   def deliverer(user)
     self.delivering_user = user
-    Journal.create({:delivery => self, :user => user, :note => "Delivery Accepted"})
+    Journal.create({:delivery => self, :user => user, :note => "Accepted delivery."})
   end
 
   def self.find_at_most_hours_old(hours, time=Time.zone.now)
