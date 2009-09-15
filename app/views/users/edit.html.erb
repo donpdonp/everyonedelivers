@@ -6,6 +6,7 @@
      <%= f.label :username, "username:" %>
      <%= f.text_field :username, :size => 40 %> <br/>
      <%= f.label :email, "email:" %>
+     <%= @user.errors.on(:email) %>
      <%= f.text_field :email, :size => 40 %>
   </fieldset>
   <fieldset>
