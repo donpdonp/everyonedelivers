@@ -37,7 +37,6 @@ describe DeliveriesController do
     delivery.should_receive(:end_location=)
     delivery.should_receive(:save!)
     delivery.should_receive(:apply_form_attributes)
-    delivery.should_receive(:listing_user).and_return(bob)
     Delivery.should_receive(:find).and_return(delivery)
     put :update, {:id => delivery.id}
   end
@@ -54,10 +53,12 @@ describe DeliveriesController do
   end
 
   it "should accept a delivery" do
+    bob = mock_model(User)
     lister = mock_model(User)
     delivery = mock_model(Delivery)
     delivery.should_receive(:deliverer).with(@user)
     delivery.should_receive(:save!)
+    delivery.should_receive(:listing_user).and_return(bob)
     Mailer.should_receive(:deliver_delivery_accepted).with(delivery)
     Delivery.should_receive(:find).with(delivery.id).and_return(delivery)
     put :accept, {:id => delivery.id}

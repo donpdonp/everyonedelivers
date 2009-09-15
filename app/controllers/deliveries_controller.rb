@@ -26,7 +26,6 @@ class DeliveriesController < ApplicationController
   end
 
   def update
-
     # update form is also a creation form for the dependent models
     delivery = Delivery.find(params[:id])
     unless delivery && delivery.available_for_edit_by(current_user)
