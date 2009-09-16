@@ -60,4 +60,14 @@ class User < ActiveRecord::Base
       errors.add(:email, "Please provide an email address")
     end
   end
+
+  def listed_deliveries
+    deliveries = Delivery.all(:conditions => {:listing_user_id => self.id}, :order => "created_at desc, delivering_user_id asc")
+    deliveries.select{|d| d.ok_to_display? }
+  end
+
+  def accepted_deliveries
+    deliveries = Delivery.all(:conditions => {:delivering_user_id => self.id}, :order => "created_at desc, delivering_user_id asc")
+    deliveries.select{|d| d.ok_to_display? }
+  end
 end

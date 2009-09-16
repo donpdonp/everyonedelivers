@@ -1,0 +1,7 @@
+<h3>Account</h3>
+<p>
+Accepted deliveries: <%= user.accepted_deliveries.size %>
+</p>
+<p>
+$0.50 per delivery x  <%= user.accepted_deliveries.size %> deliveries = $<%= 0.50 * user.accepted_deliveries.size %>
+</p>

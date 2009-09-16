@@ -1,38 +1,16 @@
+<% tab = params[:tab] || 'profile' %>
 <% content_for :title do %>
 User <%= @user.username %>
 <% end %>
+<div id="usershow">
 <h3> 
   User Profile for <%= @user.username %> 
   <% if @user.available_for_edit_by(current_user) %>
-   <%= link_to "edit", {:controller => :users, :action => :edit, :id => @user.username} %>
+   <%= link_to "edit", {:controller => :users, :action => :edit, :id => @user.username, :tab => tab} %>
   <% end %>
 </h3>
-Username: <%= @user.username %> <br/>
-Openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
-Email: 
-  <% if current_user == @user %> 
-   <%= @user.email %> 
-  <% else %>
-   Hidden
-  <% end %>
-  <br/>
-Time zone: <%= @user.time_zone %> <br/>
-Units: <%= @user.display_measurement %> <br/>
 
-<p>
-Recorded <%= @user.sightings.size %> sightings at <%= @user.locations.size %> locations. <br/>
-Listed <%= @listed_deliveries.size %> deliveries and accepted <%=  @listed_deliveries.count{|d| d.delivering_user }%> deliveries.
-</p>
+<%= render :partial => 'menu', :locals => {:user => @user} %>
 
-<p>
-  <%= render :partial => 'deliveries/list', :locals => {:timedesc => "", :deliveries => @listed_deliveries} %>
-</p>
-
-<p>
-Accepted deliveries
-</p>
-
-<p>
-  <%= render :partial => 'deliveries/list', :locals => {:timedesc => "", :deliveries => @accepted_deliveries} %>
-</p>
-
+<%= render :partial => tab, :locals => {:user => @user} %>
+</div>

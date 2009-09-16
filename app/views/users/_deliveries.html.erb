@@ -1,0 +1,12 @@
+<h3> Listed deliveries </h3>
+
+<p>
+  <%= render :partial => 'deliveries/list', :locals => {:timedesc => "", :deliveries => user.listed_deliveries} %>
+</p>
+
+<h3> Accepted deliveries </h3>
+
+<p>
+  <%= render :partial => 'deliveries/list', :locals => {:timedesc => "", :deliveries => user.accepted_deliveries} %>
+</p>
+

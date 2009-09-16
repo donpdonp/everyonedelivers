@@ -1,0 +1,16 @@
+<div id="usermenu">
+<ul>
+  <li>
+    <%= link_to 'Profile', :controller => :users, :action => :show, :id => user.username, :tab => 'profile' %>
+  </li>
+  <li>
+    <%= link_to 'Deliveries', :controller => :users, :action => :show, :id => user.username, :tab => 'deliveries' %>
+  </li>
+  <li>
+    <%= link_to 'Location', :controller => :users, :action => :show, :id => user.username, :tab => 'location' %>
+  </li>
+  <li>
+    <%= link_to 'Account', :controller => :users, :action => :show, :id => user.username, :tab => 'account' %>
+  </li>
+</ul>
+</div>

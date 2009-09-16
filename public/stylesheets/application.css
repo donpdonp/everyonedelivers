@@ -288,3 +288,18 @@ body {
 .fieldWithErrors {
   color: yellow;
 }
+
+#usershow {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#usermenu ul {
+  background: #5B8207;
+}
+
+#usermenu li {
+  display: inline;
+  margin-left: 5em;
+}
