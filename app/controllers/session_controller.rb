@@ -61,8 +61,10 @@ class SessionController < ApplicationController
         params[:next_url] = url_for(:controller => :users, :action => :edit, :id => user.username,
                                     :next_url => params[:next_url])
         flash[:notice] = "Welcome new user."
-        Mailer.deliver_signup_notification(user)
-        Journal.create({:delivery => nil, :user => user, :note => "emailed signup welcome letter"})
+        unless user.email.blank?
+          Mailer.deliver_signup_notification(user)
+          Journal.create({:delivery => nil, :user => user, :note => "emailed signup welcome letter"})
+        end
       end
       self.current_user = user
     when OpenID::Consumer::SETUP_NEEDED

@@ -10,7 +10,7 @@ class Openidentity < ActiveRecord::Base
   end 
 
   def self.create_openid_and_user_with_url(url, hints)
-      new_user = User.create!(:username => generate_username(url))
+      new_user = User.create_with_defaults!(:username => generate_username(url))
       new_user.update_attribute :email, hints[:email] unless hints[:email].blank?
       new_user.update_attribute :username, hints[:username] unless hints[:username].blank?
       Openidentity.create!(:user => new_user, :url => cannonical(url))

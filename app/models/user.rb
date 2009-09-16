@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
 
   named_scope :clocked_ins, :conditions => "clocked_in is not null"
 
+  def self.create_with_defaults!(attributes)
+    user = self.create!(attributes)
+    user.update_attribute :display_measurement, "imperial"
+    user
+  end
+
   def apply_form_attributes(params)
     return if params.nil?
 

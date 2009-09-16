@@ -20,7 +20,7 @@ describe SessionController do
     response.should redirect_to(provider_url)
   end
 
-  it "should complete the authentication of an openid url" do
+  it "should complete the authentication of a known openid url" do
     openid = "http://phoneyid"
     openid_response = mock("openid response")
     openid_response.should_receive(:status).and_return(OpenID::Consumer::SUCCESS)
@@ -32,6 +32,30 @@ describe SessionController do
     new_user = mock_model(User)
     new_openid.should_receive(:user).and_return(new_user)
     Openidentity.should_receive(:lookup).and_return(new_openid)
+    controller.should_receive(:current_user=).with(new_user)
+    ax_resp = mock("AX registration data")
+    ax_resp.should_receive(:get_single).with("http://axschema.org/contact/email")
+    ax_resp.should_receive(:get_single).with("http://axschema.org/namePerson/friendly")
+    OpenID::AX::FetchResponse.should_receive(:from_success_response).and_return(ax_resp)
+
+    post :complete
+  end
+
+  it "should complete the authentication of an unknown openid url" do
+    openid = "http://phoneyid"
+    openid_response = mock("openid response")
+    openid_response.should_receive(:status).and_return(OpenID::Consumer::SUCCESS)
+    openid_response.stub!(:display_identifier).and_return(openid)
+    consumer = mock("openid consumer")
+    consumer.should_receive(:complete).and_return(openid_response)
+    controller.should_receive(:consumer).and_return(consumer)
+    new_openid = mock_model(Openidentity)
+    new_user = mock_model(User)
+    new_user.should_receive(:username).and_return('bob')
+    new_user.should_receive(:email)
+    new_openid.should_receive(:user).and_return(new_user)
+    Openidentity.should_receive(:lookup)
+    Openidentity.should_receive(:create_openid_and_user_with_url).and_return(new_openid)
     controller.should_receive(:current_user=).with(new_user)
     ax_resp = mock("AX registration data")
     ax_resp.should_receive(:get_single).with("http://axschema.org/contact/email")

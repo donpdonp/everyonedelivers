@@ -28,4 +28,9 @@ describe User do
     user.available_for_edit_by(nil).should be_false
     user.available_for_edit_by(user).should be_true
   end
+
+  it "should count the completed deliveries for a month" do
+    user = User.create!(@valid_attributes)
+    user.accepted_deliveries(2009,10)
+  end
 end
