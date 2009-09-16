@@ -19,7 +19,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def overdue?(time = Time.now)
-    fee.delivery_due < time
+    fee.delivery_due < time if fee.delivery_due
   end
 
   def available_for_delivery_by(user)
