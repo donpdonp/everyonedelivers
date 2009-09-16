@@ -15,8 +15,8 @@
      <%= @user.errors.on(:time_zone) %>
      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
   <br/>
-     <%= f.label :units, "units:" %>
-     <%= @user.errors.on(:units) %>
+     <%= f.label :display_measurement, "units:" %>
+     <%= @user.errors.on(:display_measurement) %>
      <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
   </fieldset>
   <br/>

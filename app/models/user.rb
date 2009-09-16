@@ -59,6 +59,9 @@ class User < ActiveRecord::Base
     if email.blank?
       errors.add(:email, "Please provide an email address")
     end
+    if display_measurement.blank?
+      errors.add(:display_measurement, "Please choose your units of measurement")
+    end
   end
 
   def listed_deliveries
@@ -66,8 +69,13 @@ class User < ActiveRecord::Base
     deliveries.select{|d| d.ok_to_display? }
   end
 
-  def accepted_deliveries
-    deliveries = Delivery.all(:conditions => {:delivering_user_id => self.id}, :order => "created_at desc, delivering_user_id asc")
+  def accepted_deliveries(year=nil, month=nil)
+    if year && month
+      conditions = ["delivering_user_id = ? and accepted_at >= and accepted_at <", self.id]
+    else
+      conditions = {:delivering_user_id => self.id}
+    end
+    deliveries = Delivery.all(:conditions => conditions, :order => "created_at desc, delivering_user_id asc")
     deliveries.select{|d| d.ok_to_display? }
   end
 end
