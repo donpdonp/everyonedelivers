@@ -283,6 +283,7 @@ body {
 
 #edituser label {
   width: 5em;
+  font-size: 150%;
 }
 
 .fieldWithErrors {
