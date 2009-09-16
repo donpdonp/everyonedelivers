@@ -40,6 +40,7 @@ class Delivery < ActiveRecord::Base
 
   def deliverer(user)
     self.delivering_user = user
+    self.accepted_at = Time.now
     Journal.create({:delivery => self, :user => user, :note => "Accepted delivery."})
   end
 
