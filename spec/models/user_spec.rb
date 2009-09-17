@@ -29,8 +29,8 @@ describe User do
     user.available_for_edit_by(user).should be_true
   end
 
-  it "should count the completed deliveries for a month" do
+  it "should find the completed deliveries for a given month" do
     user = User.create!(@valid_attributes)
-    user.accepted_deliveries(2009,10)
+    deliveries = user.accepted_deliveries(2009,10)
   end
 end
