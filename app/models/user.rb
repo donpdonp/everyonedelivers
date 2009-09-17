@@ -77,7 +77,8 @@ class User < ActiveRecord::Base
 
   def accepted_deliveries(year=nil, month=nil)
     if year && month
-      conditions = ["delivering_user_id = ? and accepted_at >= and accepted_at <", self.id]
+      mark = Time.parse("#{year}-#{month}-01")
+      conditions = ["delivering_user_id = ? and accepted_at >= ? and accepted_at < ?", self.id, mark, mark.next_month ]
     else
       conditions = {:delivering_user_id => self.id}
     end
