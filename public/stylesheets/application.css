@@ -266,6 +266,10 @@ body {
   text-align: center;
 }
 
+#openidprovidertable {
+  font-size: 130%;
+}
+
 #openidprovidertable img {
   border: 0;
   background: white;
