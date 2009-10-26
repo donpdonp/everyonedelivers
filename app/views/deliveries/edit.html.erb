@@ -141,7 +141,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
     Amount $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
     if delivery is completed by
-    <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.now) %>
+    <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.zone.now) %>
 <!--    if delivered within
     <%= select_tag "fee[time_count]", options_for_select({"1" => "1","2" => "2",
                                                           "3" => "3","4" => "4"}) %>
