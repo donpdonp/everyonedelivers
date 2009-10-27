@@ -20,14 +20,20 @@
  <br clear="all"/>
 
   <p id="openidprovidertable">
-  Login to begin!
-  <br/>
+    Login to begin!
+  
+    <div class="openidproviderbox">
+      Login with Google<br/>
       <%= link_to image_tag("google_button_150_47.png"), :controller => :session,
-                                                             :action => :login,
-                                                             :openid_identifier => "https://www.google.com/accounts/o8/id" %>
+                                                         :action => :login,
+                                                         :openid_identifier => "https://www.google.com/accounts/o8/id" %>
+    </div>
+    <div class="openidproviderbox" id="openidyahoo">
+      Login with Yahoo<br/>
       <%= link_to image_tag("yahoo_button_150_47.png"), :controller => :session,
-                                                          :action => :login,
-                                                          :openid_identifier => "http://www.yahoo.com" %>
+                                                        :action => :login,
+                                                        :openid_identifier => "http://www.yahoo.com" %>
+    </div>
   </p>
 
 </div>

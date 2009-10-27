@@ -270,7 +270,10 @@ body {
   font-size: 130%;
 }
 
-#openidprovidertable img {
+.openidproviderbox {
+}
+
+.openidproviderbox img {
   border: 0;
   background: white;
   -moz-border-radius: 5px;
