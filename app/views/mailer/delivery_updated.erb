@@ -1,0 +1,14 @@
+Delivery #<%= @delivery.id %> for item
+"<%= @delivery.package.description %>"
+has been created.
+
+Bounty: $<%= @delivery.fee.display_price %> <br/>
+Retail price: $<%= @delivery.package.display_price %>
+Completion Due By: <%= @delivery.fee.delivery_due %>
+
+From Address: <%= @delivery.start_location.street %>
+To Address: <%= @delivery.end_location.street %>
+
+Get more details for this delivery at:
+<%= delivery_url(@delivery) %>
+
