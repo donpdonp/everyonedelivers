@@ -37,6 +37,7 @@ describe DeliveriesController do
     delivery.should_receive(:end_location=)
     delivery.should_receive(:save!)
     delivery.should_receive(:apply_form_attributes)
+    delivery.should_receive(:ok_to_display?)
     Delivery.should_receive(:find).and_return(delivery)
     put :update, {:id => delivery.id}
   end

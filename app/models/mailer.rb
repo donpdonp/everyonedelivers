@@ -12,4 +12,11 @@ class Mailer < ActionMailer::Base
      subject    "Delivery ##{delivery.id} has been accepted by #{delivery.delivering_user.username}"
      body       :delivery => delivery
    end
+
+   def delivery_updated(delivery, user)
+     recipients user.email
+     from       "Everyone Delivers <system@#{SETTINGS["email"]["domain"]}>"
+     subject    "New Delivery Listing ##{delivery.id} #{delivery.package.description}"
+     body       :delivery => delivery
+   end
 end

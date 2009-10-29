@@ -19,6 +19,11 @@
      <%= @user.errors.on(:display_measurement) %>
      <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
   </fieldset>
+  <fieldset>
+   <legend>Notification</legend>
+     <%= f.label :email_on_new_listing, "Send an email for each new delivery listing:" %>
+     <%= f.check_box :email_on_new_listing %>
+  </fieldset>
   <br/>
   <%= f.submit %>
 <% end %>

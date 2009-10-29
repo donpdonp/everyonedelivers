@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   def self.create_with_defaults!(attributes)
     user = self.create!(attributes)
     user.update_attribute :display_measurement, "imperial"
+    user.update_attribute :email_on_new_listing, false
     user
   end
 
@@ -32,6 +33,10 @@ class User < ActiveRecord::Base
 
     if params[:display_measurement]
       self.display_measurement = params[:display_measurement]
+    end
+
+    if params[:email_on_new_listing]
+      self.email_on_new_listing = params[:email_on_new_listing]
     end
   end
 

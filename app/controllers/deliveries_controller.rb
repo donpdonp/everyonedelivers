@@ -65,6 +65,11 @@ class DeliveriesController < ApplicationController
     delivery.end_location = location
 
     delivery.save!
+
+    if delivery.ok_to_display?
+      Journal.create({:delivery => delivery, :user => delivery.listing_user, :note => "emailed delivery update letter"})
+      delivery.email_notify_users
+    end
     redirect_to delivery_path(delivery)
   end
 

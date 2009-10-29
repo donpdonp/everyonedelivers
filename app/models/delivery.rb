@@ -48,6 +48,12 @@ class Delivery < ActiveRecord::Base
     Journal.create({:delivery => self, :user => user, :note => "Accepted delivery."})
   end
 
+  def email_notify_users
+    User.all(:conditions => {:email_on_new_listing => true}).each do |user|
+      Mailer.deliver_delivery_updated(self, user)
+    end
+  end
+
   def self.find_at_most_hours_old(hours, time=Time.zone.now)
     start = hours.hours.ago(time)
     stop = time
