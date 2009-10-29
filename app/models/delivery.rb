@@ -54,6 +54,22 @@ class Delivery < ActiveRecord::Base
     end
   end
 
+  def display_retail_plus_package_fee
+    "%0.2f" % ((self.package.price_in_cents + self.fee.price_in_cents) / 100.0)
+  end
+
+  def listing_fee_in_cents
+    if self.fee.price_in_cents >= 300
+      0.50
+    else
+      0.0
+    end
+  end
+
+  def display_listing_fee
+    "%0.2f" % (listing_fee_in_cents/100.0)
+  end
+
   def self.find_at_most_hours_old(hours, time=Time.zone.now)
     start = hours.hours.ago(time)
     stop = time

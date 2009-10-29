@@ -79,6 +79,10 @@ class DeliveriesController < ApplicationController
     redirect_to :controller => :users, :action => :show, :id => delivery.listing_user.username
   end
 
+  def confirm
+    @delivery = Delivery.find(params[:id])
+  end
+
   def accept
     delivery = Delivery.find(params[:id].to_i)
     delivery.deliverer(current_user)

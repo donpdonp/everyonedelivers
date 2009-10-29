@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :deliveries, :member => {:accept => :put}
+  map.resources :deliveries, :member => {:accept => :put, :confirm => :put}
   map.resources :users, :member => {:update_location => :put}
   map.resources :locations
   map.resources :packages
