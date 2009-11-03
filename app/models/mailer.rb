@@ -9,6 +9,7 @@ class Mailer < ActionMailer::Base
    def delivery_accepted(delivery)
      recipients delivery.listing_user.email
      from       "Everyone Delivers <system@#{SETTINGS["email"]["domain"]}>"
+     cc         delivery.delivering_user.email
      subject    "Delivery ##{delivery.id} has been accepted by #{delivery.delivering_user.username}"
      body       :delivery => delivery
    end
