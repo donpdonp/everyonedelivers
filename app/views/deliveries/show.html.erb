@@ -55,7 +55,7 @@ Status:
 <% else %>
   <% if logged_in? %>
     <% if @delivery.available_for_delivery_by(current_user) %>
-       <% form_for :d, d, :url => confirm_delivery_path(d),  :html => {:method => :put} do |f| %>
+       <% form_for :delivery, @delivery, :url => confirm_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
         <%= f.submit 'I can make this delivery' %>
        <% end %>
     <% else %>
