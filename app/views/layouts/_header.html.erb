@@ -18,7 +18,7 @@
                              :action => current_user.username %> -
       <%= link_to 'logout', :controller => :session, :action => :logout %>
     <% else %>
-      <%= image_tag 'openid_small_logo.png' %> 
+      <%= link_to image_tag('openid_small_logo.png', :title => "What is OpenID?"), "http://openid.net/" %> 
       <%= link_to 'Login with OpenID', "#" , {:id => 'openidlink', 
                                               :onclick => "show_openid_field()"} %>
     <% end %>

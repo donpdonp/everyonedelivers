@@ -104,6 +104,10 @@ body {
   padding: 8px;
 }
 
+.header img {
+  border: 0;
+}
+
 .header a {
   color: #9CC445;
   font-family: sans-serif;
