@@ -47,6 +47,10 @@ body {
   color: orange;
 }
 
+.container a:hover {
+  color: #FF7A38;
+}
+
 .dark {
   background: #656161   ;
 }
