@@ -1,0 +1,76 @@
+  <% if delivery.ok_to_display? %>
+  <li class="devileryitem <%= delivery.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
+   <table>
+    <tr>
+     <td colspan="3">
+       <div class="deliverypackagename">
+        <%= link_to truncate(delivery.package.description, :length => 45), delivery_path(delivery) %> <br/>
+       </div>
+     <td>
+    </tr>
+    <tr>
+     <td valign="top">
+      <div class="deliverypackageinfo">
+       <span class="deliveryfee">Bounty $<%= delivery.fee.display_price %></span> <br/>
+       Retail $<%=delivery.package.display_price%> <br/>
+       <% if delivery.fee.delivery_due %>
+         <% if delivery.fee.delivery_due >= Time.now %>
+           Due in <%= distance_of_time_in_words_to_now(delivery.fee.delivery_due) %> <br/>
+         <% else %>
+           Overdue by <%= distance_of_time_in_words_to_now(delivery.fee.delivery_due) %> <br/>
+         <% end %>
+       <% else %>
+         Due date missing.
+       <% end %>
+       <span class="deliverylistinguser">
+       listed by <%= link_to delivery.listing_user.username, 
+              :controller => :users, :action => :show, :id => delivery.listing_user.username %> 
+       </span>
+       <br/>
+       <span class="deliverydeliveringuser">
+        <% if delivery.delivering_user %>
+            delivered by: <%= link_to delivery.delivering_user.username, 
+              :controller => :users, :action => :show, :id => delivery.delivering_user.username %>
+        <% end %>
+       </span>
+      </div>
+     </td>
+     <td>
+      <div class="googlestaticmap" >
+        <div>
+          <% delivery.start_location.street_parts.each do |part| %>
+            <%= part %> <br/>
+          <% end %>
+        </div>
+        <div style="text-align: center; width: 100px">
+          <%= image_tag delivery.start_location.gmap_static_html(100,100,14) %>
+          <br/>
+          <span >From</div>
+        </div>
+      </div>
+     </td>
+     <td>
+      <div class="googlestaticmap" >
+        <div>
+          <% delivery.end_location.street.split(',',delivery.start_location.street.count(',')).each do |part| %>
+            <%= part %> <br/>
+          <% end %>
+        </div>
+        <div style="text-align: center; width: 100px">
+          <%= image_tag delivery.end_location.gmap_static_html(100,100,14) %>
+          <br/>
+          <span >To</div>
+        </div>
+      </div>
+     </td>
+    </tr>
+   </table>
+   <div>
+    <% if delivery.available_for_delivery_by(current_user) %>
+       <% form_for :delivery, delivery, :url => confirm_delivery_path(delivery),  :html => {:method => :put} do |f| %>
+        <%= f.submit 'I can make this delivery' %>
+       <% end %>
+    <% end %>
+   </div>
+  </li>
+  <% end %>
