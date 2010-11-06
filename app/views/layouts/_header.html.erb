@@ -6,10 +6,7 @@
 </script>
 
 <div class="header">
-  <ul>
-    <li><%= link_to 'EveryoneDelivers.com', :root %></li>
-  </ul>
-  <span style="text-align: right">
+  <span id="sub">
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <span id="geomsgaddress"></span>
     <span id="geomsgacctime"></span>
@@ -24,6 +21,7 @@
     <% end %>
   <% end %>
   </span>
+    <%= link_to image_tag('logo.png'), :root %>
 </div> 
 
 <script>
