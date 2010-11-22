@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :member => {:update_location => :put}
   map.resources :locations
   map.resources :packages
-  map.resources :journal
+  map.resources :journal, :collection => {:count => :get}
   map.root :controller => "dashboard"
 
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
