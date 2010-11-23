@@ -323,3 +323,10 @@ div.header #sub {
   display: inline;
   margin-left: 5em;
 }
+
+#sampledelivery {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  list-style: none;
+}
