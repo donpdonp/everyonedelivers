@@ -9,7 +9,7 @@
      <td>
     </tr>
     <tr>
-     <td valign="top">
+     <td valign="top" style="width: 18em">
       <div class="deliverypackageinfo">
        <span class="deliveryfee">Bounty $<%= delivery.fee.display_price %></span> <br/>
        Retail $<%=delivery.package.display_price%> <br/>
@@ -37,7 +37,7 @@
      </td>
      <td>
       <div class="googlestaticmap" >
-        <div>
+        <div class="address">
           <% delivery.start_location.street_parts.each do |part| %>
             <%= part %> <br/>
           <% end %>
@@ -51,7 +51,7 @@
      </td>
      <td>
       <div class="googlestaticmap" >
-        <div>
+        <div class="address">
           <% delivery.end_location.street.split(',',delivery.start_location.street.count(',')).each do |part| %>
             <%= part %> <br/>
           <% end %>

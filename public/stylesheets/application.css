@@ -257,6 +257,10 @@ div.header #sub {
 .googlestaticmap img {
 }
 
+.googlestaticmap .address {
+  width: 10em;
+}
+
 #footer {
   margin-top: 10px;
   text-align: center;
