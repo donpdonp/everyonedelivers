@@ -14,7 +14,7 @@
     <%= render :partial => "layouts/google_maps" %>
     <%# render :partial => "layouts/geode" %>
     <%= render :partial => "layouts/header" %>
-    <% unless params[:controller] == "dashboard" && params[:action] == "index" %>
+    <% unless params[:controller] == "dashboard" %>
       <%= render :partial => "layouts/menubar" %>
     <% end %>
     <%= render :partial => "layouts/flashmsg" %>
