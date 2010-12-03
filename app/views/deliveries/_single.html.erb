@@ -1,5 +1,5 @@
   <% if delivery.ok_to_display? %>
-  <li class="deliveryitem <%= delivery.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
+  <div class="deliveryitem <%= delivery.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
     <div class="deliverypackagename">
       <%= link_to truncate(delivery.package.description, :length => 45), delivery_path(delivery) %>
     </div>
@@ -56,5 +56,5 @@
        <% end %>
     </div>
     <% end %>
-  </li>
+  </div>
   <% end %>
