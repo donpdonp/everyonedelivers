@@ -255,11 +255,44 @@ div.header #sub {
   margin-bottom: 1em;
 }
 
+.googlestaticmap {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .googlestaticmap img {
 }
 
-.googlestaticmap .address {
-  width: 10em;
+.googlestaticmap .direction {
+  font-weight: bold;
+  font-size: 100%;
+  margin-bottom: 5%;
+}
+
+.mapaddr {
+  margin-left: 10%; 
+  margin-right: 10%
+}
+
+.mapaddr .address {
+}
+
+.mapaddr .map {
+  float: left;
+  text-align: center; 
+  width: 100px;
+}
+
+.deliveryitem {
+  text-align: center;
+}
+
+.deliverypackagefromto {
+} 
+
+.deliverypackagefromto .halffromto {
+  width: 50%; 
+  float: left;
 }
 
 #footer {
