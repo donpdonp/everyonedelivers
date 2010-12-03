@@ -194,6 +194,7 @@ div.header #sub {
 
 #content {
   margin-top: 10px;
+  overflow: auto;
 }
 
 .listbox {
