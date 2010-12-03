@@ -36,11 +36,11 @@ Deliver someone's item and earn the bounty!
   <% end %>
 </div>
 
-<p style="margin-bottom: 0px">
+<div class="listbox">
   <% @delivery_groups.each do |group| %>
     <%= render :partial => 'deliveries/list', :locals => {:timedesc => group.first, :deliveries => group.last} %>
   <% end %>
-</p>
+</div>
 
 <% if logged_in? %>
 <% else %>

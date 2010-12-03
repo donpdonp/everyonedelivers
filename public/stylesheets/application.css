@@ -21,6 +21,10 @@ body {
   color: orange;
 }
 
+#splashrow {
+  overflow: auto;
+}
+
 #splashleft {
   float: left;
   width: 25%;
@@ -148,6 +152,7 @@ div.header #sub {
   padding: 8px;
   background: #9CC445;
   color: #D8E3C1;
+  overflow: auto;
 }
 
 .menubar a {
@@ -189,6 +194,10 @@ div.header #sub {
 
 #content {
   margin-top: 10px;
+}
+
+.listbox {
+  overflow: auto;
 }
 
 .deliverylist {

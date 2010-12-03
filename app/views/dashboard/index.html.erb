@@ -3,6 +3,7 @@
   <b>EveryoneDelivers</b> is a marketplace for delivery services. 
  </p>
 
+ <div id="splashrow">
  <div id="splashleft">
   <h3><%= link_to "Request a delivery.", :action => :request  %></h3>
   <p>
@@ -19,7 +20,7 @@
     the delivery bounty.
   </p>
  </div>
- <br clear="all"/>
+ </div>
 
  <div id="sampledelivery">
    <%= render :partial => "deliveries/single", :locals => {:delivery => @featured_delivery} %>
