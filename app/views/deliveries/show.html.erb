@@ -70,7 +70,7 @@ Status:
 <h4>Package</h4>
  <% if @delivery.package %>
  <p>
-   description: <%= @delivery.package.description %>
+   description: <%=h @delivery.package.description %>
    <br/>
    retail price: $<%= @delivery.package.display_price %>
    <br/>
