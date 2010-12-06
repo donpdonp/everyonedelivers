@@ -7,7 +7,7 @@
           <div class="direction"><%= direction %></div>
           <div class="street">
             <% location.street_parts.each do |part| %>
-              <%= part %> <br/>
+              <%=h part %> <br/>
             <% end %>
           </div>
         </div>

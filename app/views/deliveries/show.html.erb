@@ -109,7 +109,7 @@ Status:
 <h4>From</h4>
 <p>
  <% if @delivery.start_location %>
-  Address: <%= @delivery.start_location.street %>
+  Address: <%=h @delivery.start_location.street %>
  <% else %>
   no start location has been specified
  <% end %>
@@ -118,7 +118,7 @@ Status:
 <h4>To</h4>
 <p>
  <% if @delivery.end_location %>
-  Address: <%= @delivery.end_location.street %>
+  Address: <%=h @delivery.end_location.street %>
  <% else %>
   no end location has been specified
  <% end %>
