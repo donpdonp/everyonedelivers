@@ -1,4 +1,4 @@
-Username: <%= @user.username %> <br/>
+Username: <%=h @user.username %> <br/>
 Openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
 Email: 
   <% if current_user == @user %> 

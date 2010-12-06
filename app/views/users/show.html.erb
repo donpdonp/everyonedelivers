@@ -1,6 +1,6 @@
 <% tab = params[:tab] || 'profile' %>
 <% content_for :title do %>
-User <%= @user.username %>
+User <%=h @user.username %>
 <% end %>
 <div id="usershow">
 <h3> 
