@@ -11,7 +11,7 @@
     <span id="geomsgaddress"></span>
     <span id="geomsgacctime"></span>
     <% if logged_in? %>
-      <%= link_to current_user.username, :controller => :users,
+      <%= link_to h(current_user.username), :controller => :users,
                              :action => current_user.username %> -
       <%= link_to 'logout', :controller => :session, :action => :logout %>
     <% else %>
