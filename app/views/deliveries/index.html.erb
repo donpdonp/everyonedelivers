@@ -12,7 +12,7 @@ Deliver someone's item and earn the bounty!
       <% @clocked_ins.each do |user| %>
         <li>
          <span>
-           <%= link_to user.username, {:controller => :users, :action => :show, :id => user.username} %>
+           <%= link_to h(user.username), {:controller => :users, :action => :show, :id => user.username} %>
          </span>
          <span class="clockedintime">
          </span>
