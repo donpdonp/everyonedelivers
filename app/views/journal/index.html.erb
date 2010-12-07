@@ -15,7 +15,7 @@ Journal
 <tr>
  <td><%=e.created_at.in_time_zone("Pacific Time (US & Canada)").strftime('%h-%d %H:%m')%></td>
  <td><%=e.delivery ? link_to(e.delivery_id, delivery_path(e.delivery_id)) : nil%></td>
- <td><%=e.user ? link_to(truncate(e.user.username, :length => 15), user_path(e.user.username)) : nil%></td>
+ <td><%=e.user ? link_to(truncate(e.user.username, :length => 15), user_path(e.user)) : nil%></td>
  <td><%=e.note%></td>
 </tr>
 <% end %>
