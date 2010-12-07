@@ -18,12 +18,10 @@
         <div>
           <% if delivery.delivering_user %>
               Delivered by: <br/>
-              <%=h link_to delivery.delivering_user.username, 
-                :controller => :users, :action => :show, :id => delivery.delivering_user.username %>
+              <%=h link_to delivery.delivering_user.username, delivery.delivering_user %>
           <% else %>
               Requested by: <br/>
-                <%=h link_to h(delivery.listing_user.username), 
-                :controller => :users, :action => :show, :id => delivery.listing_user.username %> 
+                <%=h link_to h(delivery.listing_user.username), delivery.listing_user %>
           <% end %>
         </div>
       </div>

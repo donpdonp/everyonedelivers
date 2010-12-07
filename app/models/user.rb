@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
 
   after_create :journal_on_create
-  before_save :tag_scrub
 
   named_scope :clocked_ins, :conditions => "clocked_in is not null"
+
+  has_friendly_id :username, :use_slug => true
 
   def self.create_with_defaults!(attributes)
     user = self.create!(attributes)
@@ -90,10 +91,5 @@ class User < ActiveRecord::Base
     end
     deliveries = Delivery.all(:conditions => conditions, :order => "created_at desc, delivering_user_id asc")
     deliveries.select{|d| d.ok_to_display? }
-  end
-
-  def tag_scrub
-    username = Loofah.fragment(username).scrub!(:prune)
-    email = Loofah.fragment(email).scrub!(:prune)
   end
 end

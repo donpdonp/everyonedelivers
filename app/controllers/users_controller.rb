@@ -3,11 +3,11 @@ class UsersController < ApplicationController
   protect_from_forgery :except => :update_location
 
   def show
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     @user.soft_validate
     unless @user && @user.available_for_edit_by(current_user)
       flash[:error] = "Not allowed to edit #{params[:id]}"
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     if current_user == @user
       @user.apply_form_attributes(params[:user])
       begin
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       rescue ActiveRecord::RecordInvalid => e
         flash[:error] = "#{e}"
       end
-      redirect_to :action => :show, :id => @user.username
+      redirect_to @user
     else
       flash[:error] = "Permission denied"
       redirect_to root_path;
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def update_location
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     if current_user == @user
       location = Location.new
       location.apply_form_attributes(params)
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def clock_in
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     if current_user == @user
       @user.clock_in!
       flash[:notice] = "#{@user.username} is clocked in for one hour."
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def clock_out
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     if current_user == @user
       @user.clock_out!
       flash[:notice] = "#{@user.username} has been clocked out."

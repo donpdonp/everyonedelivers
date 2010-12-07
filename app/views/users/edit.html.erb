@@ -1,6 +1,6 @@
 <div id="edituser">
 <h3>Edit User</h3>
-<% form_for :user, @user, :url => user_path(@user.username), :html => { :method => :put } do |f| %>
+<% form_for :user, @user, :url => user_path(@user), :html => { :method => :put } do |f| %>
   <fieldset>
    <legend>Identity</legend>
      <%= f.label :username, "username:" %>

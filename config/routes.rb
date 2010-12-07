@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :deliveries, :member => {:accept => :put, :confirm => :put}
-  map.resources :users, :member => {:update_location => :put}
+  map.resources :users, :member => {:update_location => :put,
+                                    :clock_in => :post,
+                                    :clock_out => :post}
   map.resources :locations
   map.resources :packages
   map.resources :journal, :collection => {:count => :get}
