@@ -8,6 +8,14 @@ class Delivery < ActiveRecord::Base
 
   after_create :journal_on_create
   after_destroy :journal_on_destroy
+  after_save :email_alert
+
+  def email_alert
+    if ok_to_display?
+      Journal.create({:delivery => self, :user => listing_user, :note => "emailed delivery update letter"})
+      email_notify_users
+    end
+  end
 
   def apply_form_attributes(params)
     return if params.nil?
@@ -35,7 +43,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def journal_on_create
-    Journal.create({:delivery => self, :user => self.listing_user, :note => "Created Delivery"})
+    Journal.create({:delivery => self, :user => self.listing_user, :note => "Creating Delivery"})
   end
 
   def journal_on_destroy

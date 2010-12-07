@@ -154,5 +154,7 @@ document.observe("dom:loaded", function() { prevalidate_from(); prevalidate_to()
   <%= f.submit "Save Details" %>
   <br/>
 <% end %>
+<span style="float:right">
 <%= button_to "Cancel Listing", delivery_path(@delivery), :confirm => "Are you sure?", :method => :delete %>
+</span>
 

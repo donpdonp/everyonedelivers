@@ -5,7 +5,11 @@
 
  <div id="splashrow">
  <div id="splashleft">
-  <h3><%= link_to "Request a delivery.", :action => :start_delivery  %></h3>
+  <h3>
+    <%= link_to "Request a delivery.", "javascript:$('new_delivery').submit()" %>
+  </h3>
+  <% form_for Delivery.new do |f| %>
+  <% end %>
   <p>
     Have items and food delivered to
     your door. You set the delivery cost.
