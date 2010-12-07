@@ -215,31 +215,46 @@ div.header #sub {
   padding: 4px;
 }
 
-.deliveryfee {
-  font-size: 150%;
-}
-
 .deliverytimes {
   float: left;
 }
 
-.deliverypackagename {
-  font-size: 130%;
+.deliveryitem .packagename {
+  font-size: 140%;
   font-weight: bold;
-  margin-left: 4px;
+  background: #689ca7;
+}
+
+.deliveryitem .packagename a {
+  color: white;
+}
+
+.deliveryitem .packagename a:hover {
+  color: white;
 }
 
 .deliverypackageinfo {
+  float: left;
+  text-align: left;
+  background: #a4c1c5;
+  color: black;
+  border-bottom-right-radius: 1.1em;
+  padding: 1%;
+  -moz-border-radius-bottomright: 1.1em;
+  -webkit-border-bottom-right-radius: 1.1em;
+  -o-border-bottom-right-radius: 1.1em;
+  -ms-border-bottom-right-radius: 1.1em;
+}
+
+.deliverypackageinfo .bountytitle {
+  font-size: 70%;
+  text-align: center;
+}
+
+.deliverypackageinfo .deliveryfee {
   font-size: 110%;
   font-weight: bold;
-}
-
-.deliverypackagename a {
-  color: #8D9D73;
-}
-
-.deliverypackagename a:hover {
-  color: green;
+  font-size: 150%;
 }
 
 .deliverylistinguser {
@@ -297,7 +312,21 @@ div.header #sub {
   text-align: center;
 }
 
+.deliveryitem .duedate {
+  float: right;
+  font-size: 70%;
+  color: white;
+}
+
+.deliveryitem .duedate a{
+  color: orange;
+}
+.deliveryitem .duedate a:hover{
+  color: #FF7A38;
+}
+
 .deliverypackagefromto {
+  margin-top: 0.3em;
 } 
 
 .deliverypackagefromto .halffromto {

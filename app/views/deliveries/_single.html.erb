@@ -1,48 +1,38 @@
   <% if delivery.ok_to_display? %>
   <div class="deliveryitem <%= delivery.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
-    <div class="deliverypackagename">
+
+    <div class="packagename">
+      <div class="duedate">
+        <% if delivery.delivered? %>
+          Delivered by
+          <%= link_to h(delivery.delivering_user.username), delivery.delivering_user %>
+        <% else %>
+          <%= render :partial => "deliveries/single_due", :locals => {:fee => delivery.fee} %>
+        <% end %>
+      </div>
       <%= link_to h(truncate(delivery.package.description, :length => 45)), delivery_path(delivery) %>
     </div>
 
     <div class="deliverypackageinfo">
-      <span class="deliveryfee">
-       Bounty $<%= delivery.fee.display_price %>
-      </span>
+        <div class="bountytitle">
+          Bounty
+        </div>
+        <div class="deliveryfee">
+         $<%= delivery.fee.display_price %>
+        </div>
     </div>
 
     <div class="deliverypackagefromto" style="overflow:auto">
       <div class="halffromto">
       <%= render :partial => "deliveries/single_address_map", 
                  :locals => {:location => delivery.start_location,
-                             :direction => "From"} %>
-        <div>
-          <% if delivery.delivering_user %>
-              Delivered by: <br/>
-              <%=h link_to delivery.delivering_user.username, delivery.delivering_user %>
-          <% else %>
-              Requested by: <br/>
-                <%=h link_to h(delivery.listing_user.username), delivery.listing_user %>
-          <% end %>
-        </div>
+                             :direction => "From:"} %>
       </div>
 
       <div class="halffromto">
         <%= render :partial => "deliveries/single_address_map", 
                    :locals => {:location => delivery.end_location,
-                               :direction => "To"} %>
-        <div>
-         <% if delivery.fee.delivery_due %>
-           <% if delivery.fee.delivery_due >= Time.now %>
-             Due in 
-           <% else %>
-             Overdue by 
-           <% end %>
-           <br/>
-           <%= distance_of_time_in_words_to_now(delivery.fee.delivery_due) %> <br/>
-         <% else %>
-           Due date missing.
-         <% end %>
-        </div>
+                               :direction => "To: "+ link_to(h(delivery.listing_user.username))} %>
       </div>
     </div>
 
