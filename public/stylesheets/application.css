@@ -65,7 +65,7 @@ body {
 }
 
 .flashmsgs {
-  margin-top: 5px;
+  margin-top: 0.6em;
   text-align: center;
 }
 
@@ -147,7 +147,7 @@ div.header #sub {
 }
 
 .menubar {
-  margin-top: 10px;
+  margin-top: 0.6em;
   padding: 8px;
   background: #9CC445;
   color: #D8E3C1;
