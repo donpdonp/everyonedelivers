@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Not authorized to clock in #{@user.username}"
     end
-    redirect_to root_path
+    redirect_to deliveries_path
   end
 
   def clock_out
@@ -61,6 +61,6 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Not authorized to clock out #{@user.username}"
     end
-    redirect_to root_path
+    redirect_to deliveries_path
   end
 end
