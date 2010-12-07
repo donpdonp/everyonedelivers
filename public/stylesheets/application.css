@@ -402,8 +402,9 @@ div.header #sub {
 }
 
 #sampledelivery {
-  width: 60%;
+  width: 80%;
   margin-right: auto;
   margin-left: auto;
   list-style: none;
+  margin-top: 1em;
 }
