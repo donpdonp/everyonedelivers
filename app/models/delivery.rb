@@ -39,7 +39,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def available_for_delivery_by(user)
-    user && user != listing_user && delivering_user.nil? && !overdue?
+    user && user != listing_user && delivering_user.nil? && !overdue? && !featured
   end
 
   def available_for_edit_by(user)
