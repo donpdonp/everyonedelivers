@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       rescue ActiveRecord::RecordInvalid => e
         flash[:error] = "#{e}"
       end
-      redirect_to :action => :show, :id => @user.username
+      redirect_to @user
     else
       flash[:error] = "Permission denied"
       redirect_to root_path;

@@ -12,7 +12,7 @@ Deliver someone's item and earn the bounty!
       <% @clocked_ins.each do |user| %>
         <li>
          <span>
-           <%= link_to h(user.username), {:controller => :users, :action => :show, :id => user.username} %>
+           <%= link_to h(user.username), user %>
          </span>
          <span class="clockedintime">
          </span>
@@ -28,8 +28,7 @@ Deliver someone's item and earn the bounty!
       Clocked <br/>
       <span style="font-size: 150%"><%= clockedin ? "In" : "Out"%></span> 
       <br/>
-      <% form_tag({:controller => :users, :action => (clockedin ? :clock_out : :clock_in),
-               :id => current_user.username}) do %>
+      <% form_tag(current_user.clocked_in ? clock_out_user_path(current_user) : clock_in_user_path(current_user)) do %>
         <%= submit_tag "Clock #{clockedin ? "OUT" : "IN"}" %>
       <% end %>
     </div>

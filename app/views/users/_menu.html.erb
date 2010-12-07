@@ -1,17 +1,17 @@
 <div id="usermenu">
 <ul>
   <li>
-    <%= link_to 'Profile', :controller => :users, :action => :show, :id => user.username, :tab => 'profile' %>
+    <%= link_to 'Profile', user_path(user, {:tab => 'profile'}) %>
   </li>
   <li>
-    <%= link_to 'Deliveries', :controller => :users, :action => :show, :id => user.username, :tab => 'deliveries' %>
+    <%= link_to 'Deliveries', user_path(user, {:tab => 'deliveries'}) %>
   </li>
   <li>
-    <%= link_to 'Location', :controller => :users, :action => :show, :id => user.username, :tab => 'location' %>
+    <%= link_to 'Location', user_path(user, {:tab => 'location'}) %>
   </li>
   <% if logged_in? %>
   <li>
-    <%= link_to 'Billing', :controller => :users, :action => :show, :id => user.username, :tab => 'billing' %>
+    <%= link_to 'Billing', user_path(user, {:tab => 'billing'}) %>
   </li>
   <% end %>
 </ul>
