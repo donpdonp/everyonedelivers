@@ -279,6 +279,13 @@ div.header #sub {
   margin-bottom: 1em;
 }
 
+.deliverydetail .packagename {
+  font-size: 140%;
+  font-weight: bold;
+  background: #689ca7;
+  color: white;
+}
+
 .googlestaticmap {
   margin-left: auto;
   margin-right: auto;
