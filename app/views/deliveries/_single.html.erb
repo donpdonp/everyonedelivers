@@ -32,7 +32,8 @@
       <div class="halffromto">
         <%= render :partial => "deliveries/single_address_map", 
                    :locals => {:location => delivery.end_location,
-                               :direction => "To: "+ link_to(h(delivery.listing_user.username))} %>
+                               :direction => "To: "+ link_to(h(delivery.listing_user.username), 
+                                                             delivery.listing_user)} %>
       </div>
     </div>
 
