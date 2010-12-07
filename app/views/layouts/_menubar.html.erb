@@ -2,11 +2,14 @@
   <ul>
     <li> 
     <% if logged_in? %>
-    <%= link_to 'Create a delivery listing', 
+    <%= link_to 'Request a delivery', 
                   "javascript:$('new_delivery').submit()" %>
     <% else %>
-     <%= link_to 'Login to create a delivery.', :controller => :session, :action => :login_screen %>
+     <%= link_to 'Login to request a delivery.', :controller => :session, :action => :login_screen %>
     <% end %>
+    </li>
+    <li>
+      <%= link_to 'List deliveries', deliveries_path %>
     </li>
   </ul>
 
