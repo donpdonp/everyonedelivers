@@ -44,7 +44,7 @@ class SessionController < ApplicationController
         flash[:error] = "Verification failed: #{oidresp.message}"
       end
     when OpenID::Consumer::SUCCESS
-      flash[:success] = ("Verification of #{oidresp.display_identifier}"\
+      flash[:notice] = ("Verification of #{oidresp.display_identifier}"\
                          " succeeded.")
       # simple registration
       ax_resp = OpenID::AX::FetchResponse.from_success_response(oidresp)
