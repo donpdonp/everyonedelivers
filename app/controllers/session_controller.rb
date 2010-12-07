@@ -73,7 +73,7 @@ class SessionController < ApplicationController
       flash[:alert] = "OpenID transaction cancelled."
     else
     end
-    redirect_to (params[:next_url] || :root)
+    redirect_to (params[:next_url] || session[:next_url] || :root)
   end
 
   def logout
