@@ -74,10 +74,15 @@ class SessionController < ApplicationController
     else
     end
     if session[:anonymous_delivery_id]
-      delivery = Delivery.find(session[:anonymous_delivery_id])
-      delivery.listing_user = current_user
-      delivery.save!
-      redirect_to delivery
+      delivery = Delivery.find_by_id(session[:anonymous_delivery_id])
+      session[:anonymous_delivery_id] = nil
+      if delivery
+        delivery.listing_user = current_user
+        delivery.save!
+        redirect_to delivery
+      else
+        redirect_to root_path
+      end
     else
       redirect_to (params[:next_url] || :root)
     end
