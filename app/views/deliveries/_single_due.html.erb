@@ -1,0 +1,12 @@
+
+         <% if fee.delivery_due %>
+           <% if fee.delivery_due >= Time.now %>
+             Due in 
+           <% else %>
+             Overdue by 
+           <% end %>
+           <%= distance_of_time_in_words_to_now(fee.delivery_due) %> <br/>
+         <% else %>
+           Due date missing.
+         <% end %>
+

@@ -34,6 +34,10 @@ class Delivery < ActiveRecord::Base
     end
   end
 
+  def delivered?
+    !!delivering_user
+  end
+
   def available_for_delivery_by(user)
     user && user != listing_user && delivering_user.nil? && !overdue?
   end
