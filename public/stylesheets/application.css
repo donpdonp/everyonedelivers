@@ -76,7 +76,7 @@ body {
 }
 
 .clockedinpeople {
-  background: #9CC445;
+  background: #5B8207;
   float:left;
 }
 
@@ -97,7 +97,6 @@ body {
 }
 
 .clockedinpeople li a {
-  color: green;
 }
 
 .clockedinpeople li a:hover {
