@@ -73,7 +73,14 @@ class SessionController < ApplicationController
       flash[:alert] = "OpenID transaction cancelled."
     else
     end
-    redirect_to (params[:next_url] || session[:next_url] || :root)
+    if session[:anonymous_delivery_id]
+      delivery = Delivery.find(session[:anonymous_delivery_id])
+      delivery.listing_user = current_user
+      delivery.save!
+      redirect_to delivery
+    else
+      redirect_to (params[:next_url] || :root)
+    end
   end
 
   def logout

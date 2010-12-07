@@ -1,6 +1,4 @@
 class DeliveriesController < ApplicationController
-  before_filter :login_required, :only => [:create, :edit, :update]
-
   def index
     @delivery_groups = [ ]
     one_month = Delivery.find_at_most_hours_old(24*31).select{|d| d.ok_to_display?}
@@ -19,7 +17,8 @@ class DeliveriesController < ApplicationController
 
   def create
     delivery = Delivery.create({:listing_user => current_user})
-    redirect_to :action => :edit, :id => delivery.id
+    session[:anonymous_delivery_id] = delivery.id unless logged_in?
+    redirect_to edit_delivery_path(delivery)
   end
 
   def show
@@ -28,7 +27,7 @@ class DeliveriesController < ApplicationController
 
   def edit
     @delivery = Delivery.find(params[:id])
-    unless @delivery && @delivery.available_for_edit_by(current_user)
+    unless @delivery && ((params[:id].to_i == session[:anonymous_delivery_id]) || @delivery.available_for_edit_by(current_user))
       flash[:error] = "Not allowed to edit delivery #{params[:id]}"
       redirect_to root_path
     end
@@ -37,7 +36,7 @@ class DeliveriesController < ApplicationController
   def update
     # update form is also a creation form for the dependent models
     delivery = Delivery.find(params[:id])
-    unless delivery && delivery.available_for_edit_by(current_user)
+    unless delivery && ((params[:id].to_i == session[:anonymous_delivery_id]) || delivery.available_for_edit_by(current_user))
       flash[:error] = "Not allowed to edit delivery #{params[:id]}"
       redirect_to root_path
       return
@@ -66,17 +65,17 @@ class DeliveriesController < ApplicationController
 
     delivery.save!
 
-    if delivery.ok_to_display?
-      Journal.create({:delivery => delivery, :user => delivery.listing_user, :note => "emailed delivery update letter"})
-      delivery.email_notify_users
+    if delivery.listing_user
+      redirect_to delivery_path(delivery)
+    else
+      redirect_to :controller => :dashboard, :action => :start_delivery
     end
-    redirect_to delivery_path(delivery)
   end
 
   def destroy
     delivery = Delivery.find(params[:id])
     delivery.destroy
-    redirect_to :controller => :users, :action => :show, :id => delivery.listing_user.username
+    redirect_to deliveries_path
   end
 
   def confirm

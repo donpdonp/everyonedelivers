@@ -5,7 +5,6 @@ class DashboardController < ApplicationController
   end
 
   def start_delivery
-    session[:next_url] =  {:controller => :dashboard, :action => :ready_delivery}
   end
 
   def ready_delivery
