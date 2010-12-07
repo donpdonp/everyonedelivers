@@ -6,10 +6,10 @@
     Press the link below to 
     start filling in details about your delivery requset.
   </p>
-    <%= link_to 'Create a delivery listing', 
-                  "javascript:$('new_delivery').submit()" %>
+  <% form_for Delivery.new do |f| %>
+    <%= submit_tag "Create a delivery"%>
+  <% end %>
+  </p>
 
 </div>
 
-<% form_for Delivery.new do |f| %>
-<% end %>
