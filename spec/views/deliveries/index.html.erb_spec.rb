@@ -7,8 +7,8 @@ describe "/dashboard/index" do
   it "should render when someone is logged in" do
     template.stub!(:logged_in?).and_return(true)
     assigns[:delivery_groups] = []
-    assigns[:clocked_ins] = []
     user = mock_model(User)
+    assigns[:clocked_ins] = [user]
     user.should_receive(:clocked_in?).and_return(false)
     user.should_receive(:username).and_return("bob")
     template.should_receive(:current_user).twice.and_return(user)

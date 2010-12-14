@@ -5,6 +5,9 @@ describe "/dashboard/index" do
   end
   
   it "should render" do
+    featured_delivery = mock_model(Delivery)
+    featured_delivery.should_receive(:ok_to_display?).and_return(false)
+    assigns[:featured_delivery] = featured_delivery
     render 'dashboard/index'
     response.should have_tag('p')
   end
