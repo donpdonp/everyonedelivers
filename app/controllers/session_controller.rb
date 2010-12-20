@@ -84,7 +84,7 @@ class SessionController < ApplicationController
         redirect_to root_path
       end
     else
-      redirect_to (params[:next_url] || deliveries_path)
+      redirect_to(params[:next_url] || deliveries_path)
     end
   end
 
