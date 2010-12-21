@@ -2,18 +2,17 @@ function formvalidation(event) {
   if(!$('from_latitude').value.blank()) {
     if(!$('to_latitude').value.blank()) {
       // Both points are verified. compute the distance
-      p1 = new GLatLng($('from_latitude').value,$('from_longitude').value);
-      p2 = new GLatLng($('to_latitude').value,$('to_longitude').value);
-      distance = p1.distanceFrom(p2);
-      $('delivery_start_end_distance').value = ""+distance;
+      p1 = new google.maps.LatLng($('from_latitude').value,$('from_longitude').value);
+      p2 = new google.maps.LatLng($('to_latitude').value,$('to_longitude').value);
+      $('delivery_start_end_distance').value = ""+distanceBetweenPoints(p1,p2);
       return;
     } else {
       invalidate_to();
-      alert("Please correct the To address.");
+      alert("Please validate the To address.");
     }
   } else {
     invalidate_from();
-    alert("Please correct the From address.");
+    alert("Please validate the From address.");
   }
   event.stop();
 }
@@ -98,6 +97,23 @@ function address_to_validate_click(event) {
   geocoder.geocode(request, geocallback_to); 
   event.stop();
 }
+
+function distanceBetweenPoints(p1, p2) {
+  if (!p1 || !p2) {
+    return 0;
+  }
+
+  var R = 6371000; // Radius of the Earth in m
+  var dLat = (p2.lat() - p1.lat()) * Math.PI / 180;
+  var dLon = (p2.lng() - p1.lng()) * Math.PI / 180;
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(p1.lat() * Math.PI / 180) * Math.cos(p2.lat() * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c;
+  return d;
+}
+
 
 function setup() {
   $('from_address_validate').observe('click', address_from_validate_click);

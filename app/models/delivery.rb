@@ -12,7 +12,7 @@ class Delivery < ActiveRecord::Base
 
   def email_alert
     if ok_to_display?
-      Journal.create({:delivery => self, :user => listing_user, :note => "emailed delivery update letter"})
+      Journal.create({:delivery => self, :user => listing_user, :note => "Emailed delivery update notice"})
       email_notify_users
     end
   end
