@@ -138,6 +138,13 @@ Status:
  <% end %>
 </p>
 
+<% if @delivery.start_end_distance %>
+<h4>Distance</h4>
+<p>
+  Straight-line distance in meters: <%= @delivery.start_end_distance %>m
+</p>
+<% end %>
+
 <% if @delivery.start_location && @delivery.end_location %>
  <div id="gmap" style="width:400px;height:300px"></div>
  <div id="gmaperror"></div>
