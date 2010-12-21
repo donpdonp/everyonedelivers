@@ -103,6 +103,8 @@ function setup() {
   $('from_address_validate').observe('click', address_from_validate_click);
   $('to_address_validate').observe('click', address_to_validate_click);
   $$('.edit_delivery')[0].observe('submit', formvalidation);
+  $('from_address').observe('change', invalidate_from);
+  $('to_address').observe('change', invalidate_to);
   prevalidate_from(); 
   prevalidate_to();
 }
