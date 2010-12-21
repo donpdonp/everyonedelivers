@@ -40,6 +40,10 @@ body {
   margin-right: 25%;
 }
 
+form.edit_delivery {
+  color: white;
+}
+
 .container {
   font-family: arial;
   padding: 5px;
@@ -155,11 +159,12 @@ div.header #sub {
 }
 
 .menubar a {
-  color: #33527A;
+  text-decoration: underline;
+  color: white;
 }
 
 .menubar a:hover {
-  color: white;
+  color: #33527A;
   text-decoration: underline;
 }
 

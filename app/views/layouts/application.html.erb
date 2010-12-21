@@ -6,11 +6,11 @@
   <%= stylesheet_link_tag("application") %>
   <%= javascript_include_tag :defaults %>
   <%# javascript_include_tag 'jquery.min.js' %>
+  <%= render :partial => "layouts/google_maps" %>
   <%= yield :header %>
 </head>
 <body>
   <div class="container">
-    <%= render :partial => "layouts/google_maps" %>
     <%# render :partial => "layouts/geode" %>
     <%= render :partial => "layouts/header" %>
     <% unless params[:controller] == "dashboard" %>
