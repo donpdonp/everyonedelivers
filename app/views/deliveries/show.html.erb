@@ -2,37 +2,42 @@
 <script>
   // Call this function when the page has been loaded
   function mapinitialize() {
-    var map = new google.maps.Map2(document.getElementById("gmap"));
 
     var wp = new Array(2);
-    wp[0] = new GLatLng(<%= @delivery.start_location.latitude %>,<%= @delivery.start_location.longitude %>);
-    wp[1] = new GLatLng(<%= @delivery.end_location.latitude %>,<%= @delivery.end_location.longitude %>);
-    var bounds = new GLatLngBounds(wp[0], wp[1]);
-    //map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds)); // total fail??
-    map.setCenter(wp[0], 12);
+    wp[0] = new google.maps.LatLng(<%= @delivery.start_location.latitude %>,<%= @delivery.start_location.longitude %>);
+    wp[1] = new google.maps.LatLng(<%= @delivery.end_location.latitude %>,<%= @delivery.end_location.longitude %>);
+    var bounds = new google.maps.LatLngBounds(wp[0], wp[1]);
+    // sw/ne corner problem?
 
-    map.setUIToDefault();
-    var marker_start = new GMarker(wp[0]);
-    map.addOverlay(marker_start);
-    var marker_end = new GMarker(wp[1]);
-    map.addOverlay(marker_end);
+    var map = new google.maps.Map(document.getElementById("gmap"),
+                                  {mapTypeId: google.maps.MapTypeId.ROADMAP,
+                                   center: wp[0],
+                                   zoom: 12});
+    //map.fitBounds(bounds);
+
+    var marker_start = new google.maps.Marker({position:wp[0]});
+    marker_start.setMap(map);
+    var marker_end = new google.maps.Marker({position:wp[1]});
+    marker_end.setMap(map);
      
 
-    var directions = new GDirections(map);
-    var street_directions_from = "from: <%= @delivery.start_location.street %>";
-    var street_directions_to = "to: <%= @delivery.end_location.street %>";
-    directions.load(street_directions_from+" "+street_directions_to);
-    GEvent.addListener(
-                directions,
-                'error',
-                function ()
-                {
-                  document.getElementById("gmaperror").innerHTML = "Google maps does not have directions between<br/> these locations. Please use a different address. (code "+directions.getStatus().code+")";
-                }
-    );
-
+    var directions = new google.maps.DirectionsService();
+    var request = { origin : "from: <%= @delivery.start_location.street %>",
+                    destination : "<%= @delivery.end_location.street %>",
+                    travelMode : google.maps.DirectionsTravelMode.DRIVING };
+    directions.route(request, show_directions);
   }
-  google.setOnLoadCallback(mapinitialize);
+
+  function show_directions(result, status) {
+    if(status == "NOT_FOUND") {
+      $('gmaperror').innerHTML = "Route not found";
+    }
+    if(status == "OK") {
+      renderer = new google.maps.DirectionsRenderer({directions: result});
+    }
+  }
+
+  google.maps.event.addDomListener(window, 'load', mapinitialize);
 </script>
 <% end %>
 
