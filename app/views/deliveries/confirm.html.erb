@@ -10,7 +10,6 @@
 
   Due at: <%= @delivery.fee.delivery_due %> (in <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>) <br/>
 
-
   <h4>Cost</h4>
 
   <p>
@@ -22,8 +21,8 @@
 
   <p>
   What (you) <%= current_user.username %> pays: <br/>
-  The in-store cost of the item, paid to store where item is purchased: $<%=@delivery.package.display_price%> <br/>
   Listing acceptance fee, paid to EveryoneDelivers.com: $ <%= @delivery.display_listing_fee %>
+  The in-store cost of the item, paid to store where item is purchased: $<%=@delivery.package.display_price%> <br/>
   </p>
 
   <table>
