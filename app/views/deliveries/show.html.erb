@@ -68,12 +68,11 @@ Status:
   Delivery accepted by: <%= @delivery.delivering_user.username %>
 <% else %>
   <% if logged_in? %>
+    Available for delivery.
     <% if @delivery.available_for_delivery_by(current_user) %>
        <% form_for :delivery, @delivery, :url => confirm_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
         <%= f.submit 'I can make this delivery' %>
        <% end %>
-    <% else %>
-       Waiting to be accepted.
     <% end %>
   <% else %>
     Login to accept this delivery.
