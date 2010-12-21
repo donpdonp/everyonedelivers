@@ -68,6 +68,11 @@ form.edit_delivery {
   background: #454141    ;
 }
 
+.error {
+  color: red;
+  font-size: 110%;
+}
+
 .flashmsgs {
   margin-top: 0.6em;
   text-align: center;
