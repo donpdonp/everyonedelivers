@@ -9,9 +9,9 @@
     </li>
   </ul>
 
-  <% form_tag do %>
+  <% form_tag(deliveries_path, {:method => :get}) do %>
   <span style="float:right">
-    Search <%= text_field :search, :terms%> 
+      Search <%= text_field_tag 'q'%> 
   </span>
   <% end %>
 </div>
