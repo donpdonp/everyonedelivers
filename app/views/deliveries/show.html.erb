@@ -1,39 +1,45 @@
 <% if @delivery.start_location && @delivery.end_location %>
 <script>
-  // Call this function when the page has been loaded
   function mapinitialize() {
 
-    var wp = new Array(2);
-    wp[0] = new google.maps.LatLng(<%= @delivery.start_location.latitude %>,<%= @delivery.start_location.longitude %>);
-    wp[1] = new google.maps.LatLng(<%= @delivery.end_location.latitude %>,<%= @delivery.end_location.longitude %>);
-    var bounds = new google.maps.LatLngBounds(wp[0], wp[1]);
-    // sw/ne corner problem?
+    var start, end, sw, ne;
+    start = new google.maps.LatLng(<%= @delivery.start_location.latitude %>,<%= @delivery.start_location.longitude %>);
+    end = new google.maps.LatLng(<%= @delivery.end_location.latitude %>,<%= @delivery.end_location.longitude %>);
+    var bounds = new google.maps.LatLngBounds();
+    bounds.extend(start);
+    bounds.extend(end);
 
     var map = new google.maps.Map(document.getElementById("gmap"),
                                   {mapTypeId: google.maps.MapTypeId.ROADMAP,
-                                   center: wp[0],
+                                   center: bounds.getCenter(),
                                    zoom: 12});
-    //map.fitBounds(bounds);
+    // this could be avoided if the zoom level could be calculated
+    map.fitBounds(bounds);
 
-    var marker_start = new google.maps.Marker({position:wp[0]});
+    var marker_start = new google.maps.Marker({position:start});
     marker_start.setMap(map);
-    var marker_end = new google.maps.Marker({position:wp[1]});
+    var marker_end = new google.maps.Marker({position:end});
     marker_end.setMap(map);
      
 
     var directions = new google.maps.DirectionsService();
-    var request = { origin : "from: <%= @delivery.start_location.street %>",
-                    destination : "<%= @delivery.end_location.street %>",
+    var request = { origin : start,
+                    destination : end,
                     travelMode : google.maps.DirectionsTravelMode.DRIVING };
-    directions.route(request, show_directions);
+    directions.route(request, show_directions_callback_builder(map));
   }
 
-  function show_directions(result, status) {
-    if(status == "NOT_FOUND") {
-      $('gmaperror').innerHTML = "Route not found";
-    }
-    if(status == "OK") {
-      renderer = new google.maps.DirectionsRenderer({directions: result});
+  function show_directions_callback_builder(map) {
+    // use a closure to make map a local variable
+    return function show_directions(result, status) {
+      if(status == "NOT_FOUND") {
+        $('gmaperror').innerHTML = "Route not found";
+      }
+      if(status == "OK") {
+        renderer = new google.maps.DirectionsRenderer({directions: result,
+                                                       suppressMarkers : true});
+        renderer.setMap(map);
+      }
     }
   }
 
