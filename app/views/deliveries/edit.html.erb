@@ -30,11 +30,11 @@
                          @delivery.package ? @delivery.package.display_price : "", :size => 5 %>
   </fieldset>
   
-  <fieldset>
+  <fieldset class="from_address">
     <legend>From Address</legend>
     Example: Corner Market, 900 SW Main, Portland, Or <br/>
     <span style="float:left">
-    Address <%= text_field_tag "from[address]", 
+    <span id="from_address_label">Address</span> <%= text_field_tag "from[address]", 
                 @delivery.start_location ? @delivery.start_location.street : "",
                 :size => 50, :onchange => "invalidate_from()" %>
     </span>
@@ -45,11 +45,11 @@
     <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
   </fieldset>
 
-  <fieldset>
+  <fieldset class="to_address">
     <legend>To Address</legend>
     Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
     <span style="float:left">
-    Address <%= text_field_tag "to[address]", 
+    <span id="to_address_label">Address</span> <%= text_field_tag "to[address]", 
                 @delivery.end_location ? @delivery.end_location.street : "", 
                 :size => 50, :onchange => "invalidate_to()" %>
     </span>
