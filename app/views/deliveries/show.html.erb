@@ -138,7 +138,7 @@ Status:
  <% end %>
 </p>
 
-<% if @delivery.start_end_distance %>
+<% if @delivery.start_end_distance > 0%>
 <h4>Distance</h4>
 <p>
   Straight-line distance in meters: <%= @delivery.start_end_distance %>m
