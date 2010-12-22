@@ -1,7 +1,13 @@
 class DeliveriesController < ApplicationController
   def index
     @delivery_groups = [ ]
-    one_month = Delivery.find_at_most_hours_old(24*31).select{|d| d.ok_to_display?}.sort{|a,b| b.fee.delivery_due <=> a.fee.delivery_due}
+    if params[:q]
+      one_month = Delivery.all(:conditions => ["to_tsvector('english', packages.description) @@ to_tsquery('english', ?)", "living"], :include => :package) # Postgresql specific
+    else
+      one_month = Delivery.find_at_most_hours_old(24*31)
+    end
+    one_month = one_month.select{|d| d.ok_to_display?}
+    one_month = one_month.sort{|a,b| b.fee.delivery_due <=> a.fee.delivery_due}
     @delivery_groups << ["less than a month old", one_month] if one_month.size > 0
     #four_hours = Delivery.find_between_hours_old(1,4).select{|d| d.ok_to_display?}
     #@delivery_groups << ["one to four hours old", four_hours] if four_hours.size > 0
