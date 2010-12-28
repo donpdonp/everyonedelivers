@@ -1,4 +1,7 @@
 class Delivery < ActiveRecord::Base
+
+  include Workflow
+
   belongs_to :fee
   belongs_to :package
   belongs_to :start_location, :class_name => "Location"
@@ -8,12 +11,39 @@ class Delivery < ActiveRecord::Base
 
   after_create :journal_on_create
   after_destroy :journal_on_destroy
-  after_save :email_alert
+  after_save :check_for_completeness
+
+  workflow do
+    state :building do
+      event :ready, :transitions_to => :waiting
+    end
+    state :waiting do
+      event :accept, :transitions_to => :accepted
+    end
+    state :accepted do
+      event :deliver, :transitions_to => :delivered
+    end
+    state :delivered
+  end
+
+  def check_for_completeness
+    if building? && ok_to_display?
+      ready!
+    end
+  end
+
+  def ready
+    email_alert
+  end
 
   def email_alert
-    if ok_to_display?
-      Journal.create({:delivery => self, :user => listing_user, :note => "Emailed delivery update notice"})
-      email_notify_users
+    Journal.create({:delivery => self, :user => listing_user, :note => "Emailed delivery update notice"})
+    email_notify_users
+  end
+
+  def email_notify_users
+    User.all(:conditions => {:email_on_new_listing => true}).each do |user|
+      Mailer.deliver_delivery_updated(self, user)
     end
   end
 
@@ -47,7 +77,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def journal_on_create
-    Journal.create({:delivery => self, :user => self.listing_user, :note => "Creating Delivery"})
+    Journal.create({:delivery => self, :user => self.listing_user, :note => "Building Delivery"})
   end
 
   def journal_on_destroy
@@ -58,12 +88,6 @@ class Delivery < ActiveRecord::Base
     self.delivering_user = user
     self.accepted_at = Time.now
     Journal.create({:delivery => self, :user => user, :note => "Accepted delivery."})
-  end
-
-  def email_notify_users
-    User.all(:conditions => {:email_on_new_listing => true}).each do |user|
-      Mailer.deliver_delivery_updated(self, user)
-    end
   end
 
   def display_retail_plus_package_fee
