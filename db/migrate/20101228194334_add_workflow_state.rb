@@ -6,9 +6,9 @@ class AddWorkflowState < ActiveRecord::Migration
         d.update_attribute :workflow_state, "delivered"
       else
         if d.ok_to_display?
-          d.update_attribute :workflow_state, "building"
-        else
           d.update_attribute :workflow_state, "waiting"
+        else
+          d.update_attribute :workflow_state, "building"
         end
       end
     end
