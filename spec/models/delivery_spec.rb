@@ -51,7 +51,7 @@ describe Delivery do
 
   it "journal and send email when ready" do
     delivery = Delivery.new
-    delivery.should_receive(:email_alert)
+    delivery.should_receive(:email_notify_users)
     delivery.ready!
   end
 
