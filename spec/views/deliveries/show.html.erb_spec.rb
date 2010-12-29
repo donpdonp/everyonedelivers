@@ -18,6 +18,7 @@ describe "/deliveries/show" do
     delivery.should_receive(:delivering_user)
     delivery.should_receive(:available_for_edit_by)
     delivery.should_receive(:start_end_distance)
+    delivery.should_receive(:waiting?).and_return(false)
     assigns[:delivery] = delivery
 
     render '/deliveries/show'
