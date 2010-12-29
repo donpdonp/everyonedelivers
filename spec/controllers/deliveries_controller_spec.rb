@@ -54,11 +54,15 @@ describe DeliveriesController do
     bob = mock_model(User)
     lister = mock_model(User)
     delivery = mock_model(Delivery)
+    delivery.should_receive(:building?).and_return(false)
+    delivery.should_receive(:accepted?).and_return(false)
+    delivery.should_receive(:waiting?).and_return(true)
     delivery.should_receive(:deliverer).with(@user)
     delivery.should_receive(:save!)
+    delivery.should_receive(:accept!)
     delivery.should_receive(:listing_user).and_return(bob)
     Mailer.should_receive(:deliver_delivery_accepted).with(delivery)
     Delivery.should_receive(:find).with(delivery.id).and_return(delivery)
-    put :accept, {:id => delivery.id}
+    put :accept, {:id => delivery.id, "commit"=>"Yes I accept"}
   end
 end

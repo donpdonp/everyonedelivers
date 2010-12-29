@@ -88,12 +88,23 @@ class DeliveriesController < ApplicationController
   end
 
   def accept
-    delivery = Delivery.find(params[:id].to_i)
-    delivery.deliverer(current_user)
-    delivery.save!
-    Mailer.deliver_delivery_accepted(delivery)
-    Journal.create({:delivery => delivery, :user => delivery.listing_user, :note => "emailed delivery accepted letter"})
-    flash[:notice] = "Delivery accepted!"
+    if params["commit"]=="Yes I accept"
+      delivery = Delivery.find(params[:id].to_i)
+      if delivery.accepted?
+        flash[:error] = "Delivery has already been accepted!"
+      end
+      if delivery.waiting?
+        delivery.deliverer(current_user)
+        delivery.save!
+        delivery.accept!
+        Mailer.deliver_delivery_accepted(delivery)
+        Journal.create({:delivery => delivery, :user => delivery.listing_user, :note => "emailed delivery accepted letter"})
+        flash[:notice] = "Delivery accepted!"
+      end
+      if delivery.building?
+        flash[:error] = "Delivery is not ready yet!"
+      end
+    end
     redirect_to delivery_path(delivery)
   end
 end
