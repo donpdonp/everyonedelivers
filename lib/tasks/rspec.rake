@@ -1,4 +1,5 @@
 gem 'test-unit', '1.2.3' if RUBY_VERSION.to_f >= 1.9
+gem 'rspec-rails', '1.3.3'
 
 # Don't load rspec if running "rake gems:*"
 unless ARGV.any? {|a| a =~ /^gems/}
