@@ -58,7 +58,7 @@ class SessionController < ApplicationController
         user = openid.user
       else
         user = Openidentity.create_openid_and_user_with_url(oidresp.display_identifier, hints).user
-        params[:next_url] = url_for(:controller => :users, :action => :edit, :id => user.username,
+        params[:next_url] = url_for(:controller => :users, :action => :edit, :id => user.slug.name,
                                     :next_url => params[:next_url])
         flash[:notice] = "Welcome new user."
         unless user.email.blank?
