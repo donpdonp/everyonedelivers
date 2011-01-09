@@ -8,8 +8,8 @@ class GitHubController < ApplicationController
     cmd = RAILS_ROOT+"/github-pull.sh"
     logger.info("github commit: #{cmd}")
     out = `#{cmd}`
-    Journal.create({:note => "Website updated"})
     logger.info("github pull output: #{out}")
+    Journal.create({:note => "Website updated"})
   end
 
   # so we can mock this in a test
