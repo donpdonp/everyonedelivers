@@ -1,7 +1,7 @@
 class JournalController < ApplicationController
 
   def index
-    @entries = Journal.all(:order => "id desc")
+    @entries = Journal.all(:order => "id desc", :conditions => ["created_at > ?",1.month.ago])
   end
 
   def count
