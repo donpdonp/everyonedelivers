@@ -14,6 +14,18 @@
      <%= f.label :time_zone, "time zone:" %>
      <%= @user.errors.on(:time_zone) %>
      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
+     <% unless @user.time_zone %>
+      <script>
+        var now = new Date();
+        var zone = now.toString().substr(25,6)+":"+now.toString().substr(31,2);
+        for(var i=0, len=$('user_time_zone').options.length; i<len; i++) {
+          var zonetext = $('user_time_zone').options[i]
+          if(zone == zonetext.innerHTML.substr(1,9)) {
+            $('user_time_zone').selectedIndex = i;
+          }
+        }
+      </script>
+     <% end %>
   <br/>
      <%= f.label :display_measurement, "units:" %>
      <%= @user.errors.on(:display_measurement) %>
