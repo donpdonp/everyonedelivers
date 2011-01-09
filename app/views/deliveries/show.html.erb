@@ -61,7 +61,10 @@
 <tr>
  <td valign="top">
 <p>
-Listed by: <%= @delivery.listing_user.username %> <br/>
+Listed by: <% if @delivery.listing_user %>
+             <%= @delivery.listing_user.username %> 
+           <% end %>
+<br/>
 Listed at: <%= @delivery.created_at.strftime("%l:%M%P %Z %d-%b-%Y") %>  <br/>
 Status: 
 <% if @delivery.delivering_user %>
