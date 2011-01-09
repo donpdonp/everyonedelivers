@@ -8,7 +8,7 @@ describe GitHubController do
 
   describe "GET 'commit'" do
     it "should be successful" do
-      controller.should_receive(:shell)
+      controller.should_receive(:`)
       get 'commit'
       response.should be_success
     end
