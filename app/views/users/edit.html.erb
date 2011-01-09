@@ -14,7 +14,7 @@
      <%= f.label :time_zone, "time zone:" %>
      <%= @user.errors.on(:time_zone) %>
      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
-     <% unless @user.time_zone %>
+     <% if @user.time_zone.blank? %>
       <script>
         var now = new Date();
         var zone = now.toString().substr(25,6)+":"+now.toString().substr(31,2);
@@ -22,6 +22,7 @@
           var zonetext = $('user_time_zone').options[i]
           if(zone == zonetext.innerHTML.substr(1,9)) {
             $('user_time_zone').selectedIndex = i;
+            break;
           }
         }
       </script>
