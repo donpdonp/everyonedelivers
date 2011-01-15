@@ -13,6 +13,10 @@ class Fee < ActiveRecord::Base
       delivery_due_time = Time.zone.parse(time_string)
       self.delivery_due = delivery_due_time
     end
+
+    if params[:payment_method]
+      self.payment_method = params[:payment_method]
+    end
   end
 
   def display_price

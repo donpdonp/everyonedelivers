@@ -424,3 +424,10 @@ div.header #sub {
   list-style: none;
   margin-top: 1em;
 }
+
+.payment_methods {
+  list-style-type: none;
+  display: inline;
+  padding-left: 0px;
+}
+
