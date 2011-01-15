@@ -64,10 +64,8 @@
   </fieldset>
 
   <fieldset>
-    <legend> Delivery Bounty </legend>
-    Amount $<%= text_field_tag "fee[display_price]", 
-               @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
-    if delivery is completed by
+    <legend> Time </legend>
+    Delivery should be completed by
     <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.zone.now) %>
 <!--    if delivered within
     <%= select_tag "fee[time_count]", options_for_select({"1" => "1","2" => "2",
@@ -75,12 +73,29 @@
     <%= select_tag "fee[time_unit]", options_for_select({"Hour(s)" => "hour"})%>
 -->
   </fieldset>
+
+  <fieldset>
+    <legend> Delivery Bounty </legend>
+    Amount $<%= text_field_tag "fee[display_price]", 
+               @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
+  </fieldset>
+
+  <fieldset>
+    <legend> Payment </legend>
+    The retail price (if any) plus the bounty will be paid to the delivery person using
+    <ul class="payment_methods">
+       <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee.payment_method == "cash" %> Cash </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee.payment_method == "visa" %> VISA - Cards can be swiped at the doorstep using squareup.com</li>
+    </ul>
+  </fieldset>
+
   <%= hidden_field_tag "delivery[start_end_distance]", ""%>
 
   <br/>
   <%= f.submit "Save Details" %>
   <br/>
 <% end %>
+
 <span style="float:right">
 <%= button_to "Cancel Listing", delivery_path(@delivery), :confirm => "Are you sure?", :method => :delete %>
 </span>

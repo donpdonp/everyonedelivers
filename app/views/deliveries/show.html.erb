@@ -86,16 +86,16 @@ Status:
 <h4>Package</h4>
  <% if @delivery.package %>
  <p>
-   description: <%=h @delivery.package.description %>
+   Description: <%=h @delivery.package.description %>
    <br/>
-   retail price: $<%= @delivery.package.display_price %>
+   Retail price: $<%= @delivery.package.display_price %>
    <br/>
    <% if @delivery.package.has_dimensions? %>
-     height: <%= @delivery.package.height %>"
-     width: <%= @delivery.package.width %>"
-     depth: <%= @delivery.package.depth %>"
+     Height: <%= @delivery.package.height %>"
+     Width: <%= @delivery.package.width %>"
+     Depth: <%= @delivery.package.depth %>"
    <% else %>
-     dimensions: not given
+     Dimensions: not given
    <% end %>
  </p>
  <% else %>
@@ -108,7 +108,8 @@ Status:
 <p>
  <% if @delivery.fee %>
   Amount: $<%= @delivery.fee.display_price %> <br/>
-  Completion Due By: <%= @delivery.fee.delivery_due.strftime("%l:%M%P %Z %d-%b-%Y") %>
+  Payment method: <%= @delivery.fee.payment_method %> <br/>
+  Completion Due By: <%= @delivery.fee.delivery_due.strftime("%l:%M%P %Z %d-%b-%Y") %> <br/>
     <% if @delivery.fee.delivery_due >= Time.now %>
     (due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
     <% else %>
