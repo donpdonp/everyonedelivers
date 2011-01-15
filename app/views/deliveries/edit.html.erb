@@ -84,8 +84,8 @@
     <legend> Payment </legend>
     The retail price (if any) plus the bounty will be paid to the delivery person using
     <ul class="payment_methods">
-       <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee.payment_method == "cash" %> Cash </li>
-       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee.payment_method == "visa" %> VISA - Cards can be swiped at the doorstep using squareup.com</li>
+       <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> VISA - Cards can be swiped at the doorstep using squareup.com</li>
     </ul>
   </fieldset>
 
