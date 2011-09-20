@@ -22,6 +22,7 @@ EveryoneDelivers::Application.routes.draw do
       end
   end
 
+  devise_for :users
   match '/' => 'dashboard#index'
   match '/:controller(/:action(/:id))'
 
