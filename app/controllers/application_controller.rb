@@ -1,3 +1,18 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  helper :all # include all helpers, all the time
+  helper_method :current_user, :logged_in?
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  before_filter :set_timezone
+
+  # Scrub sensitive parameters from your log
+  # filter_parameter_logging :password
+  include LoginSystem
+
+  # alert someone on exceptions
+  include ExceptionNotifiable
+
+  def set_timezone
+    # current_user.time_zone #=> 'London'
+    Time.zone = current_user.time_zone if current_user
+  end
 end
