@@ -1,8 +1,5 @@
 <!-- openid start -->
  <script>
-  function show_openid_field() {
-    Element.replace('openidlink', '<%= text_field_tag 'openid_identifier' %>');
-  }
 </script>
 
 <div class="header">
@@ -14,9 +11,7 @@
       <%= link_to h(current_user.username), current_user %> -
       <%= link_to 'logout', :controller => :session, :action => :logout %>
     <% else %>
-      <%= link_to image_tag('openid_small_logo.png', :title => "What is OpenID?"), "http://openid.net/" %> 
-      <%= link_to 'Login with OpenID', "#" , {:id => 'openidlink', 
-                                              :onclick => "show_openid_field()"} %>
+      <%= text_field_tag :email %>
     <% end %>
   <% end %>
   </div>
