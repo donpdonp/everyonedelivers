@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 gems/
 config/database.yml
+config/settings.yml

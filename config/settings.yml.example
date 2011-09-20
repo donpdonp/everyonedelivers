@@ -1,0 +1,19 @@
+---
+journal:
+  notification_email_address: ""
+bunny:
+  start:
+    user:
+    pass:
+    host:
+google:
+  adsense:
+    id: "UA-XXXXXX-X"
+  maps:
+    key: ""
+email:
+  domain: ""
+getsatisfaction:
+  company: ""
+exception_notifier:
+  email: ""
