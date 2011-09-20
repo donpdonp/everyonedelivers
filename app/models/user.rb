@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   after_create :journal_on_create
 
-  named_scope :clocked_ins, :conditions => "clocked_in is not null"
+  scope :clocked_ins, :conditions => "clocked_in is not null"
 
   has_friendly_id :username, :use_slug => true
 
