@@ -9,7 +9,7 @@
   <li>
     <%= link_to 'Location', user_path(user, {:tab => 'location'}) %>
   </li>
-  <% if logged_in? %>
+  <% if user_signed_in? %>
   <li>
     <%= link_to 'Billing', user_path(user, {:tab => 'billing'}) %>
   </li>

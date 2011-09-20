@@ -22,7 +22,7 @@ class DeliveriesController < ApplicationController
 
   def create
     delivery = Delivery.create({:listing_user => current_user})
-    session[:anonymous_delivery_id] = delivery.id unless logged_in?
+    session[:anonymous_delivery_id] = delivery.id unless user_signed_in?
     redirect_to edit_delivery_path(delivery)
   end
 

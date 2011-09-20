@@ -22,7 +22,7 @@ Deliver someone's item and earn the bounty!
     </div>
   </div>
   <br/>
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <% clockedin = current_user.clocked_in? %>
     <div style="background:<%= clockedin ? "Green" : "Blue" %>; float: left; text-align: center; margin-top: 5%">
       Clocked <br/>
@@ -41,7 +41,7 @@ Deliver someone's item and earn the bounty!
   <% end %>
 </div>
 
-<% if logged_in? %>
+<% if user_signed_in? %>
 <% else %>
   Login to create or accept a delivery.
 <% end %>
