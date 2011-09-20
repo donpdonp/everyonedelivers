@@ -31,7 +31,7 @@
    <%= render :partial => "deliveries/single", :locals => {:delivery => @featured_delivery} %>
  </div>
 
-  <% unless logged_in? %>
+  <% unless user_signed_in? %>
   <p id="openidprovidertable">
     <div class="openidproviderbox">
       Login with Google<br/>

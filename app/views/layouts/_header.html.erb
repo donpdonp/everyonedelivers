@@ -10,7 +10,7 @@
   <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <span id="geomsgaddress"></span>
     <span id="geomsgacctime"></span>
-    <% if logged_in? %>
+    <% if user_signed_in? %>
       <%= link_to h(current_user.username), current_user %> -
       <%= link_to 'logout', :controller => :session, :action => :logout %>
     <% else %>
