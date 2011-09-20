@@ -1,8 +1,7 @@
 <div class="menubar">
   <ul>
     <li> 
-    <%= link_to 'Request a delivery', 
-                  "javascript:$('new_delivery').submit()" %>
+      <%= link_to 'Request a delivery', deliveries_path, :method => :post %>
     </li>
     <li>
       <%= link_to 'List deliveries', deliveries_path %>
@@ -16,6 +15,6 @@
   <% end %>
 </div>
 
-<% form_for Delivery.new do |f| %>
+<%= form_for Delivery.new do |f| %>
 <% end %>
 
