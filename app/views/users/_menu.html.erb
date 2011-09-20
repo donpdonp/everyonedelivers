@@ -1,0 +1,18 @@
+<div id="usermenu">
+<ul>
+  <li>
+    <%= link_to 'Profile', user_path(user, {:tab => 'profile'}) %>
+  </li>
+  <li>
+    <%= link_to 'Deliveries', user_path(user, {:tab => 'deliveries'}) %>
+  </li>
+  <li>
+    <%= link_to 'Location', user_path(user, {:tab => 'location'}) %>
+  </li>
+  <% if logged_in? %>
+  <li>
+    <%= link_to 'Billing', user_path(user, {:tab => 'billing'}) %>
+  </li>
+  <% end %>
+</ul>
+</div>

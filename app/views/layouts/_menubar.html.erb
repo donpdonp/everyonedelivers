@@ -1,0 +1,21 @@
+<div class="menubar">
+  <ul>
+    <li> 
+    <%= link_to 'Request a delivery', 
+                  "javascript:$('new_delivery').submit()" %>
+    </li>
+    <li>
+      <%= link_to 'List deliveries', deliveries_path %>
+    </li>
+  </ul>
+
+  <% form_tag(deliveries_path, {:method => :get}) do %>
+  <span style="float:right">
+      Search <%= text_field_tag 'q'%> 
+  </span>
+  <% end %>
+</div>
+
+<% form_for Delivery.new do |f| %>
+<% end %>
+

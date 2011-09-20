@@ -1,0 +1,43 @@
+<div id="edituser">
+<h3>Edit User</h3>
+<% form_for :user, @user, :url => user_path(@user), :html => { :method => :put } do |f| %>
+  <fieldset>
+   <legend>Identity</legend>
+     <%= f.label :username, "username:" %>
+     <%= f.text_field :username, :size => 40 %> <br/>
+     <%= f.label :email, "email:" %>
+     <%= @user.errors.on(:email) %>
+     <%= f.text_field :email, :size => 40 %>
+  </fieldset>
+  <fieldset>
+   <legend>Internationalization</legend>
+     <%= f.label :time_zone, "time zone:" %>
+     <%= @user.errors.on(:time_zone) %>
+     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
+     <% if @user.time_zone.blank? %>
+      <script>
+        var now = new Date();
+        var zone = now.toString().substr(25,6)+":"+now.toString().substr(31,2);
+        for(var i=0, len=$('user_time_zone').options.length; i<len; i++) {
+          var zonetext = $('user_time_zone').options[i]
+          if(zone == zonetext.innerHTML.substr(1,9)) {
+            $('user_time_zone').selectedIndex = i;
+            break;
+          }
+        }
+      </script>
+     <% end %>
+  <br/>
+     <%= f.label :display_measurement, "units:" %>
+     <%= @user.errors.on(:display_measurement) %>
+     <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
+  </fieldset>
+  <fieldset>
+   <legend>Notification</legend>
+     <%= f.label :email_on_new_listing, "Send an email for each new delivery listing:" %>
+     <%= f.check_box :email_on_new_listing %>
+  </fieldset>
+  <br/>
+  <%= f.submit %>
+<% end %>
+</div>

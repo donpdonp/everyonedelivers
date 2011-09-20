@@ -1,0 +1,31 @@
+<!-- openid start -->
+ <script>
+  function show_openid_field() {
+    Element.replace('openidlink', '<%= text_field_tag 'openid_identifier' %>');
+  }
+</script>
+
+<div class="header">
+  <div id="sub">
+  <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
+    <span id="geomsgaddress"></span>
+    <span id="geomsgacctime"></span>
+    <% if logged_in? %>
+      <%= link_to h(current_user.username), current_user %> -
+      <%= link_to 'logout', :controller => :session, :action => :logout %>
+    <% else %>
+      <%= link_to image_tag('openid_small_logo.png', :title => "What is OpenID?"), "http://openid.net/" %> 
+      <%= link_to 'Login with OpenID', "#" , {:id => 'openidlink', 
+                                              :onclick => "show_openid_field()"} %>
+    <% end %>
+  <% end %>
+  </div>
+    <%= link_to image_tag('logo.png'), :root %>
+</div> 
+
+<script>
+/*
+if (navigator.geolocation) {  
+   $('geomsgaddress').innerHTML = "looking up geolocation";
+} */
+</script>

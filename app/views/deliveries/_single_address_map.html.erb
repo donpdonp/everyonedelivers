@@ -1,0 +1,15 @@
+    <div class="googlestaticmap" >
+      <div class="mapaddr">
+        <div class="map">
+          <%= image_tag location.gmap_static_html(100,100,14) %>
+        </div>
+        <div class="address">
+          <div class="direction"><%= direction %></div>
+          <div class="street">
+            <% location.street_parts.each do |part| %>
+              <%=h part %> <br/>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

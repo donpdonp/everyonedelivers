@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EveryoneDelivers</title>
+  <title>EveryoneDelivers <%= yield :title %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render :partial => "layouts/google_maps" %>
+  <%= yield :header %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <%# render :partial => "layouts/geode" %>
+    <%= render :partial => "layouts/header" %>
+    <% unless params[:controller] == "dashboard" %>
+      <%= render :partial => "layouts/menubar" %>
+    <% end %>
+    <%= render :partial => "layouts/flashmsg" %>
+    <div id="content">
+      <%= yield %>
+    </div>
+    <%= render :partial => "layouts/footer" %>
+    <%= render :partial => "layouts/google_analytics" %>
+    <%= render :partial => "layouts/getsatisfaction" %>
+  </div>
 </body>
 </html>

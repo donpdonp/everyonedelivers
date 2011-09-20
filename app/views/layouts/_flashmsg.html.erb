@@ -1,0 +1,17 @@
+<div class="flashmsgs">
+    <% if flash[:error] %>
+      <div style="background:red; color: white">
+      <%=h flash[:error] %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div style="background:yellow; color: blue">
+      <%=h flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:success] %>
+      <div style="background:green">
+      <%=h flash[:success] %>
+      </div>
+    <% end %>
+</div>

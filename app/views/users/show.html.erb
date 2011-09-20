@@ -1,0 +1,16 @@
+<% tab = params[:tab] || 'profile' %>
+<% content_for :title do %>
+User <%=h @user.username %>
+<% end %>
+<div id="usershow">
+<h3> 
+  User Profile for <%=h @user.username %> 
+  <% if @user.available_for_edit_by(current_user) %>
+   <%= link_to "edit", edit_user_path(@user) %>
+  <% end %>
+</h3>
+
+<%= render :partial => 'menu', :locals => {:user => @user} %>
+
+<%= render :partial => tab, :locals => {:user => @user} %>
+</div>

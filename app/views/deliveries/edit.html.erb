@@ -1,0 +1,102 @@
+<% content_for :header do %>
+  <%= javascript_include_tag "delivery_edit" %>
+<% end %>
+
+<% form_for(@delivery) do |f| %>
+  <p>
+    Editing Delivery #<%= @delivery.id %>
+  </p>
+
+  <fieldset>
+    <legend>Package</legend>
+    Description <%= text_field_tag "package[description]", 
+                    @delivery.package ? @delivery.package.description : "", :size => 50 %>
+
+   <!--
+    <br/>
+    Dimentions in inches Height: <%= text_field_tag "package[height]", 
+                                     (@delivery.package && @delivery.package.height_in_meters)? @delivery.package.height : "", 
+                                     :size => 5 %>
+    Width: <%= text_field_tag "package[width]", 
+               (@delivery.package && @delivery.package.width_in_meters) ? @delivery.package.width : "", :size => 5 %>
+    Depth: <%= text_field_tag "package[depth]", 
+               (@delivery.package && @delivery.package.depth_in_meters) ? @delivery.package.depth : "", :size => 5 %>
+    <br/>
+    Weight in ounces <%= text_field_tag "package[weight]", 
+                         (@delivery.package && @delivery.package.weight_in_grams)? @delivery.package.weight : "", :size => 5 %>
+    -->
+    <br/>
+    If delivery person will be purchasing item from a store, give the retail price. <br/>
+    Retail Price $<%= text_field_tag "package[display_price]", 
+                         @delivery.package ? @delivery.package.display_price : "", :size => 5 %>
+  </fieldset>
+  
+  <fieldset>
+    <legend>From Address</legend>
+    Example: Corner Market, 900 SW Main, Portland, Or <br/>
+    <span style="float:left">
+      <span id="from_address_label">Address</span> 
+      <%= text_field_tag "from[address]", 
+                @delivery.start_location ? @delivery.start_location.street : "",
+                :size => 50 %>
+    </span>
+    <input type="submit" value="Validate" 
+           style="float: left" id="from_address_validate">
+    <span id="from_address_msg"></span>
+    <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
+    <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
+  </fieldset>
+
+  <fieldset>
+    <legend>To Address</legend>
+    Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
+    <span style="float:left">
+      <span id="to_address_label">Address</span> 
+      <%= text_field_tag "to[address]", 
+                @delivery.end_location ? @delivery.end_location.street : "", 
+                :size => 50 %>
+    </span>
+    <input type="submit" value="Validate" 
+           style="float: left" id="to_address_validate">
+    <span id="to_address_msg"></span>
+    <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
+    <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
+  </fieldset>
+
+  <fieldset>
+    <legend> Time </legend>
+    Delivery should be completed by
+    <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.zone.now) %>
+<!--    if delivered within
+    <%= select_tag "fee[time_count]", options_for_select({"1" => "1","2" => "2",
+                                                          "3" => "3","4" => "4"}) %>
+    <%= select_tag "fee[time_unit]", options_for_select({"Hour(s)" => "hour"})%>
+-->
+  </fieldset>
+
+  <fieldset>
+    <legend> Delivery Bounty </legend>
+    Amount $<%= text_field_tag "fee[display_price]", 
+               @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
+  </fieldset>
+
+  <fieldset>
+    <legend> Payment </legend>
+    The retail price (if any) plus the bounty will be paid to the delivery person using
+    <ul class="payment_methods">
+       <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> VISA - Cards can be swiped at the doorstep using squareup.com</li>
+    </ul>
+  </fieldset>
+
+  <%= hidden_field_tag "delivery[start_end_distance]", ""%>
+
+  <br/>
+  <%= f.submit "Save Details" %>
+  <br/>
+<% end %>
+
+<span style="float:right">
+<%= button_to "Cancel Listing", delivery_path(@delivery), :confirm => "Are you sure?", :method => :delete %>
+</span>
+

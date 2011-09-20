@@ -1,0 +1,49 @@
+  <% if delivery.ok_to_display? %>
+  <div class="deliveryitem <%= delivery.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
+
+    <div class="packagename">
+      <div class="duedate">
+        <% if delivery.delivered? %>
+          Delivered by
+          <%= link_to h(delivery.delivering_user.username), delivery.delivering_user %>
+        <% else %>
+          <%= render :partial => "deliveries/single_due", :locals => {:fee => delivery.fee} %>
+        <% end %>
+      </div>
+      <%= link_to h(truncate(delivery.package.description, :length => 45)), delivery_path(delivery) %>
+    </div>
+
+    <div class="deliverypackageinfo">
+        <div class="bountytitle">
+          Bounty
+        </div>
+        <div class="deliveryfee">
+         $<%= delivery.fee.display_price %>
+        </div>
+    </div>
+
+    <div class="deliverypackagefromto" style="overflow:auto">
+      <div class="halffromto">
+      <%= render :partial => "deliveries/single_address_map", 
+                 :locals => {:location => delivery.start_location,
+                             :direction => "From:"} %>
+      </div>
+
+      <div class="halffromto">
+        <%= render :partial => "deliveries/single_address_map", 
+                   :locals => {:location => delivery.end_location,
+                               :direction => "To: "+ link_to(h(delivery.listing_user.username), 
+                                                             delivery.listing_user)} %>
+      </div>
+    </div>
+
+    <% if delivery.available_for_delivery_by(current_user) %>
+    <div>
+       <% form_for :delivery, delivery, :url => confirm_delivery_path(delivery), 
+                                        :html => {:method => :put} do |f| %>
+        <%= f.submit 'I can make this delivery' %>
+       <% end %>
+    </div>
+    <% end %>
+  </div>
+  <% end %>

@@ -1,0 +1,17 @@
+Username: <%=h @user.username %> <br/>
+Openid: <%= link_to @user.openid.url, @user.openid.url %> <br/>
+Email: 
+  <% if current_user == @user %> 
+   <%= @user.email %> 
+  <% else %>
+   Hidden
+  <% end %>
+  <br/>
+Time zone: <%= @user.time_zone %> <br/>
+Units: <%= @user.display_measurement %> <br/>
+<% if @user.email_on_new_listing %>
+  Send
+<% else %>
+  Do not send
+<% end %>
+an email when a new delivery is created. <br/>
