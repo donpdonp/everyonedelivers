@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_friendly_id :username, :use_slug => true
 
+  devise :token_authenticatable
+
   def self.create_with_defaults!(attributes)
     user = self.create!(attributes)
     user.update_attribute :display_measurement, "imperial"

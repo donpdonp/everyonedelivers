@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920183051) do
+ActiveRecord::Schema.define(:version => 20110920184328) do
 
   create_table "deliveries", :force => true do |t|
     t.integer  "fee_id"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110920183051) do
     t.datetime "clocked_in"
     t.boolean  "email_on_new_listing"
     t.string   "login_token"
+    t.string   "authentication_token"
   end
 
 end

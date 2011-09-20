@@ -18,6 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'devise'
 gem 'workflow'
 gem 'friendly_id'
 gem 'loofah'
