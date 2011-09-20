@@ -18,6 +18,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'workflow'
+gem 'friendly_id'
+gem 'loofah'
 
 # Use unicorn as the web server
 # gem 'unicorn'
