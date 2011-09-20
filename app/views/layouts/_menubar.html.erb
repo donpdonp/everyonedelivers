@@ -8,7 +8,7 @@
     </li>
   </ul>
 
-  <% form_tag(deliveries_path, {:method => :get}) do %>
+  <%= form_tag(deliveries_path, {:method => :get}) do %>
   <span style="float:right">
       Search <%= text_field_tag 'q'%> 
   </span>

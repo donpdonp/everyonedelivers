@@ -7,7 +7,7 @@
 
 <div class="header">
   <div id="sub">
-  <% form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
+  <%= form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <span id="geomsgaddress"></span>
     <span id="geomsgacctime"></span>
     <% if user_signed_in? %>

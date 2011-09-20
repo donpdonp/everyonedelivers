@@ -39,7 +39,7 @@
 
     <% if delivery.available_for_delivery_by(current_user) %>
     <div>
-       <% form_for :delivery, delivery, :url => confirm_delivery_path(delivery), 
+       <%= form_for :delivery, delivery, :url => confirm_delivery_path(delivery), 
                                         :html => {:method => :put} do |f| %>
         <%= f.submit 'I can make this delivery' %>
        <% end %>
