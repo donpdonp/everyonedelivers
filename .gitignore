@@ -6,3 +6,4 @@ tmp/
 gems/
 config/database.yml
 config/settings.yml
+.rspec
