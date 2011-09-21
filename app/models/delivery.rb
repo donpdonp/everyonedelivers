@@ -42,7 +42,7 @@ class Delivery < ActiveRecord::Base
 
   def email_notify_users
     User.all(:conditions => {:email_on_new_listing => true}).each do |user|
-      Mailer.deliver_delivery_updated(self, user)
+      DeliveryMailer.updated(self, user).deliver
     end
   end
 
