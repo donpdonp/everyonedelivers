@@ -3,7 +3,9 @@ class SessionController < ApplicationController
   def login_token
     user = User.find_by_authentication_token(params[:token])
     if user
+      logger.info("session: #{session.inspect}")
       sign_in user
+      logger.info("session after login: #{session.inspect}")
       if session[:anonymous_delivery_id]
         delivery = Delivery.find(session[:anonymous_delivery_id])
         session[:anonymous_delivery_id] = nil
