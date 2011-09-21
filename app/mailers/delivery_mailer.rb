@@ -1,5 +1,6 @@
 class DeliveryMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: SETTINGS["email"]["from"]
+  
   def updated(delivery, user)
     @delivery = delivery
     mail(:to => user.email, :subject => "Delivery ##{delivery.id} updated")
