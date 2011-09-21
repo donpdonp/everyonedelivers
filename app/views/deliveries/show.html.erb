@@ -33,7 +33,7 @@
     // use a closure to make map a local variable
     return function show_directions(result, status) {
       if(status == "NOT_FOUND") {
-        $('gmaperror').innerHTML = "Route not found";
+        $('gmaperror').html("Route not found");
       }
       if(status == "OK") {
         renderer = new google.maps.DirectionsRenderer({directions: result,
