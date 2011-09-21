@@ -1,18 +1,18 @@
 <div id="edituser">
 <h3>Edit User</h3>
-<%= form_for :user, @user, :url => user_path(@user), :html => { :method => :put } do |f| %>
+<%= form_for @user do |f| %>
   <fieldset>
    <legend>Identity</legend>
      <%= f.label :username, "username:" %>
      <%= f.text_field :username, :size => 40 %> <br/>
      <%= f.label :email, "email:" %>
-     <%= @user.errors.on(:email) %>
+     <%= @user.errors[:email].join %>
      <%= f.text_field :email, :size => 40 %>
   </fieldset>
   <fieldset>
    <legend>Internationalization</legend>
      <%= f.label :time_zone, "time zone:" %>
-     <%= @user.errors.on(:time_zone) %>
+     <%= @user.errors[:time_zone].join %>
      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, :include_blank => true %>
      <% if @user.time_zone.blank? %>
       <script>
@@ -29,7 +29,7 @@
      <% end %>
   <br/>
      <%= f.label :display_measurement, "units:" %>
-     <%= @user.errors.on(:display_measurement) %>
+     <%= @user.errors[:display_measurement].join %>
      <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
   </fieldset>
   <fieldset>
