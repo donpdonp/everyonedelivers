@@ -11,7 +11,8 @@ class GitHubController < ApplicationController
     logger.info("github commit: #{cmd}")
     out = `/bin/sh #{cmd}`
     logger.info("github pull output: #{out}")
-    Journal.create({:note => "Website updated"})
+    Journal.create({:note => "Website code updated to #{gparams["after"]}"})
+    render :nothing => true
   end
 
   # so we can mock this in a test
