@@ -26,14 +26,14 @@
       <div class="halffromto">
       <%= render :partial => "deliveries/single_address_map", 
                  :locals => {:location => delivery.start_location,
-                             :direction => "From:"} %>
+                             :direction => "From:", :to => nil} %>
       </div>
 
       <div class="halffromto">
         <%= render :partial => "deliveries/single_address_map", 
                    :locals => {:location => delivery.end_location,
-                               :direction => "To: "+ link_to(h(delivery.listing_user.username), 
-                                                             delivery.listing_user)} %>
+                               :direction => "To: ",
+                               :to => delivery.listing_user} %>
       </div>
     </div>
 
