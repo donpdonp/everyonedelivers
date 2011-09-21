@@ -7,7 +7,7 @@ class SessionController < ApplicationController
       if session[:anonymous_delivery_id]
         delivery = Delivery.find(session[:anonymous_delivery_id])
         session[:anonymous_delivery_id] = nil
-        redirect_to delivery
+        redirect_to edit_delivery_path(delivery)
       else
         redirect_to :deliveries
       end
