@@ -4,7 +4,7 @@ class SessionController < ApplicationController
     user = User.find_by_authentication_token(params[:token])
     if user
       sign_in user
-      redirect_to :root
+      redirect_to :deliveries
     else
       flash[:error] = "The login link is not valid. Please login with your email address to get a new link."
       redirect_to :root
