@@ -32,6 +32,7 @@ class DeliveriesController < ApplicationController
 
   def edit
     @delivery = Delivery.find(params[:id])
+    logger.info("params[:id] = #{params[:id].inspect}  session = #{session[:anonymous_delivery_id].inspect}")
     unless @delivery && ((params[:id].to_i == session[:anonymous_delivery_id]) || @delivery.available_for_edit_by(current_user))
       flash[:error] = "Not allowed to edit delivery #{params[:id]}"
       redirect_to root_path
