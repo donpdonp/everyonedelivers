@@ -34,7 +34,7 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
     logger.info("params[:id] = #{params[:id].inspect}  session = #{session.inspect}")
     if @delivery 
-      if ((params[:id].to_i == session[:anonymous_delivery_id])
+      if params[:id].to_i == session[:anonymous_delivery_id]
         session[:anonymous_delivery_id] = nil
       elsif @delivery.available_for_edit_by(current_user)
       else
