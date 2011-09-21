@@ -17,11 +17,15 @@
      <% if @user.time_zone.blank? %>
       <script>
         var now = new Date();
-        var zone = now.toString().substr(25,6)+":"+now.toString().substr(31,2);
-        for(var i=0, len=$('user_time_zone').options.length; i<len; i++) {
-          var zonetext = $('user_time_zone').options[i]
-          if(zone == zonetext.innerHTML.substr(1,9)) {
-            $('user_time_zone').selectedIndex = i;
+        var nows = now.toString();
+        var dst = <%= Time.now.dst? %>
+        var offset_hour = nows.substr(28,3)
+        var zone = nows.substr(25,3)+offset_hour+":"+nows.substr(31,2);
+        var options = $('#user_time_zone').get(0).options
+        for(var i=0, len=options.length; i<len; i++) {
+          var zonetext = options[i].text
+          if(zone == zonetext.substr(1,9)) {
+            $('#user_time_zone').val(zonetext.substr(12,40));
             break;
           }
         }
@@ -30,7 +34,7 @@
   <br/>
      <%= f.label :display_measurement, "units:" %>
      <%= @user.errors[:display_measurement].join %>
-     <%= f.select :display_measurement, [["",""], ["Metric (grams/meters)","metric"],["Imperial (pounds/inches)","imperial"]] %>
+     <%= f.select :display_measurement, [["Imperial (pounds/inches)","imperial"],["Metric (grams/meters)","metric"]] %>
   </fieldset>
   <fieldset>
    <legend>Notification</legend>
