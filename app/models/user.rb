@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :openidentities, :dependent => :destroy
   has_many :sightings
   has_many :locations, :through => :sightings
-  validates_presence_of :username
+  validates_presence_of :username, :authentication_token
   validates_uniqueness_of :username
 
   after_create :journal_on_create

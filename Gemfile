@@ -22,6 +22,7 @@ gem 'devise'
 gem 'workflow'
 gem 'friendly_id'
 gem 'loofah'
+gem 'uuidtools'
 
 # Use unicorn as the web server
 # gem 'unicorn'
