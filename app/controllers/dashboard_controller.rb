@@ -8,6 +8,6 @@ class DashboardController < ApplicationController
   end
 
   def ready_delivery
-    redirect_to :action => :start_delivery unless logged_in?
+    redirect_to :action => :start_delivery unless user_signed_in?
   end
 end

@@ -2,14 +2,16 @@ class User < ActiveRecord::Base
   has_many :openidentities, :dependent => :destroy
   has_many :sightings
   has_many :locations, :through => :sightings
-  validates_presence_of :username
+  validates_presence_of :username, :authentication_token
   validates_uniqueness_of :username
 
   after_create :journal_on_create
 
-  named_scope :clocked_ins, :conditions => "clocked_in is not null"
+  scope :clocked_ins, :conditions => "clocked_in is not null"
 
   has_friendly_id :username, :use_slug => true
+
+  devise :token_authenticatable
 
   def self.create_with_defaults!(attributes)
     user = self.create!(attributes)

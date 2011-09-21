@@ -1,6 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
+require 'spec_helper'
 
-describe "/deliveries/show" do
+describe "/deliveries/show.html.erb" do
   
   it "should render a delivery in the building state" do
     # Setup an empty delivery

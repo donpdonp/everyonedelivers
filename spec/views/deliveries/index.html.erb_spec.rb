@@ -1,6 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
+require 'spec_helper'
 
-describe "/dashboard/index" do
+describe "/dashboard/index.html.erb" do
   before(:each) do
   end
 

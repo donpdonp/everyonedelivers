@@ -26,8 +26,8 @@ class Delivery < ActiveRecord::Base
     state :delivered
   end
 
-  named_scope :buildings, :conditions => { :workflow_state => "building" } 
-  named_scope :waitings, :conditions => { :workflow_state => "waiting" } 
+  scope :buildings, :conditions => { :workflow_state => "building" } 
+  scope :waitings, :conditions => { :workflow_state => "waiting" } 
 
   def check_for_completeness
     if building? && ok_to_display?

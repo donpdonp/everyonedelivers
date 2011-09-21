@@ -4,7 +4,10 @@
           <%= image_tag location.gmap_static_html(100,100,14) %>
         </div>
         <div class="address">
-          <div class="direction"><%= direction %></div>
+          <div class="direction"><%= direction %> 
+            <% if to %>
+              <%= link_to(to.username, to) %>
+            <% end %></div>
           <div class="street">
             <% location.street_parts.each do |part| %>
               <%=h part %> <br/>
