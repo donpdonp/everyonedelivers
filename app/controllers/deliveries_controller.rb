@@ -36,7 +36,7 @@ class DeliveriesController < ApplicationController
     if @delivery 
       if ((params[:id].to_i == session[:anonymous_delivery_id])
         session[:anonymous_delivery_id] = nil
-      elsif @delivery.available_for_edit_by(current_user))
+      elsif @delivery.available_for_edit_by(current_user)
       else
         flash[:error] = "Not allowed to edit delivery #{params[:id]}"
         redirect_to root_path
