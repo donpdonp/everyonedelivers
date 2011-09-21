@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "system@#{SETTINGS["email"]["domain"]}"
+  default from: SETTINGS["email"]["from"]
 
   def login_token_email(user)
     @user = user
