@@ -1,10 +1,10 @@
 function formvalidation(event) {
-  if(!$('from_latitude').value.blank()) {
-    if(!$('to_latitude').value.blank()) {
+  if($('#from_latitude').val().length > 0) {
+    if($('#to_latitude').val().length > 0) {
       // Both points are verified. compute the distance
-      p1 = new google.maps.LatLng($('from_latitude').value,$('from_longitude').value);
-      p2 = new google.maps.LatLng($('to_latitude').value,$('to_longitude').value);
-      $('delivery_start_end_distance').value = ""+distanceBetweenPoints(p1,p2);
+      p1 = new google.maps.LatLng($('#from_latitude').val(),$('#from_longitude').val());
+      p2 = new google.maps.LatLng($('#to_latitude').val(),$('#to_longitude').val());
+      $('#delivery_start_end_distance').val(""+distanceBetweenPoints(p1,p2));
       return;
     } else {
       invalidate_to();
@@ -14,45 +14,46 @@ function formvalidation(event) {
     invalidate_from();
     alert("Please validate the From address.");
   }
-  event.stop();
+  return false;
 }
 
 function invalidate_from() {
-  $('from_latitude').value = "";
-  $('from_longitude').value = "";
-  $('from_address_msg').innerHTML = "Validation needed.";
-  $('from_address_label').addClassName('error');
+  $('#from_latitude').val("");
+  $('#from_longitude').val("");
+  $('#from_address_msg').html("Validation needed.");
+  $('#from_address_label').addClass('error');
 }
 
 function invalidate_to() {
-  $('to_latitude').value = "";
-  $('to_longitude').value = "";
-  $('to_address_msg').innerHTML = "Validation needed.";
-  $('to_address_label').addClassName('error');
+  $('#to_latitude').val("");
+  $('#to_longitude').val("");
+  $('#to_address_msg').html("Validation needed.")
+  $('#to_address_label').addClass('error');
 }
 
 function validate_from(latlng) {
-  $('from_address_msg').innerHTML = "Address OK. "+static_map(latlng,150,70,15);
-  $('from_address_label').removeClassName('error');
+  $('#from_address_msg').html("Address OK. "+static_map(latlng,150,70,15));
+  $('#from_address_label').removeClass('error');
 }
 
 function validate_to(latlng) {
-  $('to_address_msg').innerHTML = "Address OK. "+static_map(latlng,150,70,15);
-  $('to_address_label').removeClassName('error');
+  $('#to_address_msg').html("Address OK. "+static_map(latlng,150,70,15));
+  $('#to_address_label').removeClass('error');
 }
 
 function prevalidate_from() {
-  var lat = $('from_latitude').value;
-  var lng = $('from_longitude').value;
-  if(!lat.blank()) {
-    validate_from();
+  var lat = $('#from_latitude').val();
+  var lng = $('#from_longitude').val();
+  if(lat.length > 0) {
+    var latlng = new google.maps.LatLng(lat,lng);
+    validate_from(latlng);
   }
 }
 
 function prevalidate_to() {
-  var lat = $('to_latitude').value;
-  var lng = $('to_longitude').value;
-  if(!lat.blank()) {
+  var lat = $('#to_latitude').val();
+  var lng = $('#to_longitude').val();
+  if(lat.length > 0) {
     var latlng = new google.maps.LatLng(lat,lng);
     validate_to(latlng);
   }
@@ -61,8 +62,8 @@ function prevalidate_to() {
 function geocallback_from(results, status) {
   if(status == "OK") {
     var gLatLng = results[0].geometry.location;
-    $('from_latitude').value = ""+gLatLng.lat();
-    $('from_longitude').value = ""+gLatLng.lng();
+    $('#from_latitude').val(""+gLatLng.lat());
+    $('#from_longitude').val(""+gLatLng.lng());
     validate_from(gLatLng);
   } else {
     invalidate_from();
@@ -72,8 +73,8 @@ function geocallback_from(results, status) {
 function geocallback_to(results, status) {
   if(status == "OK") {
     var gLatLng = results[0].geometry.location;
-    $('to_latitude').value = ""+gLatLng.lat();
-    $('to_longitude').value = ""+gLatLng.lng();
+    $('#to_latitude').val(""+gLatLng.lat());
+    $('#to_longitude').val(""+gLatLng.lng());
     validate_to(gLatLng);
   } else {
     invalidate_to();
@@ -81,21 +82,25 @@ function geocallback_to(results, status) {
 }
 
 function static_map(gLatLng, h, w, zoom) {
-  return "<img src=\"http://maps.google.com/staticmap?center="+gLatLng.lat()+","+gLatLng.lng()+"&zoom="+zoom+"&size="+h+"x"+w+"&sensor=false&markers="+gLatLng.lat()+","+gLatLng.lng()+"\">";
+  var map_url = "<img src=\"http://maps.google.com/staticmap?center="+
+        gLatLng.lat()+","+gLatLng.lng()+"&zoom="+zoom+"&size="+h+"x"+w+
+        "&sensor=false&markers="+gLatLng.lat()+","+gLatLng.lng()+"\">";
+  console.log(map_url)
+  return map_url;
 }
 
 function address_from_validate_click(event) {
   var geocoder = new google.maps.Geocoder();
-  var request = { address : $('from_address').value }
+  var request = { address : $('#from_address').val() }
   geocoder.geocode(request, geocallback_from); 
-  event.stop();
+  event.preventDefault();
 }
 
 function address_to_validate_click(event) {
   var geocoder = new google.maps.Geocoder();
-  var request = { address : $('to_address').value }
+  var request = { address : $('#to_address').val() }
   geocoder.geocode(request, geocallback_to); 
-  event.stop();
+  event.preventDefault();
 }
 
 function distanceBetweenPoints(p1, p2) {
@@ -116,13 +121,13 @@ function distanceBetweenPoints(p1, p2) {
 
 
 function setup() {
-  $('from_address_validate').observe('click', address_from_validate_click);
-  $('to_address_validate').observe('click', address_to_validate_click);
-  $$('.edit_delivery')[0].observe('submit', formvalidation);
-  $('from_address').observe('change', invalidate_from);
-  $('to_address').observe('change', invalidate_to);
+  $('#from_address_validate').click(address_from_validate_click);
+  $('#to_address_validate').click(address_to_validate_click);
+  $('.edit_delivery').submit(formvalidation);
+  $('#from_address').change(invalidate_from);
+  $('#to_address').change(invalidate_to);
   prevalidate_from(); 
   prevalidate_to();
 }
 
-document.observe("dom:loaded", setup); 
+

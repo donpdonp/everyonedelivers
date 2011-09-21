@@ -1,5 +1,7 @@
 <% content_for :header do %>
-  <%= javascript_include_tag "delivery_edit" %>
+  <script>
+    $(setup); 
+  </script>
 <% end %>
 
 <%= form_for(@delivery) do |f| %>
