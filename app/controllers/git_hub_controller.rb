@@ -7,7 +7,7 @@ class GitHubController < ApplicationController
   def commit
     gparams = JSON.parse(params["payload"])
     logger.info("github params: #{gparams}")
-    cmd = RAILS_ROOT+"/github-pull.sh"
+    cmd = Rails.root+"github-pull.sh"
     logger.info("github commit: #{cmd}")
     out = `/bin/sh #{cmd}`
     logger.info("github pull output: #{out}")
