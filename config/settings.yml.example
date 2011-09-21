@@ -13,6 +13,7 @@ google:
     key: ""
 email:
   domain: ""
+  from: ""
 getsatisfaction:
   company: ""
 exception_notifier:
