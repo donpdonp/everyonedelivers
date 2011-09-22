@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe UsersController do
 
   before(:each) do 
+    controller.stub!(:authenticate_user!)
     controller.stub!(:set_timezone)
     @user = mock_model(User)
     controller.stub!(:current_user).and_return(@user)

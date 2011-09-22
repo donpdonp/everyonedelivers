@@ -133,6 +133,10 @@ GEM
     uuidtools (2.1.2)
     warden (1.0.5)
       rack (>= 1.0)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
     workflow (0.8.1)
 
 PLATFORMS
@@ -151,4 +155,5 @@ DEPENDENCIES
   turn
   uglifier
   uuidtools
+  webrat
   workflow
