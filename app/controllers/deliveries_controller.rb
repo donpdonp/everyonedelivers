@@ -51,7 +51,7 @@ class DeliveriesController < ApplicationController
         end
       end
     else
-      if params[:id].to_i == session[:anonymous_delivery_id]
+      if @delivery.id == session[:anonymous_delivery_id]
         logger.info("editing under anonymous_delivery_id")
       else
         flash[:error] = "Login to edit a delivery request."
