@@ -34,10 +34,22 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
     logger.info("params[:id] = #{params[:id].inspect}  session = #{session.inspect}")
     if @delivery 
-      if params[:id].to_i == session[:anonymous_delivery_id]
-        session[:anonymous_delivery_id] = nil
-      elsif @delivery.available_for_edit_by(current_user)
+      if user_signed_in?
+        if params[:id].to_i == session[:anonymous_delivery_id]
+          logger.info("assigning formerly anonymous listing")
+          @delivery.listing_user = current_user
+          @delivery.save!
+        else
+          flash[:error] = "Delivery ##{@delivery.id}was not started with this browser."
+          redirect_to root_path          
+        end
       else
+        if params[:id].to_i == session[:anonymous_delivery_id]
+          logger.info("editing under anonymous_delivery_id")
+        end
+      end
+
+      unless @delivery.available_for_edit_by(current_user)
         flash[:error] = "Not allowed to edit delivery #{params[:id]}"
         redirect_to root_path
       end
@@ -50,6 +62,7 @@ class DeliveriesController < ApplicationController
   def update
     # update form is also a creation form for the dependent models
     delivery = Delivery.find(params[:id])
+    logger.info("#{delivery} #{params[:id].inspect} #{session[:anonymous_delivery_id].inspect}")
     unless delivery && ((params[:id].to_i == session[:anonymous_delivery_id]) || delivery.available_for_edit_by(current_user))
       flash[:error] = "Not allowed to edit delivery #{params[:id]}"
       redirect_to root_path
