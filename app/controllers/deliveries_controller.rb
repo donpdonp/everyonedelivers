@@ -4,7 +4,10 @@ class DeliveriesController < ApplicationController
   def index
     @delivery_groups = [ ]
     if params[:q]
-      one_month = Delivery.all(:conditions => ["to_tsvector('english', packages.description) @@ to_tsquery('english', ?)", "living"], :include => :package) # Postgresql specific
+      # postgresql full-text search
+      one_month = Delivery.all(:conditions => ["to_tsvector('english', packages.description) "+
+                                               "@@ to_tsquery('english', ?)", params[:q]], :include => :package)
+      flash[:notice] = "Search results for \"#{params[:q]}\""                                               
     else
       one_month = Delivery.waitings.find_at_most_hours_old(24*31)
     end
