@@ -61,14 +61,13 @@
 <tr>
  <td valign="top">
 <p>
-Listed by: <% if @delivery.listing_user %>
-             <%= @delivery.listing_user.username %> 
-           <% end %>
+Listed by: <%= link_to_user @delivery.listing_user %> 
+
 <br/>
 Listed at: <%= @delivery.created_at.strftime("%l:%M%P %Z %d-%b-%Y") %>  <br/>
 Status: 
 <% if @delivery.delivering_user %>
-  Delivery accepted by: <%= @delivery.delivering_user.username %>
+  Delivery accepted by: <%= link_to_user @delivery.delivering_user %>
 <% else %>
   <% if @delivery.waiting? %>
     Available for delivery.
