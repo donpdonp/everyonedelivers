@@ -58,6 +58,7 @@ form.edit_delivery {
 
 .container a:hover {
   color: #FF7A38;
+  text-decoration: underline;
 }
 
 .dark {
