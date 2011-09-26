@@ -35,24 +35,31 @@ class DeliveriesController < ApplicationController
     logger.info("params[:id] = #{params[:id].inspect}  session = #{session.inspect}")
     if @delivery 
       if user_signed_in?
-        if params[:id].to_i == session[:anonymous_delivery_id]
-          logger.info("assigning formerly anonymous listing")
-          @delivery.listing_user = current_user
-          @delivery.save!
+        if @delivery.listing_user.nil?
+          if params[:id].to_i == session[:anonymous_delivery_id]
+            session[:anonymous_delivery_id] = nil
+            logger.info("assigning formerly anonymous listing")
+            @delivery.listing_user = current_user
+            @delivery.save!
+          else
+            flash[:error] = "Delivery ##{@delivery.id} was not started with this browser."
+            redirect_to root_path
+          end
         else
-          flash[:error] = "Delivery ##{@delivery.id}was not started with this browser."
-          redirect_to root_path          
+          unless @delivery.available_for_edit_by(current_user)
+            flash[:error] = "Not allowed to edit delivery #{params[:id]}"
+            redirect_to root_path
+          end
         end
       else
         if params[:id].to_i == session[:anonymous_delivery_id]
           logger.info("editing under anonymous_delivery_id")
+        else
+          flash[:error] = "Login to edit a delivery request."
+          redirect_to root_path          
         end
       end
 
-      unless @delivery.available_for_edit_by(current_user)
-        flash[:error] = "Not allowed to edit delivery #{params[:id]}"
-        redirect_to root_path
-      end
     else 
       flash[:error] = "Delivery #{params[:id]} not found"
       redirect_to :deliveries
