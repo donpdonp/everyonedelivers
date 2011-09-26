@@ -46,7 +46,7 @@ describe DeliveriesController do
         @delivery.should_receive(:package=)
         @delivery.should_receive(:start_location=)
         @delivery.should_receive(:end_location=)
-        @delivery.should_receive(:save!)
+        @delivery.should_receive(:save).and_return(true)
         @delivery.should_receive(:apply_form_attributes)
         Delivery.should_receive(:find).and_return(@delivery)
       end
@@ -68,7 +68,7 @@ describe DeliveriesController do
 
     it "should destroy a delivery" do
       delivery = mock_model(Delivery)
-      delivery.should_receive(:destroy!)
+      delivery.should_receive(:destroy)
       Delivery.should_receive(:find).and_return(delivery)
       delete :destroy
       response.should redirect_to(deliveries_path)
@@ -117,7 +117,7 @@ describe DeliveriesController do
       delivery.should_receive(:package=)
       delivery.should_receive(:start_location=)
       delivery.should_receive(:end_location=)
-      delivery.should_receive(:save!)
+      delivery.should_receive(:save).and_return(true)
       delivery.should_receive(:apply_form_attributes)
       delivery.should_receive(:listing_user).and_return(nil)
       Delivery.should_receive(:find).and_return(delivery)

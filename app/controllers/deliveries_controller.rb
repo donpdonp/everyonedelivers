@@ -89,12 +89,14 @@ class DeliveriesController < ApplicationController
     location.save!
     @delivery.end_location = location
 
-    @delivery.save!
-
-    if @delivery.listing_user
-      redirect_to delivery_path(@delivery)
+    if @delivery.save
+      if @delivery.listing_user
+        redirect_to delivery_path(@delivery)
+      else
+        redirect_to :controller => :dashboard, :action => :start_delivery
+      end
     else
-      redirect_to :controller => :dashboard, :action => :start_delivery
+      redirect_to edit_delivery_path(@delivery)
     end
   end
 
