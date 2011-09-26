@@ -2,4 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  header:
+    login: "Login"
+    logout: "logout"
+    email_login_placeholder: "Login with email address"
