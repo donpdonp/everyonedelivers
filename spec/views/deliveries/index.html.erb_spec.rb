@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-describe "/dashboard/index.html.erb" do
+describe "/deliveries/index.html.erb" do
   before(:each) do
   end
 
   it "should render when someone is logged in" do
-    template.stub!(:logged_in?).and_return(true)
-    assigns[:delivery_groups] = []
+    view.should_receive(:user_signed_in?).twice.and_return(true)
     user = mock_model(User)
-    assigns[:clocked_ins] = [user]
+    assign(:clocked_ins,[user])
     user.should_receive(:clocked_in?).and_return(false)
     user.should_receive(:username).and_return("bob")
-    template.should_receive(:current_user).twice.and_return(user)
-    render 'deliveries/index'
-    response.should have_tag('p')
+    assign(:delivery_groups, [])
+    view.should_receive(:current_user).twice.and_return(user)
+    render
+    rendered.should have_selector('p')
   end
 
 end

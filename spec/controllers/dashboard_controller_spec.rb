@@ -8,7 +8,7 @@ describe DashboardController do
 
   it "should display the splash" do
     get :index
-    response.should render_template("dashboard/index.html.erb")
+    response.should render_template("dashboard/index")
   end
 
 end
