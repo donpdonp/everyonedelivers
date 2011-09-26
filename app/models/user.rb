@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_many :openidentities, :dependent => :destroy
   has_many :sightings
   has_many :locations, :through => :sightings
-  validates_presence_of :username, :authentication_token
-  validates_uniqueness_of :username
+  validates_presence_of :username, :email, :authentication_token
+  validates_uniqueness_of :username, :email
 
   after_create :journal_on_create
 
@@ -14,9 +14,14 @@ class User < ActiveRecord::Base
   devise :token_authenticatable
 
   def self.create_with_defaults!(attributes)
-    user = self.create!(attributes)
-    user.update_attribute :display_measurement, "imperial"
-    user.update_attribute :email_on_new_listing, false
+    user = User.new(attributes)
+    if attributes[:username].nil?
+      user.username = pick_username(user.email)
+    end
+    user.display_measurement = "imperial"
+    user.email_on_new_listing = false
+    user.authentication_token = UUIDTools::UUID.random_create.to_s
+    user.save!
     user
   end
 
@@ -93,5 +98,15 @@ class User < ActiveRecord::Base
     end
     deliveries = Delivery.all(:conditions => conditions, :order => "created_at desc, delivering_user_id asc")
     deliveries.select{|d| d.ok_to_display? }
+  end
+
+  def self.pick_username(email)
+    username = email.split('@')[0]
+    if User.find_by_username(username)
+      logger.info("found! addin number")
+      username += (rand(89999)+10000).to_s
+    end
+    logger.info("picked: #{username}")
+    username
   end
 end

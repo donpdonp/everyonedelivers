@@ -19,16 +19,21 @@ class SessionController < ApplicationController
   end
 
   def login
+    # email validation
+    unless params[:email][/.@./]
+      flash[:error] = "Please use an email address."
+      redirect_to :root
+      return      
+    end
     user = User.find_by_email(params[:email])
     unless user
       logger.info "creating user #{params}"
-      user = User.create!(:username => params[:email], :email => params[:email],
-                          :authentication_token => UUIDTools::UUID.random_create.to_s)
+      user = User.create_with_defaults!(:email => params[:email])
     end
     logger.info "sending login email to #{user.email}"
     UserMailer.login_token_email(user).deliver
-    flash[:notice] = "Login email sent to #{user.email}."
-    redirect_to :root
+    flash[:notice] = "Login instructions sent to #{user.email}."
+    redirect_to :deliveries
   end
 
   def logout
