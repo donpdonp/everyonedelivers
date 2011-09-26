@@ -19,10 +19,6 @@ class DeliveriesController < ApplicationController
     #@delivery_groups << ["more than four hours old", many_hours] if many_hours.size > 0
 
     @clocked_ins = User.clocked_ins
-
-    respond_to do |format|
-      format.html
-    end
   end
 
   def create
