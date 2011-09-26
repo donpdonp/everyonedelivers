@@ -37,6 +37,7 @@ class DeliveriesController < ApplicationController
       if user_signed_in?
         if @delivery.listing_user.nil?
           if params[:id].to_i == session[:anonymous_delivery_id]
+            flash[:notice] = "Thank you for logging in. Please review the delivery before saving."
             session[:anonymous_delivery_id] = nil
             logger.info("assigning formerly anonymous listing")
             @delivery.listing_user = current_user
