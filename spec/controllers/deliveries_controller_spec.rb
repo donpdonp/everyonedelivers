@@ -68,7 +68,7 @@ describe DeliveriesController do
 
     it "should destroy a delivery" do
       delivery = mock_model(Delivery)
-      delivery.should_receive(:destroy)
+      delivery.should_receive(:destroy!)
       Delivery.should_receive(:find).and_return(delivery)
       delete :destroy
       response.should redirect_to(deliveries_path)
@@ -86,7 +86,7 @@ describe DeliveriesController do
       delivery.should_receive(:accept!)
       delivery.should_receive(:listing_user).and_return(bob)
       Mailer.should_receive(:deliver_delivery_accepted).with(delivery)
-      Delivery.should_receive(:find).with(delivery.id).and_return(delivery)
+      Delivery.should_receive(:find).with(delivery.id.to_s).and_return(delivery)
       put :accept, {:id => delivery.id, "commit"=>"Yes I accept"}
       response.should redirect_to(delivery_path(delivery))
     end
