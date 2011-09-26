@@ -32,7 +32,7 @@ describe "/deliveries/show.html.erb" do
     delivery.should_receive(:created_at).and_return(Time.now)
     user = mock_model(User)
     user.should_receive(:username).and_return("Bob")
-    delivery.should_receive(:listing_user).twice.and_return(user)
+    delivery.should_receive(:listing_user).and_return(user)
     delivery.should_receive(:package).twice
     delivery.should_receive(:start_location)
     delivery.should_receive(:start_location)
