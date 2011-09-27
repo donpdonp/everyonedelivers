@@ -36,14 +36,11 @@
   <fieldset>
     <legend>From Address</legend>
     Example: Corner Market, 900 SW Main, Portland, Or <br/>
-    <span style="float:left">
       <span id="from_address_label">Address</span> 
       <%= text_field_tag "from[address]", 
                 @delivery.start_location ? @delivery.start_location.street : "",
-                :size => 50 %>
-    </span>
-    <input type="submit" value="Validate" 
-           style="float: left" id="from_address_validate">
+                :size => 40 %>
+    <input type="submit" value="Validate" id="from_address_validate">
     <span id="from_address_msg"></span>
     <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
     <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
@@ -52,14 +49,11 @@
   <fieldset>
     <legend>To Address</legend>
     Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
-    <span style="float:left">
       <span id="to_address_label">Address</span> 
       <%= text_field_tag "to[address]", 
                 @delivery.end_location ? @delivery.end_location.street : "", 
-                :size => 50 %>
-    </span>
-    <input type="submit" value="Validate" 
-           style="float: left" id="to_address_validate">
+                :size => 40 %>
+    <input type="submit" value="Validate"  id="to_address_validate">
     <span id="to_address_msg"></span>
     <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
     <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
@@ -78,7 +72,7 @@
 
   <fieldset>
     <legend> Delivery Bounty </legend>
-    Amount $<%= text_field_tag "fee[display_price]", 
+    Bounty Amount $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
   </fieldset>
 
@@ -92,7 +86,7 @@
     <% end %>
     <ul class="payment_methods">
        <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
-       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> VISA - Cards can be swiped at the doorstep using squareup.com</li>
+       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> <span title="Anyone can take visa using squareup.com">VISA</a> </li>
     </ul>
   </fieldset>
 
