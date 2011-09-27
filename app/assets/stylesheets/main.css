@@ -283,9 +283,20 @@ div.header #sub {
   color: green;
 }
 
+.deliverydetail {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .deliverydetail h4 {
   margin-top: 0px;
   margin-bottom: 0px;
+  text-align: center;
+}
+
+.deliverydetail .addressparts h4 {
+  text-align: left;
 }
 
 .deliverydetail p {
@@ -298,6 +309,17 @@ div.header #sub {
   font-weight: bold;
   background: #689ca7;
   color: white;
+  text-align: center;
+}
+
+.deliverydetail .map {
+  float:left; 
+  margin-right: 40px
+}
+
+.deliverydetail .info {
+  float:left; 
+  margin-right: 2em;
 }
 
 .googlestaticmap {

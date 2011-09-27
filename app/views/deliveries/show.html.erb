@@ -48,7 +48,9 @@
 <% end %>
 
 <div class="deliverydetail">
-  <h3 class="packagename">Delivery #<%= @delivery.id %> 
+  
+  <h3 class="packagename">
+   Delivery #<%= @delivery.id %> 
    <% if @delivery.package %>
      <%=h @delivery.package.description %>
    <% end %>
@@ -57,102 +59,118 @@
    <% end %>
   </h3>
 
-<table>
-<tr>
- <td valign="top">
-<p>
-Listed by: <%= link_to_user @delivery.listing_user %> 
+  <div class="info">
+    <h4>Status</h4>
+    <p>
+    Listed by: <%= link_to_user @delivery.listing_user %> 
 
-<br/>
-Listed at: <%= @delivery.created_at.strftime("%l:%M%P %Z %d-%b-%Y") %>  <br/>
-Status: 
-<% if @delivery.delivering_user %>
-  Delivery accepted by: <%= link_to_user @delivery.delivering_user %>
-<% else %>
-  <% if @delivery.waiting? %>
-    Available for delivery.
-    <% if @delivery.available_for_delivery_by(current_user) %>
-       <%= form_for :delivery, @delivery, :url => confirm_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
-        <%= f.submit 'I can make this delivery' %>
-       <% end %>
-    <% end %>
-  <% else %>
-    Unfinished
-  <% end %>
-<% end %>
-</p>
-
-<h4>Package</h4>
- <% if @delivery.package %>
- <p>
-   Description: <%=h @delivery.package.description %>
-   <br/>
-   Retail price: $<%= @delivery.package.display_price %>
-   <br/>
-   <% if @delivery.package.has_dimensions? %>
-     Height: <%= @delivery.package.height %>"
-     Width: <%= @delivery.package.width %>"
-     Depth: <%= @delivery.package.depth %>"
-   <% else %>
-     Dimensions: not given
-   <% end %>
- </p>
- <% else %>
-  <p>
-    no package has been specified
-  </p>
- <% end %>
-
-<h4>Delivery Bounty</h4>
-<p>
- <% if @delivery.fee %>
-  Amount: $<%= @delivery.fee.display_price %> <br/>
-  Payment method: <%= @delivery.fee.payment_method %> <br/>
-  Completion Due By: <%= @delivery.fee.delivery_due.strftime("%l:%M%P %Z %d-%b-%Y") %> <br/>
-    <% if @delivery.fee.delivery_due >= Time.now %>
-    (due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
+    <br/>
+    Listed at: <%= @delivery.created_at.strftime("%l:%M%P %Z %d-%b-%Y") %>  <br/>
+    Status: 
+    <% if @delivery.delivering_user %>
+      Delivery accepted by: <%= link_to_user @delivery.delivering_user %>
     <% else %>
-    (overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>)
+      <% if @delivery.waiting? %>
+        Available for delivery.
+        <% if @delivery.available_for_delivery_by(current_user) %>
+           <%= form_for :delivery, @delivery, :url => confirm_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
+            <%= f.submit 'I can make this delivery' %>
+           <% end %>
+        <% end %>
+      <% else %>
+        Unfinished
+      <% end %>
     <% end %>
-  <br/>
- <% else %>
-   no delivery fee has been specified
- <% end %>
-</p>
-  </td>
+    </p>
+  </div>
 
-  <td valign="top">
-<h4>From</h4>
-<p>
- <% if @delivery.start_location %>
-  Address: <%=h @delivery.start_location.street %>
- <% else %>
-  no start location has been specified
- <% end %>
-</p>
+  <div class="info">
+    <h4>Package</h4>
+    <% if @delivery.package %>
+    <p>
+     Description: <%=h @delivery.package.description %>
+     <br/>
+     Retail price: $<%= @delivery.package.display_price %>
+     <br/>
+     <% if @delivery.package.has_dimensions? %>
+       Height: <%= @delivery.package.height %>"
+       Width: <%= @delivery.package.width %>"
+       Depth: <%= @delivery.package.depth %>"
+     <% else %>
+       Dimensions: not given
+     <% end %>
+    </p>
+    <% else %>
+    <p>
+      no package has been specified
+    </p>
+    <% end %>
+  </div>
 
-<h4>To</h4>
-<p>
- <% if @delivery.end_location %>
-  Address: <%=h @delivery.end_location.street %>
- <% else %>
-  no end location has been specified
- <% end %>
-</p>
+  <div class="info">
+    <h4>Delivery Bounty</h4>
+    <p>
+     <% if @delivery.fee %>
+      Amount: $<%= @delivery.fee.display_price %> <br/>
+      Payment method: <%= @delivery.fee.payment_method %> <br/>
+      <br/>
+     <% else %>
+       no delivery fee has been specified
+     <% end %>
+    </p>
+  </div>
 
-<% if @delivery.start_end_distance && @delivery.start_end_distance > 0 %>
-<h4>Distance</h4>
-<p>
-  Straight-line distance in meters: <%= @delivery.start_end_distance %>m
-</p>
-<% end %>
+  <div style="clear:left">
+  </div>
 
-<% if @delivery.start_location && @delivery.end_location %>
- <div id="gmap" style="width:400px;height:300px"></div>
- <div id="gmaperror"></div>
-<% end %>
-  </td>
+  <div class="map">
+    <% if @delivery.start_location && @delivery.end_location %>
+     <div id="gmap" style="width:400px;height:260px"></div>
+     <div id="gmaperror"></div>
+    <% end %>
+  </div>
 
- </tr>
-</table>
+  <div class="addressparts">
+  <div >
+    <h4>From</h4>
+    <p>
+     <% if @delivery.start_location %>
+      Address: <%=h @delivery.start_location.street %>
+     <% else %>
+      no start location has been specified
+     <% end %>
+    </p>
+  </div>
+
+  <div>
+    <h4>To</h4>
+    <p>
+     <% if @delivery.end_location %>
+      Address: <%=h @delivery.end_location.street %>
+     <% else %>
+      no end location has been specified
+     <% end %>
+    </p>
+  </div>
+
+  <div >
+    <% if @delivery.start_end_distance && @delivery.start_end_distance > 0 %>
+    <h4>Distance</h4>
+    <p>
+      Straight-line distance: <%= @delivery.start_end_distance %> meters
+    </p>
+    <% end %>
+  </div>
+
+  <div>
+    <h4> Time </h4>
+      Due Date: <%= @delivery.fee.delivery_due.strftime("%l:%M%P %Z %d-%b-%Y") %> <br/>
+      <% if @delivery.fee.delivery_due >= Time.now %>
+        Due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>
+      <% else %>
+        Overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>
+      <% end %>
+  </div>
+  </div>
+
 </div>

@@ -84,7 +84,8 @@
 
   <fieldset>
     <legend> Payment </legend>
-    The retail price (if any) plus the bounty will be paid to the delivery person using
+    The retail price (if any) plus the bounty <br/>
+    will be paid to the delivery person using
     <% if @delivery.fee %>
       <% @delivery.fee.errors.full_messages.each do |msg| %>
         <li> <%= msg %> </li>
