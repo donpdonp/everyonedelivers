@@ -6,10 +6,8 @@ class JournalController < ApplicationController
 
   def count
     @entries = Journal.count(:conditions => ["note = ? and created_at > ?", 
-                                             params[:note], 
+                                             params[:note],
                                              params[:hours].to_i.hours.ago])
-    respond_to do |format|
-      format.json { render :json => {:count => @entries}.to_json }
-    end
+    render :json => {:count => @entries}.to_json
   end
 end

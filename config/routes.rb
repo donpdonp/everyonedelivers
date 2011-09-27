@@ -16,14 +16,11 @@ EveryoneDelivers::Application.routes.draw do
 
   resources :locations
   resources :packages
-  resources :journal do
-    collection do
-      get :count
-      end
-  end
 
   devise_for :users
   match '/' => 'dashboard#index', :as => :root
+  match '/journal' => 'journal#index'
+  match '/journal/count' => 'journal#count'
   match '/:controller(/:action(/:id))'
 
 end
