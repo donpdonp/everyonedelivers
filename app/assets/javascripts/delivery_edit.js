@@ -8,11 +8,11 @@ function formvalidation(event) {
       return;
     } else {
       invalidate_to();
-      alert("Please validate the To address.");
+      alert("Please correct the To address.");
     }
   } else {
     invalidate_from();
-    alert("Please validate the From address.");
+    alert("Please correct the From address.");
   }
   return false;
 }
@@ -20,24 +20,24 @@ function formvalidation(event) {
 function invalidate_from() {
   $('#from_latitude').val("");
   $('#from_longitude').val("");
-  $('#from_address_msg').html("Validation needed.");
+  /*$('#from_address_msg').html("Validating.");*/
   $('#from_address_label').addClass('error');
 }
 
 function invalidate_to() {
   $('#to_latitude').val("");
   $('#to_longitude').val("");
-  $('#to_address_msg').html("Validation needed.")
+  /*$('#to_address_msg').html("Validating.")*/
   $('#to_address_label').addClass('error');
 }
 
 function validate_from(latlng) {
-  $('#from_address_msg').html("Address OK. "+static_map(latlng,150,70,15));
+  $('#from_address_map').html(static_map(latlng,150,70,15));
   $('#from_address_label').removeClass('error');
 }
 
 function validate_to(latlng) {
-  $('#to_address_msg').html("Address OK. "+static_map(latlng,150,70,15));
+  $('#to_address_map').html(static_map(latlng,150,70,15));
   $('#to_address_label').removeClass('error');
 }
 
@@ -121,8 +121,10 @@ function distanceBetweenPoints(p1, p2) {
 
 
 function setup() {
-  $('#from_address_validate').click(address_from_validate_click);
-  $('#to_address_validate').click(address_to_validate_click);
+  $('#from_address').blur(address_from_validate_click)
+  /*$('#from_address_validate').click(address_from_validate_click);*/
+  $('#to_address').blur(address_to_validate_click)
+  /*$('#to_address_validate').click(address_to_validate_click);*/
   $('.edit_delivery').submit(formvalidation);
   $('#from_address').change(invalidate_from);
   $('#to_address').change(invalidate_to);

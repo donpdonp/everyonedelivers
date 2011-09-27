@@ -6,7 +6,7 @@
 
 <%= form_for(@delivery) do |f| %>
   <p>
-    Editing Delivery Request #<%= @delivery.id %>
+    Delivery Request #<%= @delivery.id %>
   </p>
 
   <fieldset>
@@ -30,39 +30,45 @@
     <br/>
     If delivery person will be purchasing item from a store, give the retail price. <br/>
     Retail Price $<%= text_field_tag "package[display_price]", 
-                         @delivery.package ? @delivery.package.display_price : "", :size => 5 %>
+                         @delivery.package ? @delivery.package.display_price : "", :size => 2 %>
   </fieldset>
   
   <fieldset>
     <legend>From Address</legend>
-    Example: Corner Market, 900 SW Main, Portland, Or <br/>
-      <span id="from_address_label">Address</span> 
-      <%= text_field_tag "from[address]", 
-                @delivery.start_location ? @delivery.start_location.street : "",
-                :size => 40 %>
-    <input type="submit" value="Validate" id="from_address_validate">
-    <span id="from_address_msg"></span>
-    <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
-    <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
+    <div id="from_address_map" style="float:right"></div>
+    <div>
+      Example: Corner Market, 900 SW Main, Portland, Or <br/>
+        <span id="from_address_label">Address</span> 
+        <%= text_field_tag "from[address]", 
+                  @delivery.start_location ? @delivery.start_location.street : "",
+                  :size => 40 %>
+      <!-- <input type="submit" value="Validate" id="from_address_validate"> -->
+      <span id="from_address_msg"></span>
+      <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
+      <%= hidden_field_tag "from[longitude]", @delivery.start_location ? @delivery.start_location.longitude : "" %>
+    </div>    
   </fieldset>
 
   <fieldset>
     <legend>To Address</legend>
-    Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
-      <span id="to_address_label">Address</span> 
-      <%= text_field_tag "to[address]", 
-                @delivery.end_location ? @delivery.end_location.street : "", 
-                :size => 40 %>
-    <input type="submit" value="Validate"  id="to_address_validate">
-    <span id="to_address_msg"></span>
-    <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
-    <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
+    <div id="to_address_map" style="float:right"></div>
+    <div>
+      Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
+        <span id="to_address_label">Address</span> 
+        <%= text_field_tag "to[address]", 
+                  @delivery.end_location ? @delivery.end_location.street : "", 
+                  :size => 40 %>
+      <!-- <input type="submit" value="Validate"  id="to_address_validate"> -->
+      <span id="to_address_msg"></span>
+      <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>
+      <%= hidden_field_tag "to[longitude]", @delivery.end_location ? @delivery.end_location.longitude : ""%>
+    </div>
   </fieldset>
 
   <fieldset>
     <legend> Time </legend>
-    Delivery should be completed by
-    <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.zone.now) %>
+    Delivery should be completed by <br/>
+    <%= datetime_select("fee","delivery_due", :default => @delivery.fee ? @delivery.fee.delivery_due : Time.zone.now, :ampm => true) %> <%= Time.zone.name.sub(/\(.*\)/,'') %>
 <!--    if delivered within
     <%= select_tag "fee[time_count]", options_for_select({"1" => "1","2" => "2",
                                                           "3" => "3","4" => "4"}) %>
