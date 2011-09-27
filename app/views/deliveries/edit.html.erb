@@ -85,8 +85,10 @@
   <fieldset>
     <legend> Payment </legend>
     The retail price (if any) plus the bounty will be paid to the delivery person using
-    <% @delivery.fee.errors.full_messages.each do |msg| %>
-      <li> <%= msg %> </li>
+    <% if @delivery.fee %>
+      <% @delivery.fee.errors.full_messages.each do |msg| %>
+        <li> <%= msg %> </li>
+      <% end %>
     <% end %>
     <ul class="payment_methods">
        <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
