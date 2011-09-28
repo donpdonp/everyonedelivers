@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="614"
-   height="197"
+   width="576"
+   height="129"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.1 r9760"
@@ -27,17 +27,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
+     inkscape:zoom="1.979899"
      inkscape:cx="318.92741"
-     inkscape:cy="132.1796"
+     inkscape:cy="141.10817"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1107"
-     inkscape:window-height="816"
-     inkscape:window-x="323"
+     inkscape:window-width="1440"
+     inkscape:window-height="847"
+     inkscape:window-x="0"
      inkscape:window-y="24"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -54,66 +54,26 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-855.36218)">
-    <g
-       id="g4293"
-       transform="matrix(1.1978534,0,0,1,-1.276883,0)">
-      <path
-         inkscape:export-ydpi="22.5"
-         inkscape:export-xdpi="22.5"
-         transform="matrix(1.5986409,0,0,0.58071496,-130.57267,789.61864)"
-         d="m 400.71428,283.92856 a 157.5,157.5 0 1 1 -315.000001,0 157.5,157.5 0 1 1 315.000001,0 z"
-         sodipodi:ry="157.5"
-         sodipodi:rx="157.5"
-         sodipodi:cy="283.92856"
-         sodipodi:cx="243.21428"
-         id="path2985"
-         style="fill:#006700;fill-opacity:1;stroke:#689792;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         sodipodi:type="arc" />
-      <path
-         inkscape:export-ydpi="22.5"
-         inkscape:export-xdpi="22.5"
-         inkscape:export-filename="/home/donp/code/everyonedelivers/app/assets/images/path2985.png"
-         sodipodi:end="7.4008469"
-         sodipodi:start="5.4281694"
-         transform="matrix(0,-0.60179116,1.6566612,0,-150.56881,1115.0611)"
-         d="M 350.22889,150.94028 A 126.07143,126.07143 0 0 1 322.69231,359.41962 L 267.5,246.07143 z"
-         sodipodi:ry="126.07143"
-         sodipodi:rx="126.07143"
-         sodipodi:cy="246.07143"
-         sodipodi:cx="267.5"
-         id="path3008-0"
-         style="fill:none;stroke:#000000;stroke-width:0.28191823;stroke-miterlimit:3.9000001;stroke-opacity:1;stroke-dasharray:none"
-         sodipodi:type="arc" />
-      <path
-         inkscape:export-ydpi="22.5"
-         inkscape:export-xdpi="22.5"
-         inkscape:export-filename="/home/donp/code/everyonedelivers/app/assets/images/path2985.png"
-         transform="matrix(1.5568101,0,0,0.56551967,-159.35851,814.92369)"
-         d="m 393.57143,246.07143 a 126.07143,126.07143 0 1 1 -252.14286,0 126.07143,126.07143 0 1 1 252.14286,0 z"
-         sodipodi:ry="126.07143"
-         sodipodi:rx="126.07143"
-         sodipodi:cy="246.07143"
-         sodipodi:cx="267.5"
-         id="path3008"
-         style="fill:#00ff00;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-         sodipodi:type="arc" />
-      <path
-         inkscape:export-ydpi="22.5"
-         inkscape:export-xdpi="22.5"
-         inkscape:export-filename="/home/donp/code/everyonedelivers/app/assets/images/path2985.png"
-         sodipodi:nodetypes="cscc"
-         inkscape:connector-curvature="0"
-         id="path4087"
-         d="m 49.74276,998.22732 c 43.006109,27.05848 122.48465,43.72708 208.49685,43.72708 132.96336,0 240.75143,-39.1546 240.75143,-87.45421 -190.49798,-10.4475 -290.9847,10.53521 -449.24828,43.72713 z"
-         style="fill:none;stroke:#000000;stroke-width:0;stroke-miterlimit:3.9000001;stroke-opacity:1;stroke-dasharray:none" />
-    </g>
+     transform="translate(0,-923.36218)">
+    <path
+       sodipodi:type="arc"
+       style="fill:#009d00;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3008"
+       sodipodi:cx="267.5"
+       sodipodi:cy="246.07143"
+       sodipodi:rx="126.07143"
+       sodipodi:ry="126.07143"
+       d="m 393.57143,246.07143 a 126.07143,126.07143 0 1 1 -252.14286,0 126.07143,126.07143 0 1 1 252.14286,0 z"
+       transform="matrix(2.2519659,0,0,0.46312723,-313.81205,876.20787)"
+       inkscape:export-filename="/home/donp/code/everyonedelivers/app/assets/images/path2985.png"
+       inkscape:export-xdpi="22.5"
+       inkscape:export-ydpi="22.5" />
     <g
        id="g4256"
-       transform="translate(-10.596044,12.421273)">
+       transform="translate(-67.257401,50.301994)">
       <path
          transform="matrix(1.7953446,0,0,1.4542504,-304.51545,591.1754)"
-         d="m 268.57143,239.82143 a 19.642857,19.464285 0 1 1 -39.28571,0 19.642857,19.464285 0 1 1 39.28571,0 z"
+         d="m 268.57143,239.82143 c 0,10.74982 -8.79441,19.46428 -19.64286,19.46428 -10.84845,0 -19.64285,-8.71446 -19.64285,-19.46428 0,-10.74983 8.7944,-19.46429 19.64285,-19.46429 10.84845,0 19.64286,8.71446 19.64286,19.46429 z"
          sodipodi:ry="19.464285"
          sodipodi:rx="19.642857"
          sodipodi:cy="239.82143"
@@ -123,7 +83,7 @@
          sodipodi:type="arc" />
       <path
          transform="matrix(1.7953446,0,0,1.4542504,-303.55365,590.91572)"
-         d="m 251.42857,240 a 3.0357144,2.8571429 0 1 1 -6.07143,0 3.0357144,2.8571429 0 1 1 6.07143,0 z"
+         d="m 251.42857,240 c 0,1.57796 -1.35914,2.85714 -3.03572,2.85714 -1.67658,0 -3.03571,-1.27918 -3.03571,-2.85714 0,-1.57796 1.35913,-2.85714 3.03571,-2.85714 1.67658,0 3.03572,1.27918 3.03572,2.85714 z"
          sodipodi:ry="2.8571429"
          sodipodi:rx="3.0357144"
          sodipodi:cy="240"
@@ -164,14 +124,14 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:45px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
-       x="175.7771"
-       y="967.30377"
+       style="font-size:54px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
+       x="116.67702"
+       y="1006.4038"
        id="text4265"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="175.7771"
-         y="967.30377"
+         x="116.67702"
+         y="1006.4038"
          id="tspan4269">EveryoneDelivers</tspan></text>
   </g>
 </svg>
