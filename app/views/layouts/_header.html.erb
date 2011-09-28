@@ -2,7 +2,7 @@
  <script>
 </script>
 
-<div class="header">
+<div class="header" style="text-align: center">
   <div id="sub">
   <%= form_tag({:controller => :session, :action => :login}, {:id => 'loginform'}) do %>
     <span id="geomsgaddress"></span>
@@ -16,7 +16,8 @@
     <% end %>
   <% end %>
   </div>
-    <%= link_to image_tag('logo.png'), :root %>
+    <%= link_to image_tag('wheel.png', :style => "padding: 8px"), :root, :style => "float:left" %>
+    <span style="padding: 8px; font-size: 150%; color:white">EveryoneDelivers</span>
 </div> 
 
 <script>
