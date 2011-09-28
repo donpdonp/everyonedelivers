@@ -23,7 +23,7 @@
   You (<%= link_to_user(current_user) %>) receive from <%= link_to_user(@delivery.listing_user) %> upon delivery: <br/>
   The Bounty: $<%= @delivery.fee.display_price %> <br/>
   The cost of the item: $<%=@delivery.package.display_price%> <br/>
-  Total: $<%= @delivery.display_retail_plus_package_fee %>
+  Total: $<%= @delivery.display_retail_plus_package_fee %> with <%= @delivery.fee.payment_method %>
   </p>
 
 
