@@ -28,7 +28,7 @@
   <table>
   <tr>
   <td>
-  <%= form_for :delivery, @delivery, :url => accept_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
+  <%= form_for @delivery, :url => accept_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
     <%= f.submit 'Yes I accept' %>
   <% end %>
   </td>
