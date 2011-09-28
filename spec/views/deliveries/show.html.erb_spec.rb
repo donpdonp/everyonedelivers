@@ -14,7 +14,10 @@ describe "/deliveries/show.html.erb" do
     delivery.should_receive(:created_at).and_return(Time.now)
     delivery.should_receive(:listing_user)
     delivery.should_receive(:package).twice
-    delivery.should_receive(:fee)
+    fee = mock_model(Fee, :delivery_due => Time.now,
+                          :display_price => "1",
+                          :payment_method => "cash")
+    delivery.should_receive(:fee).and_return(fee)
     delivery.should_receive(:delivering_user)
     delivery.should_receive(:available_for_edit_by)
     delivery.should_receive(:start_end_distance)

@@ -1,4 +1,3 @@
-Delivery #<%=@delivery.id%> has been updated.
+Delivery #<%=@delivery.id%> has been accepted for delivery by <%= @delivery.delivering_user.username%>.
 
 <%= url_for(:host => SETTINGS["email"]["domain"], :controller => :deliveries, :action => :show, :id => @delivery.id )%>
-
