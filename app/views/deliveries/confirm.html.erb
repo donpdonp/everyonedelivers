@@ -13,30 +13,28 @@
   <h4>Cost</h4>
 
   <p>
-  What <%= @delivery.listing_user.username %> pays: <br/>
-  The Bounty, paid to the delivery person $<%= @delivery.fee.display_price %> <br/>
-  The in-store cost of the item, paid to the delivery person: $<%=@delivery.package.display_price%> <br/>
-  Total: $<%= @delivery.display_retail_plus_package_fee %>
+  You (<%= link_to_user(current_user) %>) pay: <br/>
+  Listing acceptance fee, paid to EveryoneDelivers.com: $ <%= @delivery.display_listing_fee %> <br/>
+  The in-store cost of the item, paid where item is purchased: $<%=@delivery.package.display_price%> <br/>
+  Total: $<%= @delivery.display_listing_fee.to_f + @delivery.package.display_price.to_f %>
   </p>
 
   <p>
-  What (you) <%= current_user.username %> pays: <br/>
-  Listing acceptance fee, paid to EveryoneDelivers.com: $ <%= @delivery.display_listing_fee %>
-  The in-store cost of the item, paid to store where item is purchased: $<%=@delivery.package.display_price%> <br/>
+  You (<%= link_to_user(current_user) %>) receive from <%= link_to_user(@delivery.listing_user) %> upon delivery: <br/>
+  The Bounty: $<%= @delivery.fee.display_price %> <br/>
+  The cost of the item: $<%=@delivery.package.display_price%> <br/>
+  Total: $<%= @delivery.display_retail_plus_package_fee %>
   </p>
 
-  <table>
-  <tr>
-  <td>
+
+  <div style="float:left; margin-right: 2em">
   <%= form_for @delivery, :url => accept_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
     <%= f.submit 'Yes I accept' %>
   <% end %>
-  </td>
+  </div>
 
-  <td>
+  <div style="float:left">
   <%= form_tag delivery_path(@delivery), :method => :get do %>
     <%= submit_tag 'No Thanks' %>
   <% end %>
-  </td>
-  </tr>
-  </table>
+  </div>

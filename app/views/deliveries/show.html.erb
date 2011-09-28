@@ -72,11 +72,6 @@
     <% else %>
       <% if @delivery.waiting? %>
         Available for delivery.
-        <% if @delivery.available_for_delivery_by(current_user) %>
-           <%= form_for :delivery, @delivery, :url => confirm_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
-            <%= f.submit 'I can make this delivery' %>
-           <% end %>
-        <% end %>
       <% else %>
         Unfinished
       <% end %>
@@ -171,6 +166,13 @@
         Overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>
       <% end %>
   </div>
+
+  <% if @delivery.available_for_delivery_by(current_user) %>
+     <%= form_for @delivery, :url => confirm_delivery_path(@delivery),  :html => {:method => :put} do |f| %>
+      <%= f.submit 'I can make this delivery' %>
+     <% end %>
+  <% end %>
+
   </div>
 
 </div>
