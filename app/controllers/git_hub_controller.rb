@@ -7,11 +7,11 @@ class GitHubController < ApplicationController
   def commit
     gparams = JSON.parse(params["payload"])
     logger.info("github params: #{gparams}")
+    Journal.create({:note => "Website code updated to #{gparams["after"]}"})
     cmd = Rails.root+"github-pull.sh"
     logger.info("github commit: #{cmd}")
     out = shell(cmd)
     logger.info("github pull output: #{out}")
-    Journal.create({:note => "Website code updated to #{gparams["after"]}"})
     render :nothing => true
   end
 
