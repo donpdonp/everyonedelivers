@@ -21,7 +21,7 @@ body {
 
 .container a {
   text-decoration: none;
-  color: $color1;
+  color: #41c30b;
 }
 
 .container a:hover {
@@ -44,6 +44,10 @@ body {
 
 .header .logo .logotext {
   font-size: 120%
+}
+
+.header .logo .logotext a{
+  color: white
 }
 
 .header a {
@@ -184,6 +188,7 @@ form.edit_delivery {
 
 #splash h3 {
   color: orange;
+  font-size: 120%;
 }
 
 #splashrow {
