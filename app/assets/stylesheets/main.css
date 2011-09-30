@@ -160,6 +160,10 @@ div.header #sub {
   float: right;
 }
 
+.header .username {
+  color: white;
+}
+
 .menubar {
   margin-top: 0.6em;
   padding: 8px;
