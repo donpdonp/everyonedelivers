@@ -1,5 +1,5 @@
 <h3 id="slogan">
-Deliver someone's item and earn the bounty!
+Deliver an item and earn the bounty!
 </h3>
 
 <div class="clockedinbox">
@@ -24,7 +24,7 @@ Deliver someone's item and earn the bounty!
   <br/>
   <% if user_signed_in? %>
     <% clockedin = current_user.clocked_in? %>
-    <div style="background:<%= clockedin ? "Green" : "Blue" %>; float: left; text-align: center; margin-top: 5%">
+    <div class="clockedinbutton <%= clockedin ? "clockedin" : "clockedout" %>">
       Clocked <br/>
       <span style="font-size: 150%"><%= clockedin ? "In" : "Out"%></span> 
       <br/>

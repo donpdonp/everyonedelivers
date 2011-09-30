@@ -1,58 +1,16 @@
 body {
-  background: #454141;
-}
-
-#slogan {
-  color: white;
-}
-
-#splash {
-  text-align: center;
-}
-
-#splashwhy {
-  width: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0px;
-}
-
-#splash h3 {
-  color: orange;
-}
-
-#splashrow {
-  overflow: auto;
-}
-
-#splashleft {
-  float: left;
-  width: 25%;
-  margin-left: 25%;
-}
-#splashleft p{
-  border-right-style: solid;
-}
-
-#splashright {
-  float: left;
-  width: 25%;
-  margin-right: 25%;
-}
-
-form.edit_delivery {
-  color: white;
-  text-align: center;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  background: #bebebe;
+  margin-top: 0px;
 }
 
 .container {
   font-family: arial;
-  padding: 5px;
-  background: #545151;
-  color: #80AE91;
+  padding-top: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #ffffff;
+  color: black;
+  border-radius: 9px;
 }
 
 .container a {
@@ -65,12 +23,71 @@ form.edit_delivery {
   text-decoration: underline;
 }
 
-.dark {
-  background: #656161   ;
+
+.header {
+  background: #5b8207;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 9px;
+  color: white;
 }
 
+.header .logo img{
+  border: 0;
+  vertical-align: -50%;
+}
+
+.header .logo .logotext {
+}
+
+.header a {
+  color: #9CC445;
+  font-family: sans-serif;
+}
+
+.header a:hover {
+  color: white;
+  font-family: sans-serif;
+  text-decoration: underline;
+}
+
+.header ul {
+  margin:0px;
+  padding:0px;
+  display:inline;
+  list-style-type:none;
+  float: left
+}
+
+.header li {
+  display:inline;
+  /* border-right:1px solid #333333; */
+  margin:0px;
+  padding:0px;
+}
+
+div.header #sub {
+  padding: 3px;
+  float: right;
+}
+
+.header .username {
+  color: white;
+}
+
+
+#logotext {
+  font-size: 150%;
+}
+
+
+.dark {
+  background: #656161;
+}
+
+
 .light {
-  background: #454141    ;
+  background: #bebebe;
 }
 
 .error {
@@ -81,6 +98,21 @@ form.edit_delivery {
 .flashmsgs {
   margin-top: 0.6em;
   text-align: center;
+}
+
+.clockedinbutton {
+ float: left; 
+ text-align: center; 
+ margin-top: 5%
+}
+
+.clockedin {
+  background: #9CC445;
+}
+
+.clockedout {
+  margin-left: 10;
+  background: black;  
 }
 
 .clockedinbox {
@@ -121,47 +153,51 @@ form.edit_delivery {
   font-size: 80%;
 }
 
-.header {
-  background: #5b8207;
-}
-
-.header img {
-  border: 0;
-}
-
-.header a {
-  color: #9CC445;
-  font-family: sans-serif;
-}
-
-.header a:hover {
+form.edit_delivery {
   color: white;
-  font-family: sans-serif;
-  text-decoration: underline;
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.header ul {
-  margin:0px;
-  padding:0px;
-  display:inline;
-  list-style-type:none;
-  float: left
+#slogan {
+  color: black;
+  margin-top: 0px;
 }
 
-.header li {
-  display:inline;
-  /* border-right:1px solid #333333; */
-  margin:0px;
-  padding:0px;
+#splash {
+  text-align: center;
 }
 
-div.header #sub {
-  padding: 8px;
-  float: right;
+#splashwhy {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
 }
 
-.header .username {
-  color: white;
+#splash h3 {
+  color: orange;
+}
+
+#splashrow {
+  overflow: auto;
+}
+
+#splashleft {
+  float: left;
+  width: 25%;
+  margin-left: 25%;
+}
+#splashleft p{
+  border-right-style: solid;
+}
+
+#splashright {
+  float: left;
+  width: 25%;
+  margin-right: 25%;
 }
 
 .menubar {
@@ -170,6 +206,7 @@ div.header #sub {
   background: #9CC445;
   color: #D8E3C1;
   overflow: auto;
+  clear: right;
 }
 
 .menubar a {
@@ -235,6 +272,10 @@ div.header #sub {
 
 .deliverytimes {
   float: left;
+}
+
+.deliveryitem {
+  border-radius: 6px;
 }
 
 .deliveryitem .packagename {
