@@ -1,5 +1,11 @@
+$backbackground: #454141;
+$background: #545151;
+$color1: #5b8207;
+$color2: #9CC445;
+$listingcolor1: #bebebe;
+
 body {
-  background: #bebebe;
+  background-color: $backbackground;
   margin-top: 0px;
 }
 
@@ -8,24 +14,23 @@ body {
   padding-top: 2px;
   margin-left: 10px;
   margin-right: 10px;
-  background: #ffffff;
-  color: black;
+  background: $background;
+  color: white;
   border-radius: 9px;
 }
 
 .container a {
   text-decoration: none;
-  color: orange;
+  color: $color1;
 }
 
 .container a:hover {
-  color: #FF7A38;
+  color: black;
   text-decoration: underline;
 }
 
-
 .header {
-  background: #5b8207;
+  background: $color1;
   margin: 5px;
   padding: 5px;
   border-radius: 9px;
@@ -38,10 +43,11 @@ body {
 }
 
 .header .logo .logotext {
+  font-size: 120%
 }
 
 .header a {
-  color: #9CC445;
+  color: $color2;
   font-family: sans-serif;
 }
 
@@ -67,7 +73,7 @@ body {
 }
 
 div.header #sub {
-  padding: 3px;
+  padding: 5px;
   float: right;
 }
 
@@ -82,12 +88,11 @@ div.header #sub {
 
 
 .dark {
-  background: #656161;
+  background-color: #656161;
 }
 
-
 .light {
-  background: #bebebe;
+  background-color: $backbackground;
 }
 
 .error {
@@ -101,18 +106,18 @@ div.header #sub {
 }
 
 .clockedinbutton {
- float: left; 
- text-align: center; 
- margin-top: 5%
+  float: left; 
+  text-align: center; 
+  margin-top: 5%
 }
 
 .clockedin {
-  background: #9CC445;
+  background: $color2;
 }
 
 .clockedout {
   margin-left: 10;
-  background: black;  
+  background-color: $color1;  
 }
 
 .clockedinbox {
@@ -162,8 +167,8 @@ form.edit_delivery {
 }
 
 #slogan {
-  color: black;
   margin-top: 0px;
+  margin-left: 15px
 }
 
 #splash {
@@ -203,7 +208,7 @@ form.edit_delivery {
 .menubar {
   margin-top: 0.6em;
   padding: 8px;
-  background: #9CC445;
+  background: $color2;
   color: #D8E3C1;
   overflow: auto;
   clear: right;
@@ -430,7 +435,7 @@ form.edit_delivery {
 
 #geomsg {
   margin-right: 20px;
-  color: #9CC445;
+  color: $color2;
 }
 
 .centered_50percent {
