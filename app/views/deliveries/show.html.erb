@@ -159,12 +159,14 @@
 
   <div>
     <h4> Time </h4>
+     <% if @delivery.fee %>
       Due Date: <%= @delivery.fee.delivery_due.strftime("%l:%M%P %Z %d-%b-%Y") %> <br/>
       <% if @delivery.fee.delivery_due >= Time.now %>
         Due In: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>
       <% else %>
         Overdue by: <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>
       <% end %>
+     <% end %>
   </div>
 
   <% if @delivery.available_for_delivery_by(current_user) %>
