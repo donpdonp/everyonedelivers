@@ -7,7 +7,13 @@ Email:
   <% end %>
   <br/>
 Time zone: <%= @user.time_zone %> <br/>
-Units: <%= @user.display_measurement %> <br/>
+Units: <%if @user.display_measurement == "imperial" %> 
+          Imperial (miles/pounds)
+        <% end %>
+        <%if @user.display_measurement == "metric" %> 
+          Metric (meters/kilograms)
+        <% end %>
+<br/>
 <% if @user.email_on_new_listing %>
   Send
 <% else %>
