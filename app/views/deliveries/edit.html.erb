@@ -27,10 +27,6 @@
     Weight in ounces <%= text_field_tag "package[weight]", 
                          (@delivery.package && @delivery.package.weight_in_grams)? @delivery.package.weight : "", :size => 5 %>
     -->
-    <br/>
-    If the delivery person will be purchasing the item, give the retail price. <br/>
-    Retail Price $<%= text_field_tag "package[display_price]", 
-                         @delivery.package ? @delivery.package.display_price : "", :size => 2 %>
   </fieldset>
   
   <fieldset>
@@ -90,23 +86,29 @@
   </fieldset>
 
   <fieldset>
-    <legend> Delivery Bounty </legend>
+    <legend> Price / Bounty </legend>
+    If the delivery person will be purchasing the item, give the retail price. <br/>
+    Retail Price $<%= text_field_tag "package[display_price]", 
+                         @delivery.package ? @delivery.package.display_price : "", :size => 2 %>
+    <br/>
+    The higher the bounty, the more likely it will be completed. <br/>
     Bounty Amount $<%= text_field_tag "fee[display_price]", 
                @delivery.fee ? @delivery.fee.display_price : "0.00", :size => 4 %>
   </fieldset>
 
   <fieldset>
     <legend> Payment </legend>
-    The retail price (if any) plus the bounty <br/>
-    will be paid to the delivery person using
+    I agree to pay the retail price (if any) plus the bounty amount<br/>
+    
+    to the delivery person upon delivery using
     <% if @delivery.fee %>
       <% @delivery.fee.errors.full_messages.each do |msg| %>
         <li> <%= msg %> </li>
       <% end %>
     <% end %>
     <ul class="payment_methods">
-       <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
-       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> <span title="Anyone can take visa using squareup.com">VISA</a> </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "Cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "Visa/MC Card", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> <span title="Anyone can take visa using squareup.com">VISA</a> </li>
     </ul>
   </fieldset>
 
