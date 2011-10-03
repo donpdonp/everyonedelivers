@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920184328) do
+ActiveRecord::Schema.define(:version => 20111003183742) do
 
   create_table "deliveries", :force => true do |t|
     t.integer  "fee_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20110920184328) do
     t.float    "latitude"
     t.float    "longitude"
     t.float    "accuracy"
+    t.string   "name"
   end
 
   create_table "open_id_associations", :force => true do |t|
