@@ -119,7 +119,6 @@ ActiveRecord::Schema.define(:version => 20111003183742) do
     t.string   "email"
     t.datetime "clocked_in"
     t.boolean  "email_on_new_listing"
-    t.string   "login_token"
     t.string   "authentication_token"
   end
 
