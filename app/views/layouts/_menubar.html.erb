@@ -10,7 +10,7 @@
 
   <%= form_tag(deliveries_path, {:method => :get}) do %>
   <span style="float:right">
-      Search <%= text_field_tag 'q'%> 
+      Search <%= text_field_tag 'q', params["q"], :type => "search" %> 
   </span>
   <% end %>
 </div>

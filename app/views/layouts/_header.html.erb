@@ -11,7 +11,8 @@
       <%= link_to h(current_user.username), current_user, :class => "username" %> -
       <%= link_to t('header.logout'), :controller => :session, :action => :logout %>
     <% else %>
-      Email: <%= text_field_tag :email, nil, :placeholder => t('header.email_login_placeholder'), :size => 20 %>
+      Email: <%= text_field_tag :email, nil, :placeholder => t('header.email_login_placeholder'), 
+                                :size => 20, :type => "email" %>
       <%= submit_tag t('header.login') %>
     <% end %>
   <% end %>

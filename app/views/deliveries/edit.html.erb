@@ -11,7 +11,8 @@
   <fieldset>
     <legend>Item</legend>
     Description <%= text_field_tag "package[description]", 
-                    @delivery.package ? @delivery.package.description : "", :size => 50 %>
+                    @delivery.package ? @delivery.package.description : "", :size => 50,
+                    :autofocus => "" %>
 
    <!--
     <br/>
