@@ -107,8 +107,8 @@
       <% end %>
     <% end %>
     <ul class="payment_methods">
-       <li> <%= radio_button_tag "fee[payment_method]", "Cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
-       <li> <%= radio_button_tag "fee[payment_method]", "Visa/MC Card", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> <span title="Anyone can take visa using squareup.com">VISA</a> </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "cash", @delivery.fee ? @delivery.fee.payment_method == "cash" : false %> Cash </li>
+       <li> <%= radio_button_tag "fee[payment_method]", "visa", @delivery.fee ? @delivery.fee.payment_method == "visa" : false %> <span title="Anyone can take visa using squareup.com">VISA</a> </li>
     </ul>
   </fieldset>
 
