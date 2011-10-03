@@ -65,20 +65,20 @@
   <div class="info">
     <h4>Status</h4>
     <p>
-    Listed by: <%= link_to_user @delivery.listing_user %> 
-
-    <br/>
-    Listed at: <%= @delivery.created_at.strftime("%l:%M%P %Z %d-%b-%Y") %>  <br/>
-    Status: 
-    <% if @delivery.delivering_user %>
-      Delivery accepted by: <%= link_to_user @delivery.delivering_user %>
-    <% else %>
-      <% if @delivery.waiting? %>
-        Available for delivery.
+      <% if @delivery.delivering_user %>
+        Delivery accepted by: <%= link_to_user @delivery.delivering_user %>
       <% else %>
-        Unfinished
+        <% if @delivery.waiting? %>
+          Available for delivery.
+        <% else %>
+          Unfinished
+        <% end %>
       <% end %>
-    <% end %>
+      <br/>
+
+      Listed by: <%= link_to_user @delivery.listing_user %>  <br/>
+
+      Listed at: <%= @delivery.created_at.strftime("%l:%M%P %Z %d-%b-%Y") %>  <br/>
     </p>
   </div>
 
@@ -86,16 +86,12 @@
     <h4>Package</h4>
     <% if @delivery.package %>
     <p>
-     Description: <%=h @delivery.package.description %>
-     <br/>
-     Retail price: $<%= @delivery.package.display_price %>
+     Description: &quot;<%=h @delivery.package.description %>&quot;
      <br/>
      <% if @delivery.package.has_dimensions? %>
        Height: <%= @delivery.package.height %>"
        Width: <%= @delivery.package.width %>"
        Depth: <%= @delivery.package.depth %>"
-     <% else %>
-       Dimensions: not given
      <% end %>
     </p>
     <% else %>
@@ -106,10 +102,11 @@
   </div>
 
   <div class="info">
-    <h4>Delivery Bounty</h4>
+    <h4>Price and Bounty</h4>
     <p>
+     Retail price: $<%= @delivery.package.display_price %> <br/>
      <% if @delivery.fee %>
-      Amount: $<%= @delivery.fee.display_price %> <br/>
+      Bounty: $<%= @delivery.fee.display_price %> <br/>
       Payment method: <%= @delivery.fee.payment_method %> <br/>
       <br/>
      <% else %>
@@ -133,8 +130,8 @@
     <h4>From</h4>
     <p>
      <% if @delivery.start_location %>
-      Name: <%= @delivery.start_location.name %> <br/>
-      Address: <%= @delivery.start_location.street %>
+      <strong><%= @delivery.start_location.name %></strong> <br/>
+      <%= @delivery.start_location.street %>
      <% else %>
       no start location has been specified
      <% end %>
@@ -145,8 +142,8 @@
     <h4>To</h4>
     <p>
      <% if @delivery.end_location %>
-      Name: <%= @delivery.end_location.name %> <br/>
-      Address: <%= @delivery.end_location.street %>
+      <strong><%= @delivery.end_location.name %></strong><br/>
+      <%= @delivery.end_location.street %>
      <% else %>
       no end location has been specified
      <% end %>
