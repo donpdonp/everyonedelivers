@@ -1,7 +1,7 @@
   <% if delivery.ok_to_display? %>
   <div class="deliveryitem <%= delivery.delivering_user ? "dark" : "light" %>" style="margin-bottom: 10px;">
 
-    <div class="packagename">
+    <div class="packagename <%= "overdue" if delivery.overdue? %> ">
       <div class="duedate">
         <% if delivery.delivered? %>
           Delivered by
