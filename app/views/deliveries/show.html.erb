@@ -25,7 +25,9 @@
     var directions = new google.maps.DirectionsService();
     var request = { origin : start,
                     destination : end,
-                    travelMode : google.maps.DirectionsTravelMode.DRIVING };
+                    travelMode : google.maps.DirectionsTravelMode.DRIVING,
+                    unitSystem: <%= "google.maps.UnitSystem."+ 
+                                    (current_user.display_measurement == "imperial" ? "IMPERIAL" : "METRIC") %> };
     directions.route(request, show_directions_callback_builder(map));
   }
 
@@ -33,12 +35,13 @@
     // use a closure to make map a local variable
     return function show_directions(result, status) {
       if(status == "NOT_FOUND") {
-        $('gmaperror').html("Route not found");
+        $('#gmaperror').html("Route not found");
       }
       if(status == "OK") {
         renderer = new google.maps.DirectionsRenderer({directions: result,
                                                        suppressMarkers : true});
         renderer.setMap(map);
+        $('#travel_distance').html(result.routes[0].legs[0].distance.text)
       }
     }
   }
@@ -130,7 +133,8 @@
     <h4>From</h4>
     <p>
      <% if @delivery.start_location %>
-      Address: <%=h @delivery.start_location.street %>
+      Name: <%= @delivery.start_location.name %> <br/>
+      Address: <%= @delivery.start_location.street %>
      <% else %>
       no start location has been specified
      <% end %>
@@ -141,7 +145,8 @@
     <h4>To</h4>
     <p>
      <% if @delivery.end_location %>
-      Address: <%=h @delivery.end_location.street %>
+      Name: <%= @delivery.end_location.name %> <br/>
+      Address: <%= @delivery.end_location.street %>
      <% else %>
       no end location has been specified
      <% end %>
@@ -152,7 +157,7 @@
     <% if @delivery.start_end_distance && @delivery.start_end_distance > 0 %>
     <h4>Distance</h4>
     <p>
-      Straight-line distance: <%= @delivery.start_end_distance %> meters
+      Travel distance: <span id="travel_distance"></span>
     </p>
     <% end %>
   </div>

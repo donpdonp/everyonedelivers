@@ -37,11 +37,14 @@
     <legend>Pick-up Address</legend>
     <div id="from_address_map" style="float:right"></div>
     <div>
-      Example: Corner Market, 900 SW Main, Portland, Or <br/>
+        <span id="from_address_label">Person or Business Name</span> 
+        <%= text_field_tag "from[name]", 
+                  @delivery.start_location ? @delivery.start_location.name : "",
+                  :size => 20, :placeholder => "Corner Store" %> <br/>
         <span id="from_address_label">Address</span> 
         <%= text_field_tag "from[address]", 
                   @delivery.start_location ? @delivery.start_location.street : "",
-                  :size => 40 %>
+                  :size => 40, :placeholder => "900 Main St, Portland, Or" %>
       <!-- <input type="submit" value="Validate" id="from_address_validate"> -->
       <span id="from_address_msg"></span>
       <%= hidden_field_tag "from[latitude]", @delivery.start_location ? @delivery.start_location.latitude : "" %>
@@ -53,11 +56,14 @@
     <legend>Drop-off Address</legend>
     <div id="to_address_map" style="float:right"></div>
     <div>
-      Example: Hungry Person, 420 NE Broadway, Portland, Or <br/>
+        <span id="from_address_label">Person or Business Name</span> 
+        <%= text_field_tag "to[name]", 
+                  @delivery.end_location ? @delivery.end_location.name : "",
+                  :size => 20, :placeholder => "Hungry Citizen" %> <br/>
         <span id="to_address_label">Address</span> 
         <%= text_field_tag "to[address]", 
                   @delivery.end_location ? @delivery.end_location.street : "", 
-                  :size => 40 %>
+                  :size => 40, :placeholder => "1200 Thurston St, Portland, Or" %>
       <!-- <input type="submit" value="Validate"  id="to_address_validate"> -->
       <span id="to_address_msg"></span>
       <%= hidden_field_tag "to[latitude]", @delivery.end_location ? @delivery.end_location.latitude : ""%>

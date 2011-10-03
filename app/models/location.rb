@@ -5,7 +5,7 @@ class Location < ActiveRecord::Base
 
   def apply_form_attributes(params)
     return if params.nil?
-
+    self.name = params[:name]
     self.street = params[:address] #todo: google geocode the address
     self.latitude = params[:latitude]
     self.longitude = params[:longitude]
