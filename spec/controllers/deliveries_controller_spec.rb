@@ -85,7 +85,9 @@ describe DeliveriesController do
       delivery.should_receive(:save!)
       delivery.should_receive(:accept!)
       delivery.should_receive(:listing_user).and_return(bob)
-      Mailer.should_receive(:deliver_delivery_accepted).with(delivery)
+      mailer = mock("Delivery Mailer")
+      mailer.should_receive(:deliver)
+      DeliveryMailer.should_receive(:accepted).with(delivery).and_return(mailer)
       Delivery.should_receive(:find).with(delivery.id.to_s).and_return(delivery)
       put :accept, {:id => delivery.id, "commit"=>"Yes I accept"}
       response.should redirect_to(delivery_path(delivery))
