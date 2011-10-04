@@ -9,6 +9,9 @@
               <%= link_to(to.username, to) %>
             <% end %></div>
           <div class="street">
+            <% if location.name %>
+              <strong><%= location.name %></strong> <br/>
+            <% end %>
             <% location.street_parts.each do |part| %>
               <%=h part %> <br/>
             <% end %>
