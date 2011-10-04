@@ -3,7 +3,8 @@ require 'spec_helper'
 describe "/deliveries/show.html.erb" do
   before(:each) do
     view.stub!(:user_signed_in?).and_return(false)
-    view.stub!(:current_user)
+    user = mock_model(User, :display_measurement => "metric")
+    view.stub!(:current_user).and_return(user)
   end
   
   it "should render a delivery in the building state" do
@@ -36,7 +37,7 @@ describe "/deliveries/show.html.erb" do
     user = mock_model(User)
     user.should_receive(:username).and_return("Bob")
     delivery.should_receive(:listing_user).and_return(user)
-    delivery.should_receive(:package).twice
+    delivery.should_receive(:package)
     delivery.should_receive(:start_location)
     delivery.should_receive(:start_location)
     delivery.should_receive(:start_location)
@@ -47,6 +48,7 @@ describe "/deliveries/show.html.erb" do
     delivery.should_receive(:available_for_delivery_by).with(current_user).and_return(false)
     delivery.should_receive(:available_for_edit_by).with(current_user).and_return(false)
     delivery.should_receive(:waiting?).and_return(true)
+    delivery.should_receive(:comments).and_return([])
     assign(:delivery, delivery)
 
     render
