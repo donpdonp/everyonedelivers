@@ -8,6 +8,7 @@ class Delivery < ActiveRecord::Base
   belongs_to :end_location, :class_name => "Location"
   belongs_to :listing_user, :class_name => "User"
   belongs_to :delivering_user, :class_name => "User"
+  has_many :comments
 
   after_create :journal_on_create
   after_destroy :journal_on_destroy
