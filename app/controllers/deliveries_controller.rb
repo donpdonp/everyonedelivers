@@ -129,6 +129,17 @@ class DeliveriesController < ApplicationController
     redirect_to delivery_path(@delivery)
   end
 
+  def comment
+    @delivery.comments.create(:text => params[:comment][:text],
+                              :user_id => current_user.id)    
+    redirect_to @delivery
+  end
+
+  def comment_delete
+    @delivery.comments.find(params[:comment_id]).destroy
+    redirect_to @delivery
+  end
+
   private
   def load_resource
     @delivery = Delivery.find(params[:id])

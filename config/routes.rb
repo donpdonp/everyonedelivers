@@ -3,6 +3,8 @@ EveryoneDelivers::Application.routes.draw do
     member do
       put :accept
       put :confirm
+      post :comment
+      delete :comment_delete
     end  
   end
 

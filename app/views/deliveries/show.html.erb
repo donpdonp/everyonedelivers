@@ -179,13 +179,24 @@
 
   </div>
 
-  <% if @delivery.comments.size > 0 %>
   <div class="comments">
+    Comments
     <ul>
     <% @delivery.comments.each do |comment| %>
-      <li> <%= comment.text %> </li>
+      <li id="comment_<%= comment.id%>"> 
+        <%= link_to_user comment.user %>: 
+        <span title="<%=comment.created_at%>"><%= comment.text %> </span>
+        <% if current_user == comment.user %>
+        <%= link_to 'X', {:action => :comment_delete, :comment_id => comment.id}, 
+                         :method => :delete %>
+        <% end %>
+      </li>
     <% end %>
     </ul>
+    <% if user_signed_in? %>
+     <%= form_tag({:action => :comment}, {:method => "post"}) do %>
+       Add comment: <%= text_field_tag "comment[text]" %> <%= submit_tag "Post" %>
+     <% end %>
+    <% end %>
   </div>
-  <% end %>
 </div>
