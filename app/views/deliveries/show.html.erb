@@ -104,14 +104,16 @@
   <div class="info">
     <h4>Price and Bounty</h4>
     <p>
-     Retail price: $<%= @delivery.package.display_price %> <br/>
-     <% if @delivery.fee %>
-      Bounty: $<%= @delivery.fee.display_price %> <br/>
-      Payment method: <%= @delivery.fee.payment_method %> <br/>
-      <br/>
-     <% else %>
-       no delivery fee has been specified
-     <% end %>
+      <% if @delivery.package %>
+        Retail price: $<%= @delivery.package.display_price %> <br/>
+      <% end %>
+      <% if @delivery.fee %>
+        Bounty: $<%= @delivery.fee.display_price %> <br/>
+        Payment method: <%= @delivery.fee.payment_method %> <br/>
+        <br/>
+      <% else %>
+        no delivery fee has been specified
+      <% end %>
     </p>
   </div>
 
