@@ -23,8 +23,17 @@
   You (<%= link_to_user(current_user) %>) receive from <%= link_to_user(@delivery.listing_user) %> upon delivery: <br/>
   The Bounty: $<%= @delivery.fee.display_price %> <br/>
   The cost of the item: $<%=@delivery.package.display_price%> <br/>
-  Total: $<%= @delivery.display_retail_plus_package_fee %> with <%= @delivery.fee.payment_method %>
+  Total: $<%= @delivery.display_retail_plus_package_fee %> paid via <%= @delivery.fee.payment_method %>
   </p>
+
+  <% if @delivery.fee.payment_method == "visa" %>
+  <p>
+  For VISA payments you must be signed up with <a href="http://squareup.com">squareup.com</a> and 
+  have already received the VISA Card reader in the mail. Then you can process a VISA card
+  at the same time you make the delivery. Accept this delivery only if you are already setup
+  to use Square.
+  </p>
+  <% end %>
 
 
   <div style="float:left; margin-right: 2em">
