@@ -123,8 +123,19 @@ class Delivery < ActiveRecord::Base
     find_between_times(start,stop)
   end
 
-  private
   def self.find_between_times(start,stop)
     all(:conditions => ["created_at >= ? and created_at < ?", start, stop], :order => "created_at desc, delivering_user_id asc")
+  end
+
+  def self.find_due_after_time(due_time)
+    joins(:fee).
+    where(["fees.delivery_due >= ?", due_time]).
+    order("fees.delivery_due asc")
+  end
+
+  def self.find_due_between_times(start,stop)
+    joins(:fee).
+    where(["fees.delivery_due >= ? and fees.delivery_due < ?", start, stop]).
+    order("fees.delivery_due desc")
   end
 end

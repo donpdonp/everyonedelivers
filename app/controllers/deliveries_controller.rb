@@ -9,9 +9,10 @@ class DeliveriesController < ApplicationController
                                                "@@ to_tsquery('english', ?)", params[:q]], :include => :package)
       flash[:notice] = "Search results for \"#{params[:q]}\""                                               
     else
-      one_month = Delivery.waitings.find_at_most_hours_old(24*31)
+      now = Time.now
+      one_month = Delivery.waitings.find_due_after_time(now) + 
+                  Delivery.waitings.find_due_between_times(1.month.ago, now)
     end
-    one_month = one_month.sort{|a,b| b.fee.delivery_due <=> a.fee.delivery_due}
     @delivery_groups << ["less than a month old", one_month] if one_month.size > 0
     #four_hours = Delivery.find_between_hours_old(1,4).select{|d| d.ok_to_display?}
     #@delivery_groups << ["one to four hours old", four_hours] if four_hours.size > 0
