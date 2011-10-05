@@ -23,6 +23,7 @@ gem 'workflow'
 gem 'friendly_id'
 gem 'loofah'
 gem 'uuidtools'
+gem 'exception_notification'
 
 # Use unicorn as the web server
 # gem 'unicorn'
