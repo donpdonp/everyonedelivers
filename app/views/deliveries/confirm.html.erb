@@ -1,36 +1,63 @@
-  Delivery #<%= @delivery.id %> &quot;<%= @delivery.package.description %>&quot; <br/>
+<script>
+  google.maps.event.addDomListener(window, 'load', function() {
+    mapinitialize(<%= @delivery.start_location.latitude %>,
+                  <%= @delivery.start_location.longitude %>,
+                  <%= @delivery.end_location.latitude %>,
+                  <%= @delivery.end_location.longitude %>,
+                  <%= "google.maps.UnitSystem."+ 
+                                    (current_user.display_measurement == "imperial" ? "IMPERIAL" : "METRIC") %>
+                 )
+    });
+</script>
+
+<div class="deliveryconfirm">
+  <h3 class="packagename">
+  Delivery #<%= @delivery.id %> &quot;<%= @delivery.package.description %>&quot;
+  </h3>
+
   Are you sure you can make this delivery? <br/>
 
-  <h4>Distance and Time</h4>
-  From:
-  <%= @delivery.start_location.street %> <br/>
+  
+  <div class="distancetime">
+    <div class="map">
+     <div id="gmap" style="width:300px;height:230px"></div>
+     <div id="gmaperror"></div>
+    </div>
 
-  To:
-  <%= @delivery.end_location.street %> <br/>
+    <div class="words">
+      <h4>Plan</h4>
 
-  Due at: <%= @delivery.fee.delivery_due %> (in <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %>) <br/>
 
-  <h4>Cost</h4>
+      Step 1: Travel to
+      <strong> <%= @delivery.start_location.street %> </strong> <br/>
 
-  <p>
-  You (<%= link_to_user(current_user) %>) pay: <br/>
-  Listing acceptance fee, paid to EveryoneDelivers.com: $ <%= @delivery.display_listing_fee %> <br/>
-  The in-store cost of the item, paid where item is purchased: $<%=@delivery.package.display_price%> <br/>
-  Total: $<%= @delivery.display_listing_fee.to_f + @delivery.package.display_price.to_f %>
-  </p>
+      Step 2: Acquire item, cost: $<%=@delivery.package.display_price%> <br/>
 
-  <p>
-  You (<%= link_to_user(current_user) %>) receive from <%= link_to_user(@delivery.listing_user) %> upon delivery: <br/>
-  The Bounty: $<%= @delivery.fee.display_price %> <br/>
-  The cost of the item: $<%=@delivery.package.display_price%> <br/>
-  Total: $<%= @delivery.display_retail_plus_package_fee %> paid via <%= @delivery.fee.payment_method %>
-  </p>
+      <div>
+      <div style="float:left">
+      Step 3:  <br/>
+      &nbsp;
+      </div>
+      <div>
+      Travel to
+      <strong><%= @delivery.end_location.street %></strong> <br/>
+      Distance: <span id="travel_distance"></span> in 
+         <strong> <%= distance_of_time_in_words_to_now(@delivery.fee.delivery_due) %> </strong> <br/>
+      </div>
+      </div>
+      <div style="clear:left"></div>
+      Step 4: Give item to <%= link_to_user(@delivery.listing_user) %> <br/>
 
+      Step 5: Collect $<%=@delivery.package.display_price%> + $<%= @delivery.fee.display_price %> = $<%= @delivery.display_retail_plus_bounty %> paid with <%= @delivery.fee.payment_method %>
+    </div>
+  </div>
+
+  
   <% if @delivery.fee.payment_method == "visa" %>
   <p>
   For VISA payments you must be signed up with <a href="http://squareup.com">squareup.com</a> and 
   have already received the VISA Card reader in the mail. Then you can process a VISA card
-  at the same time you make the delivery. Accept this delivery only if you are already setup
+  at the same time you make the delivery. Accept this delivery only if you are setup
   to use Square.
   </p>
   <% end %>
@@ -47,3 +74,4 @@
     <%= submit_tag 'No Thanks' %>
   <% end %>
   </div>
+</div>

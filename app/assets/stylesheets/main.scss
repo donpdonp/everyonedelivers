@@ -288,18 +288,20 @@ form.edit_delivery {
   border-radius: 6px;
 }
 
-.deliveryitem .packagename {
+ .packagename {
   font-size: 140%;
   font-weight: bold;
   background: #689ca7;
   border-radius: 9px 9px 0 0;
+  color: white;
+  text-align: center;
 }
 
-.deliveryitem .packagename a {
+ .packagename a {
   color: white;
 }
 
-.deliveryitem .packagename a:hover {
+ .packagename a:hover {
   color: white;
 }
 
@@ -364,14 +366,6 @@ form.edit_delivery {
   margin-bottom: 1em;
 }
 
-.deliverydetail .packagename {
-  font-size: 140%;
-  font-weight: bold;
-  background: #689ca7;
-  color: white;
-  text-align: center;
-}
-
 .deliverydetail .map {
   float:left; 
   margin-right: 40px
@@ -384,6 +378,16 @@ form.edit_delivery {
 
 .deliverydetail .comments {
   clear:left
+}
+
+.deliveryconfirm {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deliveryconfirm .map {
+  float: right;
 }
 
 .googlestaticmap {

@@ -90,7 +90,7 @@ class Delivery < ActiveRecord::Base
     Journal.create({:delivery => self, :user => user, :note => "Accepted delivery."})
   end
 
-  def display_retail_plus_package_fee
+  def display_retail_plus_bounty
     "%0.2f" % ((self.package.price_in_cents + self.fee.price_in_cents) / 100.0)
   end
 
