@@ -5,8 +5,12 @@
                   <%= @delivery.start_location.longitude %>,
                   <%= @delivery.end_location.latitude %>,
                   <%= @delivery.end_location.longitude %>,
+                  <% if current_user %>
                   <%= "google.maps.UnitSystem."+ 
                                     (current_user.display_measurement == "imperial" ? "IMPERIAL" : "METRIC") %>
+                  <% else %>
+                    google.maps.UnitSystem.IMPERIAL
+                  <% end %>
                  )
     });
 </script>
