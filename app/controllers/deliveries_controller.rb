@@ -103,6 +103,7 @@ class DeliveriesController < ApplicationController
 
   def destroy
     @delivery.destroy
+    Journal.create({:delivery => @delivery, :user => current_user, :note => "Destroyed Delivery"})
     redirect_to :deliveries
   end
 

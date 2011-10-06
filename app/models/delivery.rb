@@ -11,7 +11,6 @@ class Delivery < ActiveRecord::Base
   has_many :comments
 
   after_create :journal_on_create
-  after_destroy :journal_on_destroy
   after_save :check_for_completeness
 
   workflow do
@@ -78,10 +77,6 @@ class Delivery < ActiveRecord::Base
 
   def journal_on_create
     Journal.create({:delivery => self, :user => self.listing_user, :note => "Building Delivery"})
-  end
-
-  def journal_on_destroy
-    Journal.create({:delivery => self, :user => self.listing_user, :note => "Destroyed Delivery"})
   end
 
   def deliverer(user)
