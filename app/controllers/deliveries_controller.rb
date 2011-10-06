@@ -97,7 +97,6 @@ class DeliveriesController < ApplicationController
         redirect_to :controller => :dashboard, :action => :start_delivery
       end
     else
-      TwitterJob.new(@delivery.ready_message).send_later
       redirect_to edit_delivery_path(@delivery)
     end
   end

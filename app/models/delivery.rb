@@ -37,7 +37,8 @@ class Delivery < ActiveRecord::Base
 
   def ready
     Journal.create({:delivery => self, :user => listing_user, :note => "Emailed delivery update notice"})
-    email_notify_users
+    email_notify_users # todo: make job
+    TwitterJob.new(@delivery.ready_message).send_later
   end
 
   def email_notify_users
