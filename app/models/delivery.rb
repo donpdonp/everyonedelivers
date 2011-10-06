@@ -101,6 +101,10 @@ class Delivery < ActiveRecord::Base
     "%0.2f" % (listing_fee_in_cents/100.0)
   end
 
+  def ready_message
+    "#{package.description} listed."
+  end
+
   def self.find_at_most_hours_old(hours, time=Time.zone.now)
     start = hours.hours.ago(time)
     stop = time

@@ -24,6 +24,8 @@ gem 'friendly_id'
 gem 'loofah'
 gem 'uuidtools'
 gem 'exception_notification'
+gem 'delayed_job'
+gem 'twitter'
 
 # Use unicorn as the web server
 # gem 'unicorn'
