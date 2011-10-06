@@ -103,7 +103,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def ready_message
-    "#{package.description} listed."
+    "#{package.description} listed. #{SETTINGS["redirect"]["hostname"]}/#{id}"
   end
 
   def self.find_at_most_hours_old(hours, time=Time.zone.now)
