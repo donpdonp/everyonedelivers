@@ -1,6 +1,7 @@
 class Delivery < ActiveRecord::Base
 
   include Workflow
+  include ActionView::Helpers::DateHelper 
 
   belongs_to :fee
   belongs_to :package
@@ -103,7 +104,9 @@ class Delivery < ActiveRecord::Base
   end
 
   def ready_message
-    "#{package.description} listed. #{SETTINGS["redirect"]["hostname"]}/#{id}"
+    url = "http://#{SETTINGS["redirect"]["hostname"]}/#{id}"
+    due = "Due in #{distance_of_time_in_words_to_now(fee.delivery_due)}."
+    "\"#{package.description[0,136-url.length-due.length]}\" #{due} #{url}"
   end
 
   def self.find_at_most_hours_old(hours, time=Time.zone.now)
