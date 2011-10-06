@@ -8,3 +8,4 @@ config/database.yml
 config/settings.yml
 .rspec
 bin/
+public/assets/
