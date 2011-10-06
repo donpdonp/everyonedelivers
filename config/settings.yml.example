@@ -23,4 +23,5 @@ twitter:
   consumer_secret: ""
   oauth_token: ""
   oauth_secret: ""
-  
+redirect:
+  hostname: "shorturl.tld"
