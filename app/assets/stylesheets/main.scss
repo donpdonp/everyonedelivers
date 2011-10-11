@@ -133,6 +133,7 @@ div.header #sub {
 .clockedinpeople {
   background: #5B8207;
   float:left;
+  border-radius: 9px 9px 0 0;
 }
 
 .clockedinpeople p {
@@ -141,12 +142,13 @@ div.header #sub {
   margin-left: 0.3em;
   margin-right: 0.3em;
   border-bottom-style: solid;
+  text-align: center
 }
 
 .clockedinpeople ul {
   list-style: none;
   padding-left: 5%;
-  font-size: 130%;
+  font-size: 16pt;
   margin-top: 0px;
   margin-bottom: 5%;
 }
