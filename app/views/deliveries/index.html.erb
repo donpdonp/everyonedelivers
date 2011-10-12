@@ -30,8 +30,12 @@ Deliver an item and earn the bounty!
       Clocked <br/>
       <span style="font-size: 150%"><%= clockedin ? "In" : "Out"%></span> 
       <br/>
-      <%= form_tag(clockedin ? clock_out_user_path(current_user) : clock_in_user_path(current_user)) do %>
-        <%= submit_tag "Clock #{clockedin ? "OUT" : "IN"}" %>
+      <% if clockedin %>
+        <%= form_tag(clockedin ? clock_out_user_path(current_user) : clock_in_user_path(current_user)) do %>
+          <%= submit_tag "Clock #{clockedin ? "OUT" : "IN"}" %>
+        <% end %>
+      <% else %>
+        <%= link_to 'Clock in', schedule_user_path(current_user) %>
       <% end %>
     </div>
   <% end %>

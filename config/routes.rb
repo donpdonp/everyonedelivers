@@ -13,6 +13,8 @@ EveryoneDelivers::Application.routes.draw do
       put :update_location
       post :clock_in
       post :clock_out
+      post :add_schedule
+      get :schedule
     end
   end
 
