@@ -1,6 +1,6 @@
   function mapinitialize(start_lat, start_long, end_lat, end_long, units) {
 
-    var start, end, sw, ne;
+    var start, end;
     start = new google.maps.LatLng(start_lat, start_long);
     end = new google.maps.LatLng(end_lat, end_long);
     var bounds = new google.maps.LatLngBounds();

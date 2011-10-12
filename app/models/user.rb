@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :openidentities, :dependent => :destroy
   has_many :sightings
   has_many :locations, :through => :sightings
+  has_many :schedules
   validates_presence_of :username, :email, :authentication_token
   validates_uniqueness_of :username, :email
 
