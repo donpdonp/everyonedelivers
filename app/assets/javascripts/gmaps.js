@@ -1,10 +1,11 @@
-  function mapinitialize(start_lat, start_long) {
+  function mapinitialize(start_lat, start_long, draggable) {
     var start = new google.maps.LatLng(start_lat, start_long);
     var map = new google.maps.Map(document.getElementById("gmap"),
                                   {mapTypeId: google.maps.MapTypeId.ROADMAP,
                                    center: start,
                                    zoom: 12});
-    var marker_start = new google.maps.Marker({position:start});
+    var marker_start = new google.maps.Marker({position:start,
+                                               draggable: draggable});
     marker_start.setMap(map);
     return map;
   }

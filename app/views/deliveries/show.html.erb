@@ -2,7 +2,8 @@
 <script>
   google.maps.event.addDomListener(window, 'load', function() {
     var map = mapinitialize(<%= @delivery.start_location.latitude %>,
-                            <%= @delivery.start_location.longitude %>
+                            <%= @delivery.start_location.longitude %>,
+                            false
                            );
     map_destination(map, <%= @delivery.end_location.latitude %>,
                     <%= @delivery.end_location.longitude %>,
