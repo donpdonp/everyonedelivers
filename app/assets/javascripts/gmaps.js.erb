@@ -48,11 +48,13 @@
       var streetname, msg;
       if (data.intersection) {
         console.log(data.intersection)
-        streetname = data.intersection.street1 + ' ' + data.intersection.street2
-        msg = streetname
+        streetname = data.intersection.street1 + ' and ' + data.intersection.street2
+        msg = "<span class='street'>"+data.intersection.street1+"</span>" +
+              ' and ' + 
+              "<span class='street'>"+data.intersection.street2+"</span>" 
       } else {
         streetname = ""
-        msg = "not available for this location. Please try again."
+        msg = "Not available for this location. Please try again."
       }
       $('#intersection').val(streetname)
       $('#gmapmsg').html(msg)

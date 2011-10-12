@@ -8,22 +8,35 @@
     });
 </script>
 
-Clock-In Schedule
+<div class="clockinschedule">
 
-<!-- When -->
-<!-- Where -->
-  <div class="map">
-     <div id="gmap" style="width:400px;height:260px"></div>
-     Nearest Intersection: <span id="gmapmsg"></div>
-  </div>
+  <p>
+    Clock-In Schedule
+  </p>
 
-  <%= form_tag do %>
-    <input type="hidden" id="gmaplat" name="schedule[latitude]" />
-    <input type="hidden" id="gmaplng" name="schedule[longitude]" />
+  <!-- When -->
 
-    <p>
-      Until time: <%= time_select "schedule", "stopping_at", {:ampm => true} %>
-    </p>
+    <%= form_tag do %>
 
-    <%= submit_tag "Clock In"%>
-  <% end %>
+      <!-- When -->
+      <p>
+        I am available to make a delivery now until <br/>
+        time: <%= time_select "schedule", "stopping_at", {:ampm => true} %>
+      </p>
+
+      <!-- Where -->
+      <p>
+        <div class="map">
+          <div id="gmap" style="width:400px;height:260px; float: right"></div>
+          Drag the map marker to the nearest intersection where you will be during
+          the clocked-in period. The nearest intersection is used for the privacy.<br/>
+          Nearest Intersection: <span id="gmapmsg">(waiting for map)</span>
+        </div>
+        <input type="hidden" id="gmaplat" name="schedule[latitude]" />
+        <input type="hidden" id="gmaplng" name="schedule[longitude]" />
+      </p>
+      
+      <%= submit_tag "Clock In"%>
+    <% end %>
+
+</div>
