@@ -1,17 +1,19 @@
 <% if @delivery.start_location && @delivery.end_location %>
 <script>
   google.maps.event.addDomListener(window, 'load', function() {
-    mapinitialize(<%= @delivery.start_location.latitude %>,
-                  <%= @delivery.start_location.longitude %>,
-                  <%= @delivery.end_location.latitude %>,
-                  <%= @delivery.end_location.longitude %>,
-                  <% if current_user %>
-                  <%= "google.maps.UnitSystem."+ 
-                                    (current_user.display_measurement == "imperial" ? "IMPERIAL" : "METRIC") %>
-                  <% else %>
-                    google.maps.UnitSystem.IMPERIAL
-                  <% end %>
-                 )
+    var map = mapinitialize(<%= @delivery.start_location.latitude %>,
+                            <%= @delivery.start_location.longitude %>
+                           );
+    map_destination(map, <%= @delivery.end_location.latitude %>,
+                    <%= @delivery.end_location.longitude %>,
+                    <% if current_user %>
+                      <%= "google.maps.UnitSystem."+ 
+                              (current_user.display_measurement == "imperial" ? "IMPERIAL" : "METRIC") %>
+                    <% else %>
+                       google.maps.UnitSystem.IMPERIAL
+                    <% end %>
+                    );
+
     });
 </script>
 <% end %>

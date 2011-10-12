@@ -2,15 +2,7 @@
 <script>
   google.maps.event.addDomListener(window, 'load', function() {
     mapinitialize(<%= last_schedule ? last_schedule.latitude : "45"%>,
-                  <%= last_schedule ? last_schedule.longitue : "-120"%>,
-                  null,
-                  null,
-                  <% if current_user %>
-                  <%= "google.maps.UnitSystem."+ 
-                                    (current_user.display_measurement == "imperial" ? "IMPERIAL" : "METRIC") %>
-                  <% else %>
-                    google.maps.UnitSystem.IMPERIAL
-                  <% end %>
+                  <%= last_schedule ? last_schedule.longitue : "-120"%>
                  )
     });
 </script>
