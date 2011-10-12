@@ -37,6 +37,26 @@
   function mark_dragged(event) {
     document.getElementById("gmaplat").value = event.latLng.Ma;
     document.getElementById("gmaplng").value = event.latLng.Na;
+    jQuery.ajax("http://api.geonames.org/findNearestIntersectionJSON?"+
+                "lat="+event.latLng.Ma+"&lng="+event.latLng.Na+"&username=<%=SETTINGS["geonames"]["username"]%>",
+                {success:intersection_update, dataType: "json"})
+  }
+
+  function intersection_update(data, status) {
+    console.log(status)
+    if (status == "success") {
+      var streetname, msg;
+      if (data.intersection) {
+        console.log(data.intersection)
+        streetname = data.intersection.street1 + ' ' + data.intersection.street2
+        msg = streetname
+      } else {
+        streetname = ""
+        msg = "not available for this location. Please try again."
+      }
+      $('#intersection').val(streetname)
+      $('#gmapmsg').html(msg)
+    }
   }
 
   function show_directions_callback_builder(map) {

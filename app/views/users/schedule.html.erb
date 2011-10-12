@@ -14,12 +14,16 @@ Clock-In Schedule
 <!-- Where -->
   <div class="map">
      <div id="gmap" style="width:400px;height:260px"></div>
-     <div id="gmaperror"></div>
+     Nearest Intersection: <span id="gmapmsg"></div>
   </div>
 
   <%= form_tag do %>
-     <input type="hidden" id="gmaplat" name="schedule[latitude]" />
-     <input type="hidden" id="gmaplng" name="schedule[longitude]" />
+    <input type="hidden" id="gmaplat" name="schedule[latitude]" />
+    <input type="hidden" id="gmaplng" name="schedule[longitude]" />
+
+    <p>
+      Until time: <%= time_select "schedule", "stopping_at", {:ampm => true} %>
+    </p>
 
     <%= submit_tag "Clock In"%>
   <% end %>
