@@ -6,6 +6,10 @@
                                    zoom: 12});
     var marker_start = new google.maps.Marker({position:start,
                                                draggable: draggable});
+    if(draggable) {
+      google.maps.event.addListener(marker_start, 'dragend', mark_dragged);
+    }
+
     marker_start.setMap(map);
     return map;
   }
@@ -28,6 +32,11 @@
                     travelMode : google.maps.DirectionsTravelMode.DRIVING,
                     unitSystem: units };
     directions.route(request, show_directions_callback_builder(map));
+  }
+
+  function mark_dragged(event) {
+    document.getElementById("gmaplat").value = event.latLng.Ma;
+    document.getElementById("gmaplng").value = event.latLng.Na;
   }
 
   function show_directions_callback_builder(map) {
