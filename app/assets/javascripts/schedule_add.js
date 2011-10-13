@@ -1,5 +1,4 @@
-function schedule_submit(event) {
+function schedule_submit() {
   console.log("submit!");
-  return false
   
 }

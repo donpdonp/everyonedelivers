@@ -6,7 +6,7 @@
                   true
                  )
     });
-    $('#schedule_add').submit(schedule_submit);
+  $(function() {$('#schedule_add').submit(schedule_submit);})  
 </script>
 
 <div class="clockinschedule">
@@ -40,6 +40,8 @@
         </div>
         <input type="hidden" id="gmaplat" name="schedule[latitude]" />
         <input type="hidden" id="gmaplng" name="schedule[longitude]" />
+        <input type="hidden" id="street1_field" name="schedule[street1]" />
+        <input type="hidden" id="street2_field" name="schedule[street2]" />
       </p>
       
       <%= submit_tag "Clock In"%>

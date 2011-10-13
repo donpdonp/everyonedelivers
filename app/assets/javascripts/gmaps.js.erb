@@ -47,16 +47,14 @@
     if (status == "success") {
       var streetname, msg;
       if (data.intersection) {
-        console.log(data.intersection)
-        streetname = data.intersection.street1 + ' and ' + data.intersection.street2
         msg = "<span class='street'>"+data.intersection.street1+"</span>" +
               ' and ' + 
               "<span class='street'>"+data.intersection.street2+"</span>" 
       } else {
-        streetname = ""
         msg = "Not available for this location. Please try again."
       }
-      $('#intersection').val(streetname)
+      $('#street1_field').val(data.intersection.street1)
+      $('#street2_field').val(data.intersection.street2)
       $('#gmapmsg').html(msg)
     }
   }
