@@ -1,11 +1,12 @@
 <% last_schedule = current_user.schedules.last %>
 <script>
   google.maps.event.addDomListener(window, 'load', function() {
-    mapinitialize(<%= last_schedule ? last_schedule.latitude : "45"%>,
-                  <%= last_schedule ? last_schedule.longitue : "-120"%>,
+    mapinitialize(<%= last_schedule ? last_schedule.latitude : "45.5"%>,
+                  <%= last_schedule ? last_schedule.longitue : "-122.5"%>,
                   true
                  )
     });
+    $('#schedule_add').submit(schedule_submit);
 </script>
 
 <div class="clockinschedule">
@@ -16,21 +17,26 @@
 
   <!-- When -->
 
-    <%= form_tag do %>
+    <%= form_tag({:action => :clock_in}, {:id => "schedule_add"}) do %>
+
+      <div id="gmap" style="width:400px;height:260px; float: right"></div>
 
       <!-- When -->
       <p>
-        I am available to make a delivery now until <br/>
-        time: <%= time_select "schedule", "stopping_at", {:ampm => true} %>
+        I am available to make a delivery from now until <br/>
+        <%= time_select "schedule", "stopping_at", {:ampm => true} %>
+        <%= Time.zone.name.sub(/\(.*\)/,'') %>
       </p>
 
       <!-- Where -->
       <p>
         <div class="map">
-          <div id="gmap" style="width:400px;height:260px; float: right"></div>
-          Drag the map marker to the nearest intersection where you will be during
-          the clocked-in period. The nearest intersection is used for the privacy.<br/>
+          Drag the map marker to your current location. <br/>
+          The nearest intersection is used for 
+          your privacy.<br/>
+          <p>
           Nearest Intersection: <span id="gmapmsg">(waiting for map)</span>
+          </p>
         </div>
         <input type="hidden" id="gmaplat" name="schedule[latitude]" />
         <input type="hidden" id="gmaplng" name="schedule[longitude]" />
