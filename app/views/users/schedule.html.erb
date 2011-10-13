@@ -1,8 +1,8 @@
 <% last_schedule = current_user.schedules.last %>
 <script>
   google.maps.event.addDomListener(window, 'load', function() {
-    mapinitialize(<%= last_schedule ? last_schedule.latitude : "45.5"%>,
-                  <%= last_schedule ? last_schedule.longitude : "-122.5"%>,
+    mapinitialize(<%= last_schedule ? last_schedule.latitude : "null"%>,
+                  <%= last_schedule ? last_schedule.longitude : "null"%>,
                   true
                  )
     });
@@ -12,7 +12,7 @@
 <div class="clockinschedule">
 
   <p>
-    Clock-In Schedule
+    Clock-In Position
   </p>
 
   <!-- When -->
@@ -21,12 +21,12 @@
 
       <div id="gmap" style="width:400px;height:260px; float: right"></div>
 
-      <!-- When -->
+      <!-- When 
       <p>
         I am available to make a delivery from now until <br/>
         <%= time_select "schedule", "ending_at", {:ampm => true} %>
         <%= Time.zone.name.sub(/\(.*\)/,'') %>
-      </p>
+      </p> -->
 
       <!-- Where -->
       <p>

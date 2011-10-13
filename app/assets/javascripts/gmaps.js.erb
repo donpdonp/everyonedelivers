@@ -1,9 +1,19 @@
   function mapinitialize(start_lat, start_long, draggable) {
-    var start = new google.maps.LatLng(start_lat, start_long);
+    var lat, lng, zoom;
+    if(start_lat) {
+      lat = start_lat
+      lng = start_long
+      zoom = 12
+    } else {
+      lat = 45
+      lng = -120
+      zoom = 4
+    }
+    var start = new google.maps.LatLng(lat, lng);
     var map = new google.maps.Map(document.getElementById("gmap"),
                                   {mapTypeId: google.maps.MapTypeId.ROADMAP,
                                    center: start,
-                                   zoom: 12});
+                                   zoom: zoom});
     var marker_start = new google.maps.Marker({position:start,
                                                draggable: draggable});
     if(draggable) {
