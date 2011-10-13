@@ -14,7 +14,7 @@
                                   {mapTypeId: google.maps.MapTypeId.ROADMAP,
                                    center: start,
                                    zoom: zoom});
-    var marker_start = new google.maps.Marker({position:start,
+    marker_start = new google.maps.Marker({position:start,
                                                draggable: draggable});
     if(draggable) {
       google.maps.event.addListener(marker_start, 'dragend', mark_dragged);
@@ -82,5 +82,25 @@
         renderer.setMap(map);
         $('#travel_distance').html(result.routes[0].legs[0].distance.text)
       }
+    }
+  }
+
+  function gmapcenter(map, street) {
+    var geocoder = new google.maps.Geocoder();
+    var request = {address: street};
+    geocoder.geocode(request, function(addresses, result, status){
+                                   gmapcenterfinish(map, addresses, result, status)})
+    console.log(street)
+  }
+
+  function gmapcenterfinish(map, addresses, result, status){
+    if (addresses[0]) {
+      var address = addresses[0];
+      var start = new google.maps.LatLng(address.geometry.location.Ma,
+                                          address.geometry.location.Na);
+      console.log(map)
+      map.setCenter(start) 
+      marker_start.setPosition(start)                                         
+      console.log(address)
     }
   }
