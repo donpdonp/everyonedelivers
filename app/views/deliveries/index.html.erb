@@ -10,11 +10,13 @@ Deliver an item and earn the bounty!
     <div style="float:left">
       <ul>
       <% @clocked_ins.each do |user| %>
+        <% schedule = user.schedules.last %>
         <li>
-         <span>
+         <span class="username">
            <%= link_to h(user.username), user %>
          </span>
          <span class="corner">
+           <%= schedule.street1 %> and <%= schedule.street2 %>
          </span>
          <span class="clockedintime">
          </span>

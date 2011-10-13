@@ -148,9 +148,12 @@ div.header #sub {
 .clockedinpeople ul {
   list-style: none;
   padding-left: 5%;
-  font-size: 16pt;
   margin-top: 0px;
   margin-bottom: 5%;
+}
+
+.clockedinpeople .username {
+  font-size: 16pt;
 }
 
 .clockedinpeople li a {
