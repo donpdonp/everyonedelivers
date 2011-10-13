@@ -45,8 +45,11 @@ class UsersController < ApplicationController
   def clock_in
     @user = User.find(params[:id])
     if current_user == @user
+      schedule = Schedule.new
+      schedule.apply_form_fields(params[:schedule])
+      @user.schedules << schedule
       @user.clock_in!
-      flash[:notice] = "#{@user.username} is clocked in for one hour."
+      flash[:notice] = "#{@user.username} is clocked in until #{schedule.ending_at.strftime("%I:%M%P")}."
     else
       flash[:error] = "Not authorized to clock in #{@user.username}"
     end

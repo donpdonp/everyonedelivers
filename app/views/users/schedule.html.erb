@@ -24,7 +24,7 @@
       <!-- When -->
       <p>
         I am available to make a delivery from now until <br/>
-        <%= time_select "schedule", "stopping_at", {:ampm => true} %>
+        <%= time_select "schedule", "ending_at", {:ampm => true} %>
         <%= Time.zone.name.sub(/\(.*\)/,'') %>
       </p>
 

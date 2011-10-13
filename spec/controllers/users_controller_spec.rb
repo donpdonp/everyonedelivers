@@ -17,6 +17,7 @@ describe UsersController do
 
   it "should clock in a user" do
     User.should_receive(:find).with(@user.id.to_s).and_return(@user)
+    @user.should_receive(:add_schedule)
     @user.should_receive(:clock_in!)
     @user.should_receive(:username).and_return('bob')
     get :clock_in, {:id => @user.id}
