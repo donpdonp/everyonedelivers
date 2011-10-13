@@ -17,7 +17,7 @@
     marker_start = new google.maps.Marker({position:start,
                                                draggable: draggable});
     if(draggable) {
-      google.maps.event.addListener(marker_start, 'dragend', mark_dragged);
+      google.maps.event.addListener(marker_start, 'dragend', function(event) {mark_dragged(event.latLng)});
     }
 
     marker_start.setMap(map);
@@ -44,11 +44,11 @@
     directions.route(request, show_directions_callback_builder(map));
   }
 
-  function mark_dragged(event) {
-    document.getElementById("gmaplat").value = event.latLng.Ma;
-    document.getElementById("gmaplng").value = event.latLng.Na;
+  function mark_dragged(latLng) {
+    document.getElementById("gmaplat").value = latLng.Ma;
+    document.getElementById("gmaplng").value = latLng.Na;
     jQuery.ajax("http://api.geonames.org/findNearestIntersectionJSON?"+
-                "lat="+event.latLng.Ma+"&lng="+event.latLng.Na+"&username=<%=SETTINGS["geonames"]["username"]%>",
+                "lat="+latLng.Ma+"&lng="+latLng.Na+"&username=<%=SETTINGS["geonames"]["username"]%>",
                 {success:intersection_update, dataType: "json"})
   }
 
@@ -97,6 +97,7 @@
                                           address.geometry.location.Na);
       map.setCenter(start) 
       map.setZoom(14)
-      marker_start.setPosition(start)                                         
+      marker_start.setPosition(start)   
+      mark_dragged(start)                                      
     }
   }
