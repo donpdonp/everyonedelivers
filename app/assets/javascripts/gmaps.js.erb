@@ -46,15 +46,16 @@
     console.log(status)
     if (status == "success") {
       var streetname, msg;
+      console.log(data)
       if (data.intersection) {
         msg = "<span class='street'>"+data.intersection.street1+"</span>" +
               ' and ' + 
               "<span class='street'>"+data.intersection.street2+"</span>" 
+        $('#street1_field').val(data.intersection.street1)
+        $('#street2_field').val(data.intersection.street2)
       } else {
-        msg = "Not available for this location. Please try again."
+        msg = "No intersection near this location. Please try again."
       }
-      $('#street1_field').val(data.intersection.street1)
-      $('#street2_field').val(data.intersection.street2)
       $('#gmapmsg').html(msg)
     }
   }
