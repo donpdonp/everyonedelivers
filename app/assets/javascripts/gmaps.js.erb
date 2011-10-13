@@ -53,10 +53,8 @@
   }
 
   function intersection_update(data, status) {
-    console.log(status)
     if (status == "success") {
       var streetname, msg;
-      console.log(data)
       if (data.intersection) {
         msg = "<span class='street'>"+data.intersection.street1+"</span>" +
               ' and ' + 
@@ -90,7 +88,6 @@
     var request = {address: street};
     geocoder.geocode(request, function(addresses, result, status){
                                    gmapcenterfinish(map, addresses, result, status)})
-    console.log(street)
   }
 
   function gmapcenterfinish(map, addresses, result, status){
@@ -98,9 +95,7 @@
       var address = addresses[0];
       var start = new google.maps.LatLng(address.geometry.location.Ma,
                                           address.geometry.location.Na);
-      console.log(map)
       map.setCenter(start) 
       marker_start.setPosition(start)                                         
-      console.log(address)
     }
   }
