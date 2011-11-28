@@ -9,5 +9,7 @@ User <%=h @user.username %>
 
 <%= render :partial => 'menu', :locals => {:user => @user} %>
 
+<% if ['profile', 'deliveries', 'location', 'billing'].include? tab %>
 <%= render :partial => tab, :locals => {:user => @user} %>
+<% end %>
 </div>
