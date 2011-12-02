@@ -5,4 +5,14 @@ require './lib/shorten'
 require ::File.expand_path('../config/environment',  __FILE__)
 
 use Shorten
-run EveryoneDelivers::Application
+
+builder = Rack::Builder.new do
+  map '/assets' do
+    run Rack::File.new(File.join(File.dirname(__FILE__),"public/assets/"))
+  end
+
+  map '/' do
+    run EveryoneDelivers::Application
+  end
+end
+run builder
