@@ -44,9 +44,23 @@
     directions.route(request, show_directions_callback_builder(map));
   }
 
+  function map_riders(map, riders) {
+    var bounds = map.getBounds()
+    for(var i=0,len=riders.length; i<len; i++) {
+      var rider = riders[i];
+      var pos = new google.maps.LatLng(rider[0], rider[1]);
+      var mark = new google.maps.Marker({position:pos});
+      console.log("adding "+pos)
+      mark.setMap(map);
+      bounds.extend(pos);
+    }
+    console.log("center"+bounds.getCenter())
+    map.fitBounds(bounds)
+  }
+
   function mark_dragged(latLng) {
-    document.getElementById("gmaplat").value = latLng.Ma;
-    document.getElementById("gmaplng").value = latLng.Na;
+    document.getElementById("gmaplat").value = latLng.lat();
+    document.getElementById("gmaplng").value = latLng.lng();
     jQuery.ajax("http://api.geonames.org/findNearestIntersectionJSON?"+
                 "lat="+latLng.Ma+"&lng="+latLng.Na+"&username=<%=SETTINGS["geonames"]["username"]%>",
                 {success:intersection_update, dataType: "json"})
