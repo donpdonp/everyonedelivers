@@ -62,7 +62,7 @@
     document.getElementById("gmaplat").value = latLng.lat();
     document.getElementById("gmaplng").value = latLng.lng();
     jQuery.ajax("http://api.geonames.org/findNearestIntersectionJSON?"+
-                "lat="+latLng.Ma+"&lng="+latLng.Na+"&username=<%=SETTINGS["geonames"]["username"]%>",
+                "lat="+latLng.lat()+"&lng="+latLng.lng()+"&username=<%=SETTINGS["geonames"]["username"]%>",
                 {success:intersection_update, dataType: "json"})
   }
 
@@ -107,8 +107,8 @@
   function gmapcenterfinish(map, addresses, result, status){
     if (addresses[0]) {
       var address = addresses[0];
-      var start = new google.maps.LatLng(address.geometry.location.Ma,
-                                          address.geometry.location.Na);
+      var start = new google.maps.LatLng(address.geometry.location.lat(),
+                                          address.geometry.location.lng());
       map.setCenter(start) 
       map.setZoom(14)
       marker_start.setPosition(start)   
