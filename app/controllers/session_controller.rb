@@ -20,7 +20,7 @@ class SessionController < ApplicationController
 
   def login
     # email validation
-    unless params[:email][/.@./]
+    unless params[:email] && params[:email][/.@./]
       flash[:error] = "Please use an email address."
       redirect_to :root
       return      
