@@ -1,7 +1,7 @@
     <div class="googlestaticmap" >
       <div class="mapaddr">
         <div class="map">
-          <%= image_tag location.gmap_static_html(100,100,14) %>
+          <%= image_tag location.gmap_static_html(100,100,14).html_safe, :alt => "map of #{location.name}" %>
         </div>
         <div class="address">
           <div class="direction"><%= direction %> 
