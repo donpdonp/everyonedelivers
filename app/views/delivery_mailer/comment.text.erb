@@ -1,0 +1,5 @@
+Delivery #<%=@delivery.id%> has a new comment from <%= @comment.user.username %>.
+
+"<%= @comment.text %>"
+
+<%= url_for(:host => SETTINGS["email"]["domain"], :controller => :deliveries, :action => :show, :id => @delivery.id )%>

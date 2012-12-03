@@ -7,10 +7,10 @@ class DeliveriesController < ApplicationController
       # postgresql full-text search
       one_month = Delivery.all(:conditions => ["to_tsvector('english', packages.description) "+
                                                "@@ to_tsquery('english', ?)", params[:q]], :include => :package)
-      flash[:notice] = "Search results for \"#{params[:q]}\""                                               
+      flash[:notice] = "Search results for \"#{params[:q]}\""
     else
       now = Time.now
-      one_month = Delivery.waitings.find_due_after_time(now) + 
+      one_month = Delivery.waitings.find_due_after_time(now) +
                   Delivery.waitings.find_due_between_times(1.month.ago, now)
     end
     @delivery_groups << ["less than a month old", one_month] if one_month.size > 0
@@ -55,21 +55,21 @@ class DeliveriesController < ApplicationController
         logger.info("editing under anonymous_delivery_id")
       else
         flash[:error] = "Login to edit a delivery request."
-        redirect_to root_path          
+        redirect_to root_path
       end
     end
   end
 
   def update
     # update form is also a creation form for the dependent models
-    unless (params[:id].to_i == session[:anonymous_delivery_id]) || 
+    unless (params[:id].to_i == session[:anonymous_delivery_id]) ||
             @delivery.available_for_edit_by(current_user)
       flash[:error] = "Not allowed to edit delivery #{params[:id]}"
       redirect_to root_path
       return
     end
     @delivery.apply_form_attributes(params[:delivery])
-    
+
     fee = Fee.new
     fee.apply_form_attributes(params[:fee])
     fee.save!
@@ -131,8 +131,9 @@ class DeliveriesController < ApplicationController
   end
 
   def comment
-    @delivery.comments.create(:text => params[:comment][:text],
-                              :user_id => current_user.id)    
+    comment = @delivery.comments.create(:text => params[:comment][:text],
+                                        :user_id => current_user.id)
+    DeliveryMailer.comment(@delivery, comment).deliver
     redirect_to @delivery
   end
 
