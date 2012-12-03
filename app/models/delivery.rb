@@ -1,7 +1,7 @@
 class Delivery < ActiveRecord::Base
 
   include Workflow
-  include ActionView::Helpers::DateHelper 
+  include ActionView::Helpers::DateHelper
 
   belongs_to :fee
   belongs_to :package
@@ -27,8 +27,8 @@ class Delivery < ActiveRecord::Base
     state :delivered
   end
 
-  scope :buildings, :conditions => { :workflow_state => "building" } 
-  scope :waitings, :conditions => { :workflow_state => "waiting" } 
+  scope :buildings, :conditions => { :workflow_state => "building" }
+  scope :waitings, :conditions => { :workflow_state => "waiting" }
 
   def check_for_completeness
     if building? && ok_to_display?
@@ -104,7 +104,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def ready_message
-    url = "http://#{SETTINGS["redirect"]["hostname"]}/#{id}"
+    url = "#{SETTINGS["shortname"]["url"]}/#{id}"
     due = "Due in #{distance_of_time_in_words_to_now(fee.delivery_due)}."
     "\"#{package.description[0,136-url.length-due.length]}\" #{due} #{url}"
   end

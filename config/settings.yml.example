@@ -11,6 +11,9 @@ google:
     id: "UA-XXXXXX-X"
   maps:
     key: ""
+bing:
+  maps:
+    key: ""
 email:
   domain: ""
   from: ""
@@ -23,8 +26,8 @@ twitter:
   consumer_secret: ""
   oauth_token: ""
   oauth_secret: ""
-redirect:
-  hostname: "shorturl.tld"
+shortname:
+  url: "http://shorturl.tld"
 geonames:
   username:
 
