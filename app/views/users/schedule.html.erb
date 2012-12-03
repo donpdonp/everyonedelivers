@@ -6,7 +6,7 @@
                   true
                  )
     });
-  $(function() {$('#schedule_add').submit(schedule_submit);})  
+  $(function() {$('#schedule_add').submit(schedule_submit);})
 </script>
 
 <div class="clockinschedule">
@@ -27,7 +27,7 @@
       </div>
 
     <%= form_tag({:action => :clock_in}, {:id => "schedule_add"}) do %>
-      <!-- When 
+      <!-- When
       <p>
         I am available to make a delivery from now until <br/>
         <%= time_select "schedule", "ending_at", {:ampm => true} %>
@@ -38,7 +38,7 @@
       <p>
         <div class="map">
           Drag the map marker to your current location. <br/>
-          The nearest intersection is used for 
+          The nearest intersection is used for
           your privacy.<br/>
           <p>
           Nearest Intersection: <span id="gmapmsg">(waiting for map)</span>
@@ -49,7 +49,7 @@
         <input type="hidden" id="street1_field" name="schedule[street1]" />
         <input type="hidden" id="street2_field" name="schedule[street2]" />
       </p>
-      
+
       <%= submit_tag "Clock In"%>
     <% end %>
 
