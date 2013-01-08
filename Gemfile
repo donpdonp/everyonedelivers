@@ -19,7 +19,7 @@ end
 gem 'jquery-rails'
 gem 'devise'
 gem 'workflow'
-gem 'friendly_id'
+gem 'friendly_id', "~> 3.3.3.0"
 gem 'loofah'
 gem 'uuidtools'
 gem 'exception_notification'
