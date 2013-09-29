@@ -23,7 +23,6 @@ gem 'friendly_id', "~> 3.3.3.0"
 gem 'loofah'
 gem 'uuidtools'
 gem 'exception_notification'
-gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'twitter'
 
