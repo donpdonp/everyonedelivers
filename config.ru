@@ -1,3 +1,4 @@
+require 'yaml'
 # This file is used by Rack-based servers to start the application.
 SETTINGS = YAML.load(File.open(File.join(File.dirname(__FILE__), "config/settings.yml")))
 
